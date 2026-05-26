@@ -1,0 +1,145 @@
+---
+import type { MetaData } from "~/types";
+import { ClientRouter } from "astro:transitions";
+import Header from "~/components/ui/Header.astro";
+import Footer from "~/components/ui/Footer.astro";
+import CallToAction from "~/components/sections/CallToAction.astro";
+import ScrollAnimations from "~/components/ui/ScrollAnimations.astro";
+import "~/styles/global.css";
+
+export interface Props {
+  metadata?: MetaData;
+  showGlobalCTA?: boolean;
+}
+
+const { metadata = {}, showGlobalCTA = true } = Astro.props;
+const {
+  title = "Your Brand",
+  description,
+  keywords,
+  image,
+  canonical,
+  noindex,
+  nofollow,
+} = metadata;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#1a2b5c" />
+    
+    {/* Preload critical fonts */}
+    <link rel="preload" href="/fonts/poppins/Poppins-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="/fonts/poppins/Poppins-Bold.ttf" as="font" type="font/ttf" crossorigin />
+    
+    {/* Preload critical images */}
+    <link rel="preload" href="/logo/dealer-logo-small.webp" as="image" type="image/webp" fetchpriority="high" />
+    
+    {/* Preconnect to external domains for performance */}
+    <link rel="preconnect" href="https://ucarecdn.com" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="dns-prefetch" href="https://ucarecdn.com" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {keywords && <meta name="keywords" content={keywords} />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    {noindex && <meta name="robots" content="noindex" />}
+    {nofollow && <meta name="robots" content="nofollow" />}
+    
+    {/* Favicon */}
+    <link rel="icon" type="image/ico+xml" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    {/* Open Graph */}
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    {image && <meta property="og:image" content={image} />}
+    <meta property="og:type" content="website" />
+
+    {/* Twitter */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    {image && <meta name="twitter:image" content={image} />}
+    
+    {/* Structured Data */}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Denver Marketing Agency",
+        "description": description || "Denver marketing agency offering digital marketing, indoor billboards, web design, social media & PPC services.",
+        "url": "https://dealer-template.vercel.app",
+        "telephone": "+1-303-555-0100",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Denver",
+          "addressRegion": "CO",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 39.7392,
+          "longitude": -104.9903
+        },
+        "areaServed": [
+          "Denver",
+          "Aurora",
+          "Lakewood",
+          "Arvada",
+          "Centennial"
+        ],
+        "priceRange": "$$",
+        "image": image || "/images/home.avif"
+      }
+    </script>
+
+    {/* Inline critical CSS for faster LCP */}
+    <style is:inline>
+      @font-face{font-family:"Poppins";src:url("/fonts/poppins/Poppins-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+      @font-face{font-family:"Poppins";src:url("/fonts/poppins/Poppins-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+      body{font-family:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;margin:0}
+      h1{font-size:2.25rem;font-weight:700;line-height:1.25;color:#111827}
+      @media(min-width:640px){h1{font-size:3rem}}
+      @media(min-width:768px){h1{font-size:3rem}}
+      @media(min-width:1024px){h1{font-size:3.75rem}}
+    </style>
+
+    <ClientRouter />
+  </head>
+  <body class="antialiased text-gray-900 bg-white">
+    <Header />
+    <main>
+      <slot />
+    </main>
+
+    <!-- Global CTA before footer -->
+    {
+      showGlobalCTA && (
+        <CallToAction
+          title="Ready to Grow Your Business?"
+          subtitle="Let's create a marketing strategy that delivers results. Contact us today for a free consultation."
+          background="primary"
+          actions={[
+            {
+              text: "Get Started Today",
+              href: "/contact-us",
+              variant: "primary",
+            },
+          ]}
+        />
+      )
+    }
+
+    <Footer />
+    <ScrollAnimations />
+  </body>
+</html>

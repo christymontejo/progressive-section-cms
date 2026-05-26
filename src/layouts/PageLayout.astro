@@ -1,0 +1,15 @@
+---
+import type { MetaData } from "~/types";
+import BaseLayout from "./BaseLayout.astro";
+
+export interface Props {
+  metadata?: MetaData;
+  showGlobalCTA?: boolean;
+}
+
+const { metadata = {}, showGlobalCTA = true } = Astro.props;
+---
+
+<BaseLayout metadata={metadata} showGlobalCTA={showGlobalCTA}>
+  <slot />
+</BaseLayout>

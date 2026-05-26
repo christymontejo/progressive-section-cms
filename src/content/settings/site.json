@@ -1,0 +1,48 @@
+{
+  "business": {
+    "name": "Dealer Template 8",
+    "fullName": "Dealer Template 8",
+    "tagline": "Premium Marketing Solutions",
+    "description": "We are a local marketing company in Rockwall, Texas. Premium marketing solutions including website design, social media management, and indoor billboard advertising."
+  },
+  "location": {
+    "city": "Denver",
+    "state": "CO",
+    "address": "Denver, CO",
+    "fullAddress": "Denver, CO"
+  },
+  "contact": {
+    "email": "dealertemplate8@email.com",
+    "phone": "9034201090",
+    "phoneFormatted": "903-420-1090"
+  },
+  "colors": {
+    "primary": "#1a2b5c",
+    "secondary": "#00bba9",
+    "tertiary": "#00bba9",
+    "quaternary": "#ffffff"
+  },
+  "logo": {
+    "src": "/logo/dealer-logo-small.webp",
+    "alt": "Dealer Template 8 Logo"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/ntxbillboards/",
+    "instagram": "https://www.instagram.com/ntxidb/",
+    "linkedin": "https://www.linkedin.com/company/ntx-indoor-digital-billboards/",
+    "youtube": "https://www.youtube.com/@ntxdigital",
+    "twitter": ""
+  },
+  "seo": {
+    "siteName": "Dealer Template 8",
+    "defaultTitle": "Dealer Template 8",
+    "defaultDescription": "We are a local marketing company in Rockwall, Texas. Premium marketing solutions including website design, social media management, and indoor billboard advertising.",
+    "keywords": "Denver marketing agency, digital marketing Denver, indoor billboard advertising, marketing services Denver CO",
+    "siteUrl": "https://dealer-template-8.vercel.app",
+    "ogImage": "/logo/dealer-logo-small.webp",
+    "twitterHandle": "@dealer-template-8"
+  },
+  "analytics": {
+    "googleAnalyticsId": ""
+  }
+}

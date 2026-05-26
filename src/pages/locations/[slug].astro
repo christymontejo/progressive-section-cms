@@ -1,0 +1,155 @@
+---
+import PageLayout from "~/layouts/PageLayout.astro";
+import Hero from "~/components/sections/Hero.astro";
+import FAQs from "~/components/sections/FAQs.astro";
+import ContentWithImage from "~/components/sections/ContentWithImage.astro";
+import CTALight from "~/components/sections/CTALight.astro";
+import FeaturesSection from "~/components/sections/FeaturesSection.astro";
+import FeaturesWithImage from "~/components/sections/FeaturesWithImage.astro";
+import Benefits from "~/components/sections/Benefits.astro";
+import Map from "~/components/sections/MapSection.astro";
+import { getPageTitle } from "~/lib/config";
+
+import arvadaData from "~/data/locations/arvada.json";
+import auroraData from "~/data/locations/aurora.json";
+import centennialData from "~/data/locations/centennial.json";
+import lakewoodData from "~/data/locations/lakewood.json";
+import { localizeData } from "~/config/site";
+
+const dataMap: Record<string, any> = localizeData({
+  "arvada": arvadaData,
+  "aurora": auroraData,
+  "centennial": centennialData,
+  "lakewood": lakewoodData,
+});
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: "arvada" } },
+    { params: { slug: "aurora" } },
+    { params: { slug: "centennial" } },
+    { params: { slug: "lakewood" } },
+  ];
+}
+
+const { slug } = Astro.params;
+const entry = dataMap[slug!];
+
+const sections = (entry.sections || []).sort(
+  (a: any, b: any) => (a.order || 0) - (b.order || 0)
+);
+
+const metadata = {
+  title: getPageTitle(entry.metadata?.title || entry.title),
+  description: entry.metadata?.description || entry.description,
+  keywords: entry.metadata?.keywords,
+  image: entry.metadata?.openGraph?.images?.[0]?.url,
+};
+---
+
+<PageLayout metadata={metadata}>
+  {
+    sections.map((section: any) => {
+      // Hero Section
+      if (section.section === "Hero") {
+        return (
+          <Hero
+            eyebrow={section.eyebrow}
+            title={section.title}
+            description={section.description}
+            image={section.image}
+            ctaText={section.ctaText}
+            ctaLink={section.ctaLink}
+          />
+        );
+      }
+
+      // Benefits Section
+      if (section.section === "Benefits") {
+        return (
+          <Benefits
+            title={section.title}
+            description={section.description}
+            benefits={section.benefits}
+          />
+        );
+      }
+
+      // FAQs Section
+      if (section.section === "FAQs" && section.faqs) {
+        return (
+          <FAQs
+            title={section.title}
+            description={section.description}
+            faqs={section.faqs}
+          />
+        );
+      }
+
+      // ContentWithImage Section
+      if (section.section === "ContentWithImage") {
+        return (
+          <ContentWithImage
+            title={section.title}
+            eyebrow={section.eyebrow}
+            description={section.description}
+            ctaText={section.ctaText}
+            ctaLink={section.ctaLink}
+            image={section.image}
+            imagePosition={section.imagePosition}
+            background={section.background}
+          />
+        );
+      }
+
+      // Features Sections
+      if (
+        section.section === "FeaturesWithImage" ||
+        section.section === "FeaturesSection"
+      ) {
+        if (!section.features) return null;
+
+        if (section.section === "FeaturesWithImage") {
+          return (
+            <FeaturesWithImage
+              eyebrow={section.eyebrow}
+              title={section.title}
+              description={section.description}
+              cards={section.features}
+              ctaText={section.ctaText}
+              ctaLink={section.ctaLink}
+            />
+          );
+        }
+
+        return (
+          <FeaturesSection
+            eyebrow={section.eyebrow}
+            title={section.title}
+            description={section.description}
+            features={section.features}
+            ctaText={section.ctaText}
+            ctaLink={section.ctaLink}
+          />
+        );
+      }
+
+      // Map Section
+      if (section.section === "Map") {
+        return (
+          <Map
+            title={section.title}
+            eyebrow={section.eyebrow}
+            description={section.description}
+            mapUrl={section.mapUrl}
+            locations={section.locations || []}
+            viewMode={section.viewMode}
+            background={section.background}
+          />
+        );
+      }
+
+      return null;
+    })
+  }
+</PageLayout>

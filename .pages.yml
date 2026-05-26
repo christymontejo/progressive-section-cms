@@ -1,0 +1,465 @@
+# Pages CMS Configuration
+# https://pagescms.org/docs/configuration
+
+media:
+  input: public/images
+  output: /images
+
+settings:
+  content:
+    merge: true
+
+# Reusable icon options
+components:
+  icon-select:
+    label: Icon
+    type: select
+    options:
+      values: [ check, zap, target, globe, mappin, map-pin, pin, users, people, dollar, dollarsign, sparkles, sparkle, award, star, heart, shield, clock, message, palette, rocket, trending, settings, tools, wrench, phone, mail, google, megaphone, handshake, monitor, tv, music, circledot, share, share2, player-play, refresh, arrows-left-right ]
+
+content:
+  # ===========================
+  # SINGLETONS (type: file)
+  # ===========================
+
+  - name: site-settings
+    label: "Site Settings"
+    type: file
+    path: src/content/settings/site.json
+    format: json
+    fields:
+      - name: business
+        label: "Business Info"
+        type: object
+        fields:
+          - { name: name, label: Business Name, type: string, required: true }
+          - { name: fullName, label: Business Full Name, type: string }
+          - { name: tagline, label: Tagline, type: string }
+          - { name: description, label: Description, type: text }
+      - name: location
+        label: "Location"
+        type: object
+        fields:
+          - { name: city, label: City, type: string, required: true }
+          - { name: state, label: State, type: string }
+          - { name: address, label: Address, type: string }
+          - { name: fullAddress, label: Full Address, type: string }
+      - name: contact
+        label: "Contact"
+        type: object
+        fields:
+          - { name: email, label: Email, type: string, required: true }
+          - { name: phone, label: "Phone (digits only)", type: string }
+          - { name: phoneFormatted, label: "Phone (formatted)", type: string }
+      - name: colors
+        label: "Brand Colors"
+        type: object
+        fields:
+          - { name: primary, label: Primary Color, type: string, description: "Hex code e.g. #0D2A63" }
+          - { name: secondary, label: Secondary Color, type: string }
+          - { name: tertiary, label: Tertiary Color, type: string }
+          - { name: quaternary, label: Quaternary Color, type: string }
+      - name: logo
+        label: "Logo"
+        type: object
+        fields:
+          - { name: src, label: Logo, type: image }
+          - { name: alt, label: Logo Alt Text, type: string }
+      - name: social
+        label: "Social Media"
+        type: object
+        fields:
+          - { name: facebook, label: Facebook URL, type: string }
+          - { name: instagram, label: Instagram URL, type: string }
+          - { name: linkedin, label: LinkedIn URL, type: string }
+          - { name: twitter, label: Twitter/X URL, type: string }
+          - { name: youtube, label: YouTube URL, type: string }
+      - name: seo
+        label: "SEO"
+        type: object
+        fields:
+          - { name: siteName, label: Site Name, type: string }
+          - { name: defaultTitle, label: Default Page Title, type: string }
+          - { name: defaultDescription, label: Default Description, type: text }
+          - { name: keywords, label: Default Keywords, type: text }
+          - { name: siteUrl, label: Site URL, type: string }
+          - { name: ogImage, label: Default OG Image, type: image }
+          - { name: twitterHandle, label: Twitter Handle, type: string }
+      - name: analytics
+        label: "Analytics"
+        type: object
+        fields:
+          - { name: googleAnalyticsId, label: Google Analytics ID, type: string }
+
+  - name: popup
+    label: "Popup Modal"
+    type: file
+    path: src/content/settings/popup.json
+    format: json
+    fields:
+      - { name: enabled, label: Enable Popup, type: boolean, default: false }
+      - { name: title, label: Title, type: string }
+      - { name: description, label: Description, type: text }
+      - { name: buttonText, label: Button Text, type: string }
+      - { name: buttonHref, label: Button Link, type: string }
+      - { name: image, label: Image, type: image }
+      - { name: delay, label: "Delay (seconds)", type: number, default: 3 }
+
+  - name: navbar
+    label: "Navbar"
+    type: file
+    path: src/content/settings/navbar.json
+    format: json
+    fields:
+      - name: navItems
+        label: Nav Items
+        type: object
+        list: true
+        fields:
+          - name: type
+            label: Type
+            type: select
+            options:
+              values: [ link, dropdown, megamenu ]
+            default: link
+          - { name: title, label: Title, type: string, required: true }
+          - { name: href, label: Link, type: string }
+          - name: items
+            label: "Dropdown Items"
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Title, type: string, required: true }
+              - { name: description, label: Description, type: string }
+              - { name: href, label: Link, type: string, required: true }
+              - name: icon
+                component: icon-select
+                default: check
+          - name: sections
+            label: "Mega Menu Sections"
+            type: object
+            list: true
+            fields:
+              - { name: label, label: Section Label, type: string, required: true }
+              - name: items
+                label: Items
+                type: object
+                list: true
+                fields:
+                  - { name: title, label: Title, type: string, required: true }
+                  - { name: description, label: Description, type: string }
+                  - { name: href, label: Link, type: string, required: true }
+                  - name: icon
+                    component: icon-select
+                    default: globe
+          - name: featured
+            label: "Featured Items"
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Title, type: string, required: true }
+              - { name: description, label: Description, type: string }
+              - { name: href, label: Link, type: string, required: true }
+              - { name: image, label: Image, type: image }
+      - name: ctaButton
+        label: "CTA Button"
+        type: object
+        fields:
+          - { name: text, label: Button Text, type: string }
+          - { name: href, label: Button Link, type: string }
+
+  - name: footer
+    label: "Footer"
+    type: file
+    path: src/content/settings/footer.json
+    format: json
+    fields:
+      - { name: description, label: Footer Description, type: text }
+      - name: columns
+        label: Footer Columns
+        type: object
+        list: true
+        fields:
+          - name: type
+            label: Column Type
+            type: select
+            options:
+              values: [ links, accordion, contact ]
+            default: links
+          - { name: title, label: Column Title, type: string, required: true }
+          - { name: href, label: "Title Link (optional)", type: string }
+          - name: links
+            label: "Links (for 'links' type)"
+            type: object
+            list: true
+            fields:
+              - { name: label, label: Label, type: string, required: true }
+              - { name: href, label: Link, type: string, required: true }
+          - name: sections
+            label: "Sections (for 'accordion' type)"
+            type: object
+            list: true
+            fields:
+              - { name: label, label: Section Label, type: string, required: true }
+              - name: items
+                label: Items
+                type: object
+                list: true
+                fields:
+                  - { name: label, label: Label, type: string, required: true }
+                  - { name: href, label: Link, type: string, required: true }
+      - name: bottomLinks
+        label: "Bottom Links (Legal)"
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Label, type: string, required: true }
+          - { name: href, label: Link, type: string, required: true }
+
+  # ===========================
+  # COLLECTIONS
+  # ===========================
+
+  - name: pages
+    label: "Pages"
+    type: collection
+    path: src/data/pages
+    format: json
+    filename: "{primary}.json"
+    subfolders: false
+    fields:
+      - { name: title, label: Page Title, type: string, required: true }
+      - { name: description, label: Meta Description, type: text, required: true }
+      - { name: location, label: Location Name, type: string }
+      - { name: category, label: Category, type: string }
+      - { name: keywords, label: SEO Keywords, type: string }
+      - { name: order, label: Order, type: number }
+      - { name: icon, label: Icon, type: string }
+      - { name: thumbnail, label: Thumbnail, type: image }
+      - { name: ctaText, label: CTA Text, type: string }
+      - { name: ctaLink, label: CTA Link, type: string }
+      - name: sections
+        label: Page Sections
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.section} ({index})"
+        fields:
+          - name: section
+            label: Section Type
+            type: select
+            options:
+              values: [ Hero, ContentWithImage, ContentWithKeypoints, ContentWithVideo, FeaturesSection, FeaturesWithImage, ServicesGrid, BoostVisibility, FormSection, MapSection, FAQs, CTALight, CallToAction, Benefits, Map, DesignSkillsGrid, Networks, TeamSection ]
+          - { name: eyebrow, label: Eyebrow, type: string }
+          - { name: title, label: Title, type: string }
+          - { name: subtitle, label: Subtitle, type: string }
+          - { name: description, label: Description, type: text }
+          - { name: image, label: Image, type: image }
+          - name: imagePosition
+            label: Image Position
+            type: select
+            options:
+              values: [ left, right ]
+            default: right
+          - name: background
+            label: Background
+            type: select
+            options:
+              values: [ white, gray, dark, primary, primary-dark ]
+          - { name: ctaText, label: CTA Text, type: string }
+          - { name: ctaLink, label: CTA Link, type: string }
+          - { name: order, label: Order, type: number }
+          - { name: columns, label: Columns, type: number }
+          - { name: mapUrl, label: Map Embed URL, type: string }
+          - { name: submitText, label: Submit Button Text, type: string }
+          - name: viewMode
+            label: View Mode
+            type: select
+            options:
+              values: [ half, full ]
+          - name: cards
+            label: Cards
+            type: object
+            list: true
+            fields:
+              - name: icon
+                component: icon-select
+                default: award
+              - { name: title, label: Title, type: string }
+              - { name: description, label: Description, type: text }
+              - { name: link, label: Link, type: string }
+          - name: features
+            label: Features
+            type: object
+            list: true
+            fields:
+              - { name: icon, label: Icon, type: string }
+              - { name: title, label: Title, type: string }
+              - { name: text, label: Text, type: string }
+              - { name: description, label: Description, type: text }
+              - { name: image, label: Image, type: image }
+              - { name: link, label: Link, type: string }
+          - name: benefits
+            label: Benefits
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: description, label: Description, type: text }
+          - name: keyPoints
+            label: Key Points
+            type: object
+            list: true
+            fields:
+              - { name: value, label: Point, type: string }
+          - name: skills
+            label: Design Skills
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: description, label: Description, type: text }
+              - { name: background, label: Background, type: string }
+              - { name: image, label: Image, type: image }
+          - name: networks
+            label: Networks
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: itemsPerView, label: Items Per View, type: number }
+              - name: brands
+                label: Brands
+                type: object
+                list: true
+                fields:
+                  - { name: name, label: Name, type: string }
+                  - { name: logo, label: Logo, type: image }
+          - name: members
+            label: Team Members
+            description: "Add team members to display (up to 50 members)"
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{fields.name}"
+            fields:
+              - { name: image, label: Photo, type: image, description: "Team member photo (optional - will show initials if not provided)" }
+              - { name: name, label: "Name *", type: string, required: true, description: "Team member full name" }
+              - { name: role, label: Title, type: string, description: "Job title or role (e.g., \"Senior Consultant\", \"CEO\")" }
+              - { name: location, label: Location, type: string, description: "Location (e.g., \"New York, NY\", \"Remote\", \"San Francisco\")" }
+              - { name: bio, label: Bio, type: text, description: "Short biography (optional)" }
+              - { name: linkedin, label: LinkedIn URL, type: string, description: "Full LinkedIn profile URL (optional)" }
+              - { name: email, label: Email, type: string, description: "Contact email (optional)" }
+          - name: faqs
+            label: FAQs
+            type: object
+            list: true
+            fields:
+              - { name: question, label: Question, type: string }
+              - { name: answer, label: Answer, type: text }
+          - name: locations
+            label: Locations
+            type: object
+            list: true
+            fields:
+              - { name: name, label: Name, type: string }
+              - { name: href, label: Link, type: string }
+              - { name: url, label: URL, type: string }
+              - { name: description, label: Description, type: string }
+      - name: metadata
+        label: SEO Metadata
+        type: object
+        fields:
+          - { name: title, label: Meta Title, type: string }
+          - { name: description, label: Meta Description, type: text }
+          - { name: keywords, label: Keywords, type: string }
+    view:
+      fields: [ title, description ]
+      primary: title
+
+  - name: location-pages
+    label: "Location Pages"
+    type: collection
+    path: src/data/locations
+    format: json
+    filename: "{primary}.json"
+    fields:
+      - { name: title, label: Page Title, type: string, required: true }
+      - { name: location, label: Location Name, type: string, required: true }
+      - { name: description, label: Meta Description, type: text, required: true }
+      - { name: keywords, label: SEO Keywords, type: string }
+      - { name: ctaText, label: CTA Text, type: string }
+      - { name: ctaLink, label: CTA Link, type: string }
+      - name: sections
+        label: Page Sections
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.section} ({index})"
+        fields:
+          - name: section
+            label: Section Type
+            type: select
+            options:
+              values: [ Hero, ContentWithImage, Benefits, FeaturesSection, FeaturesWithImage, FAQs, MapSection ]
+          - { name: eyebrow, label: Eyebrow, type: string }
+          - { name: title, label: Title, type: string }
+          - { name: description, label: Description, type: text }
+          - { name: image, label: Image, type: image }
+          - name: imagePosition
+            label: Image Position
+            type: select
+            options:
+              values: [ left, right ]
+            default: right
+          - name: background
+            label: Background
+            type: select
+            options:
+              values: [ white, gray, dark ]
+          - { name: ctaText, label: CTA Text, type: string }
+          - { name: ctaLink, label: CTA Link, type: string }
+          - { name: order, label: Order, type: number }
+          - name: benefits
+            label: Benefits
+            type: object
+            list: true
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: description, label: Description, type: text }
+          - name: features
+            label: Features
+            type: object
+            list: true
+            fields:
+              - name: icon
+                component: icon-select
+                default: check
+              - { name: title, label: Title, type: string }
+              - { name: description, label: Description, type: text }
+          - name: faqs
+            label: FAQs
+            type: object
+            list: true
+            fields:
+              - { name: question, label: Question, type: string }
+              - { name: answer, label: Answer, type: text }
+          - { name: mapUrl, label: Map Embed URL, type: string }
+          - name: viewMode
+            label: View Mode
+            type: select
+            options:
+              values: [ half, full ]
+      - name: metadata
+        label: SEO Metadata
+        type: object
+        fields:
+          - { name: title, label: Meta Title, type: string }
+          - { name: description, label: Meta Description, type: text }
+          - { name: keywords, label: Keywords, type: string }
+    view:
+      fields: [ title, location ]
+      primary: title

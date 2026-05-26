@@ -1,0 +1,189 @@
+{
+  "title": "Local Advertising and Digital Marketing Pros in Denver",
+  "description": "Helping Businesses Get Noticed, On Screens and Online. Premium indoor billboard advertising and comprehensive digital marketing solutions for Denver businesses.",
+  "sections": [
+    {
+      "section": "HeroHome",
+      "eyebrow": "Premium Marketing Solutions",
+      "title": "Local Advertising and Digital Marketing Pros in Denver",
+      "description": "Helping Businesses Get Noticed, On Screens and Online",
+      "ctaText": "Contact our advertising experts",
+      "ctaLink": "/contact-us",
+      "image": "images/home.avif",
+      "order": 1
+    },
+    {
+      "section": "ServicesGrid",
+      "title": "Reach Customers with Premium Advertising Across Denver",
+      "description": "Our indoor billboard network gives you access to high-traffic locations where your ideal customers spend time. From gyms and restaurants to retail stores and office buildings, we help you get noticed in the moments that matter.",
+      "ctaText": "Explore Our Digital Ad Services",
+      "ctaLink": "/solutions",
+      "order": 2,
+      "cards": [
+        {
+          "title": "Indoor Billboards",
+          "description": "High-impact advertising in premium indoor locations across Denver",
+          "icon": "tabler:device-tv",
+          "link": "/indoor-billboards/screen-advertising"
+        },
+        {
+          "title": "Social Media Management",
+          "description": "Build and engage your audience with strategic social media content",
+          "icon": "tabler:share",
+          "link": "/solutions/foundational/social-media-management"
+        },
+        {
+          "title": "Website Design & Development",
+          "description": "Custom websites that convert visitors into customers",
+          "icon": "tabler:palette",
+          "link": "/solutions/foundational/website-design"
+        },
+        {
+          "title": "Lead Generation",
+          "description": "Targeted campaigns that generate quality leads and maximize exposure",
+          "icon": "tabler:target",
+          "link": "/solutions/lead-gen/pay-per-click"
+        }
+      ]
+    },
+    {
+      "section": "ContentWithKeypoints",
+      "title": "Venue Partner Network",
+      "eyebrow": "Get Your Brand in Front of the Right Audience",
+      "description": "We've built exclusive partnerships with Denver's most popular venues and businesses across <a href='/locations/aurora' class='font-semibold hover:text-[#00bba9] transition-colors'>Aurora</a>, <a href='/locations/lakewood' class='font-semibold hover:text-[#00bba9] transition-colors'>Lakewood</a>, <a href='/locations/arvada' class='font-semibold hover:text-[#00bba9] transition-colors'>Arvada</a>, and <a href='/locations/centennial' class='font-semibold hover:text-[#00bba9] transition-colors'>Centennial</a>. Our <a href='/indoor-billboards/screen-advertising' class='font-semibold hover:text-[#00bba9] transition-colors'>indoor digital billboards</a> reach customers when they're relaxed, engaged, and ready to take action, whether they're working out, dining, shopping, or waiting for service. With strategic placement in high-traffic locations like gyms, restaurants, retail stores, and medical offices, your brand message reaches thousands of potential customers daily. Our non-skippable screen advertising ensures maximum visibility and brand recall, making it an essential complement to your <a href='/solutions/foundational/website-design' class='font-semibold hover:text-[#00bba9] transition-colors'>digital marketing strategy</a>.",
+      "ctaText": "Explore Our Network",
+      "ctaLink": "/indoor-billboards/become-a-venue-partner",
+      "image": "/images/venue-partner.avif",
+      "order": 3,
+      "keyPoints": [
+        "Exclusive venue partnerships across Denver metro",
+        "High-dwell-time locations in gyms, restaurants, & retail",
+        "Targeted audience reach with demographic precision",
+        "Flexible campaign options and competitive pricing"
+      ]
+    },
+    {
+      "section": "BoostVisibility",
+      "title": "Boost Visibility with Our Full-Service Digital Marketing Solutions",
+      "description": "Beyond in-venue ads, we provide full-scale digital marketing to help your business show up, stand out, and grow. Whether you're just getting started or need help scaling your outreach, we've got the tools and the team to support you.",
+      "image": "/images/boost-visibility.avif",
+      "ctaText": "Check out all our Solutions",
+      "ctaLink": "/solutions",
+      "order": 4,
+      "features": [
+        {
+          "title": "Google Business Profile Optimization",
+          "description": "Get found on Google Maps and local search.",
+          "icon": "tabler:brand-google",
+          "link": "/solutions/foundational/google-business-profile"
+        },
+        {
+          "title": "Website Design & SEO",
+          "description": "Fast, mobile-ready websites built for performance.",
+          "icon": "tabler:browser",
+          "link": "/solutions/foundational/website-design"
+        },
+        {
+          "title": "Social Media Content",
+          "description": "Consistent posting and creative to grow your presence.",
+          "icon": "tabler:hash",
+          "link": "/solutions/foundational/social-media-management"
+        },
+        {
+          "title": "Pay-Per-Click Advertising",
+          "description": "Targeted ads that drive calls, clicks, and leads.",
+          "icon": "tabler:click",
+          "link": "/solutions/lead-gen/pay-per-click"
+        }
+      ]
+    },
+    {
+      "section": "ContentWithImage",
+      "eyebrow": "Get Your Brand in Front of the Right Audience",
+      "title": "Why Denver Businesses Choose Us",
+      "description": "We're not just another marketing agency. We're Denver locals who understand the market, know the neighborhoods, and have the relationships that get results. With 20 years of corporate experience working with industry leaders, we bring enterprise-level expertise to local businesses. Our clients choose us because we deliver measurable outcomes through <a href='/solutions/foundational/google-business-profile' class='font-semibold hover:text-[#00bba9] transition-colors'>local SEO optimization</a>, <a href='/solutions/lead-gen/social-media-advertising' class='font-semibold hover:text-[#00bba9] transition-colors'>targeted social media campaigns</a>, and our exclusive <a href='/indoor-billboards/locations' class='font-semibold hover:text-[#00bba9] transition-colors'>indoor billboard network</a>. We provide transparent reporting, personalized service, and treat your business like our own. Beyond business, we're committed to our community, building relationships and supporting local non-profits and charitable organizations across the Denver metro area.",
+      "image": "/images/marketing-partners.avif",
+      "ctaText": "Discover Our Denver Marketing Story",
+      "ctaLink": "/about-us",
+      "order": 5,
+      "background": "primary-light",
+      "imagePosition": "right"
+    },
+    {
+      "section": "CTABanner",
+      "title": "Let's Get Your Brand Where It Can't Be Missed",
+      "description": "Whether you're looking for indoor billboard advertising, a new website, or a complete digital marketing strategy, we're here to help. Contact us today for a free consultation and let's discuss how we can grow your business.",
+      "ctaText": "Schedule Free Consultation",
+      "ctaLink": "/contact-us",
+      "background": "#1a2b5c",
+      "order": 6
+    },
+    {
+      "section": "FAQs",
+      "title": "FAQS",
+      "order": 7,
+      "faqs": [
+        {
+          "question": "What is Indoor Digital Signage Advertising?",
+          "answer": "It's the placement of your ads on TV screens located inside high-traffic venues, offering brand visibility where people are already engaged."
+        },
+        {
+          "question": "Do you offer packages that include screens and online ads?",
+          "answer": "Yes! We offer bundled packages that combine <a href='/indoor-billboards/screen-advertising' class='font-semibold hover:text-[#00bba9] transition-colors'>indoor billboard advertising</a> with digital marketing services like <a href='/solutions/lead-gen/social-media-advertising' class='font-semibold hover:text-[#00bba9] transition-colors'>social media ads</a>, <a href='/solutions/lead-gen/pay-per-click' class='font-semibold hover:text-[#00bba9] transition-colors'>Google Ads</a>, and SEO to maximize your reach both online and offline."
+        },
+        {
+          "question": "Can you help my business rank on Google?",
+          "answer": "Absolutely. We provide <a href='/solutions/foundational/website-design' class='font-semibold hover:text-[#00bba9] transition-colors'>SEO services</a>, <a href='/solutions/foundational/google-business-profile' class='font-semibold hover:text-[#00bba9] transition-colors'>Google Business Profile optimization</a>, and local search strategies to help your business show up when customers are searching for your services in Denver."
+        }
+      ]
+    },
+    {
+      "section": "Map",
+      "title": "We Put Local Brands on the Map",
+      "description": "Our billboard network spans across Denver's most popular neighborhoods and venues",
+      "order": 8,
+      "viewMode": "full",
+      "background": "primary",
+      "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d196269.87416878447!2d-104.93920979746093!3d39.76846682145779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b80aa231f17cf%3A0x118ef4f8278a36d6!2sDenver%2C%20CO%2C%20USA!5e0!3m2!1sen!2sph!4v1763534588820!5m2!1sen!2sph",
+      "locations": [
+        {
+          "name": "Aurora",
+          "url": "/locations/aurora"
+        },
+        {
+          "name": "Lakewood",
+          "url": "/locations/lakewood"
+        },
+        {
+          "name": "Arvada",
+          "url": "/locations/arvada"
+        },
+        {
+          "name": "Centennial",
+          "url": "/locations/centennial"
+        }
+      ]
+    },
+    {
+      "section": "FinalCTA",
+      "title": "Ready to Elevate Your Brand?",
+      "description": "Let's create a marketing strategy that gets results. Fill out the form below or give us a call to get started.",
+      "ctaText": "Get Started Today",
+      "ctaLink": "/contact-us",
+      "order": 9
+    }
+  ],
+  "metadata": {
+    "title": "Denver Marketing Agency | Digital & Indoor Ads",
+    "description": "Denver marketing agency: digital marketing, indoor billboards, web design, social media & PPC. Serving Denver metro area.",
+    "keywords": "Denver marketing agency, digital marketing Denver, indoor billboard advertising, marketing services Denver CO, social media management Denver, website design Denver, PPC advertising Denver, local marketing Denver, Denver advertising agency, marketing company Denver",
+    "openGraph": {
+      "type": "website",
+      "images": [
+        {
+          "url": "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img/https://johnh1303.sg-host.com/wp-content/uploads/2025/10/download-5-1.avif"
+        }
+      ]
+    }
+  }
+}

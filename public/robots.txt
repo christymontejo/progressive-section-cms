@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /terms
+Disallow: /privacy
+
+Sitemap: https://dealer-template.vercel.app/sitemap-index.xml
+Sitemap: https://dealer-template.vercel.app/sitemap-0.xml
