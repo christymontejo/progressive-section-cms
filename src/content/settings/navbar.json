@@ -101,12 +101,6 @@
               "icon": "tabler:focus-2"
             },
             {
-              "title": "Pre-Roll Ads",
-              "description": "Non-skippable video ads that boost brand trust and visibility.",
-              "href": "/solutions/branding-awareness/pre-roll-ads",
-              "icon": "tabler:player-play"
-            },
-            {
               "title": "Streaming Audio",
               "description": "Strategic streaming audio ads that captivate at the perfect moment.",
               "href": "/solutions/branding-awareness/streaming-audio",

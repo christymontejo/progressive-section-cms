@@ -67,11 +67,6 @@ const PAGE_META = {
     description:
       "Reach customers based on where they go. Our geofencing ads deliver precise location-based targeting.",
   },
-  "pre-roll-ads": {
-    title: "Pre-Roll Video Ads | Non-Skippable Brand Visibility",
-    description:
-      "Boost brand trust with non-skippable pre-roll video ads that capture attention before featured content on the platforms your customers watch.",
-  },
   "design-services": {
     title: "Creative Design Services | Branding That Stands Out",
     description:

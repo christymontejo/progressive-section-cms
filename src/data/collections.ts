@@ -11,7 +11,6 @@ import payPerClickData from "~/data/pages/pay-per-click.json";
 import socialMediaAdvertisingData from "~/data/pages/social-media-advertising.json";
 import connectedTvData from "~/data/pages/connected-tv.json";
 import displayGeofencingData from "~/data/pages/display-geofencing.json";
-import preRollAdsData from "~/data/pages/pre-roll-ads.json";
 import streamingAudioData from "~/data/pages/streaming-audio.json";
 
 // Indoor billboards imports
@@ -33,7 +32,6 @@ export function getSolutionsData() {
     toEntry("lead-gen/social-media-advertising", socialMediaAdvertisingData),
     toEntry("branding-awareness/connected-tv", connectedTvData),
     toEntry("branding-awareness/display-geofencing", displayGeofencingData),
-    toEntry("branding-awareness/pre-roll-ads", preRollAdsData),
     toEntry("branding-awareness/streaming-audio", streamingAudioData),
   ];
 }

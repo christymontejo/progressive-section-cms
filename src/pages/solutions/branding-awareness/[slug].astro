@@ -13,7 +13,6 @@ import FormSection from "~/components/sections/FormSection.astro";
 
 import connectedTvData from "~/data/pages/connected-tv.json";
 import displayGeofencingData from "~/data/pages/display-geofencing.json";
-import preRollAdsData from "~/data/pages/pre-roll-ads.json";
 import streamingAudioData from "~/data/pages/streaming-audio.json";
 import { localizeData } from "~/config/site";
 import { buildPageMeta } from "~/lib/pageMeta";
@@ -21,14 +20,12 @@ import { buildPageMeta } from "~/lib/pageMeta";
 const dataMap: Record<string, any> = localizeData({
   "connected-tv": connectedTvData,
   "display-geofencing": displayGeofencingData,
-  "pre-roll-ads": preRollAdsData,
   "streaming-audio": streamingAudioData,
 });
 
 const SERVICE_TYPE: Record<string, string> = {
   "connected-tv": "Advertising",
   "display-geofencing": "Advertising",
-  "pre-roll-ads": "Advertising",
   "streaming-audio": "Advertising",
 };
 
@@ -36,7 +33,6 @@ export function getStaticPaths() {
   return [
     { params: { slug: "connected-tv" } },
     { params: { slug: "display-geofencing" } },
-    { params: { slug: "pre-roll-ads" } },
     { params: { slug: "streaming-audio" } },
   ];
 }
