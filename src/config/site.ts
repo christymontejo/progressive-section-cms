@@ -34,7 +34,7 @@ const defaults = {
   logo: {
     src: "/logo/progressive-section.svg",
     whiteSrc: "/logo/progressive-section-white.svg",
-    alt: "Acme Marketing Logo",
+    alt: "Progressive Section Template Logo",
   },
   social: {
     facebook: "",
