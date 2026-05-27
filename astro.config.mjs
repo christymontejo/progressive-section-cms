@@ -12,6 +12,7 @@ import { resolve } from "path";
 const siteJsonAbsolute = resolve("./src/content/settings/site.json");
 const siteData = JSON.parse(readFileSync(siteJsonAbsolute, "utf-8"));
 
+/** @param {string | undefined | null} u */
 function normalizeUrl(u) {
   if (!u) return null;
   const t = String(u).trim();

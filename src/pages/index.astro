@@ -50,10 +50,11 @@ const galleryImages = [
   })),
 ].sort((a, b) => a.label.localeCompare(b.label));
 
-// Helper to find section by name
-const getSection = (name: string) => sections.find((s: any) => s.section === name);
-// Helper to find section by name and order
-const getSectionByOrder = (name: string, order: number) =>
+// Helpers — return `any` so per-variant JSON shapes (HeroHome.secondaryCtaText,
+// optional `background`, etc.) typecheck without a union-narrowing dance.
+const getSection = (name: string): any =>
+  sections.find((s: any) => s.section === name);
+const getSectionByOrder = (name: string, order: number): any =>
   sections.find((s: any) => s.section === name && s.order === order);
 
 const heroSection = getSection("Hero");
