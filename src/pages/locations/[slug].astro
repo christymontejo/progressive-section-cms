@@ -3,24 +3,23 @@ import PageLayout from "~/layouts/PageLayout.astro";
 import Hero from "~/components/sections/Hero.astro";
 import FAQs from "~/components/sections/FAQs.astro";
 import ContentWithImage from "~/components/sections/ContentWithImage.astro";
-import CTALight from "~/components/sections/CTALight.astro";
 import FeaturesSection from "~/components/sections/FeaturesSection.astro";
 import FeaturesWithImage from "~/components/sections/FeaturesWithImage.astro";
 import Benefits from "~/components/sections/Benefits.astro";
 import Map from "~/components/sections/MapSection.astro";
-import { getPageTitle } from "~/lib/config";
 
 import arvadaData from "~/data/locations/arvada.json";
 import auroraData from "~/data/locations/aurora.json";
 import centennialData from "~/data/locations/centennial.json";
 import lakewoodData from "~/data/locations/lakewood.json";
 import { localizeData } from "~/config/site";
+import { buildPageMeta } from "~/lib/pageMeta";
 
 const dataMap: Record<string, any> = localizeData({
-  "arvada": arvadaData,
-  "aurora": auroraData,
-  "centennial": centennialData,
-  "lakewood": lakewoodData,
+  arvada: arvadaData,
+  aurora: auroraData,
+  centennial: centennialData,
+  lakewood: lakewoodData,
 });
 
 export function getStaticPaths() {
@@ -34,23 +33,41 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 const entry = dataMap[slug!];
+const locName = entry.location || "";
 
-const sections = (entry.sections || []).sort(
+// Recursively substitute {location} token in all string values
+function swapLocation(v: any): any {
+  if (typeof v === "string") return v.replaceAll("{location}", locName);
+  if (Array.isArray(v)) return v.map(swapLocation);
+  if (v && typeof v === "object") {
+    return Object.fromEntries(
+      Object.entries(v).map(([k, x]) => [k, swapLocation(x)])
+    );
+  }
+  return v;
+}
+const pageData = swapLocation(entry);
+
+const sections = (pageData.sections || []).sort(
   (a: any, b: any) => (a.order || 0) - (b.order || 0)
 );
 
-const metadata = {
-  title: getPageTitle(entry.metadata?.title || entry.title),
-  description: entry.metadata?.description || entry.description,
-  keywords: entry.metadata?.keywords,
-  image: entry.metadata?.openGraph?.images?.[0]?.url,
-};
+// Filter self from Map locations
+const filterSelf = (locs: any[]) =>
+  (locs || []).filter((loc: any) => {
+    const n = typeof loc === "string" ? loc : loc?.name;
+    return n && n.toLowerCase() !== locName.toLowerCase();
+  });
+
+const { metadata, extraSchemas } = buildPageMeta(pageData, {
+  city: { city: locName, url: `/locations/${slug}` },
+  extras: { location: locName },
+});
 ---
 
-<PageLayout metadata={metadata}>
+<PageLayout metadata={metadata} extraSchemas={extraSchemas}>
   {
     sections.map((section: any) => {
-      // Hero Section
       if (section.section === "Hero") {
         return (
           <Hero
@@ -64,7 +81,6 @@ const metadata = {
         );
       }
 
-      // Benefits Section
       if (section.section === "Benefits") {
         return (
           <Benefits
@@ -75,7 +91,6 @@ const metadata = {
         );
       }
 
-      // FAQs Section
       if (section.section === "FAQs" && section.faqs) {
         return (
           <FAQs
@@ -86,7 +101,6 @@ const metadata = {
         );
       }
 
-      // ContentWithImage Section
       if (section.section === "ContentWithImage") {
         return (
           <ContentWithImage
@@ -102,7 +116,6 @@ const metadata = {
         );
       }
 
-      // Features Sections
       if (
         section.section === "FeaturesWithImage" ||
         section.section === "FeaturesSection"
@@ -134,15 +147,14 @@ const metadata = {
         );
       }
 
-      // Map Section
-      if (section.section === "Map") {
+      if (section.section === "Map" || section.section === "MapSection") {
         return (
           <Map
             title={section.title}
             eyebrow={section.eyebrow}
             description={section.description}
             mapUrl={section.mapUrl}
-            locations={section.locations || []}
+            locations={filterSelf(section.locations)}
             viewMode={section.viewMode}
             background={section.background}
           />

@@ -15,10 +15,12 @@ import FloatingCTAButton from "~/components/ui/FloatingCTAButton.astro";
 // Get homepage content from JSON data
 import homeDataRaw from "~/data/pages/home.json";
 import { localizeData } from "~/config/site";
+import { buildPageMeta } from "~/lib/pageMeta";
 import { getSolutionsData, getIndoorBillboardsData } from "~/data/collections";
 
 const homeData = localizeData(homeDataRaw);
 const { sections } = homeData;
+const { metadata, extraSchemas } = buildPageMeta(homeData);
 
 // Get all solutions and indoor-billboards for the gallery
 const solutions = getSolutionsData();
@@ -66,7 +68,7 @@ const mapSection = getSection("Map");
 const finalCTASection = getSection("FinalCTA");
 ---
 
-<PageLayout metadata={homeData.metadata} showGlobalCTA={false}>
+<PageLayout metadata={metadata} showGlobalCTA={false} extraSchemas={extraSchemas}>
   {
     heroHomeSection && (
       <HeroHome

@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import { navItems, ctaButton } from "~/config/navigation";
-import { SITE_NAME } from "~/lib/config";
+import { siteConfig } from "~/config/site";
 import ToggleMenu from "../ui/ToggleMenu.astro";
 
 // Transform navItems to the template-expected format
@@ -64,11 +64,11 @@ const actions = [{ text: ctaButton.text, href: ctaButton.href }];
         <a href="/" class="flex items-center">
           <img
             id="header-logo"
-            src="/logo/dealer-logo-small.webp"
-            alt={SITE_NAME}
-            width="70"
-            height="70"
-            fetchpriority="high"
+            src={siteConfig.logo.src}
+            alt={siteConfig.logo.alt}
+            height="40"
+            loading="eager"
+            decoding="async"
             class="h-10 w-auto transition-all duration-300"
           />
         </a>
@@ -135,7 +135,7 @@ const actions = [{ text: ctaButton.text, href: ctaButton.href }];
                                 id="solutions-scroll-container"
                               >
                                 <div class="space-y-8">
-                                  {link.links.map((sublink) => (
+                                  {link.links.map((sublink: any) => (
                                     <div>
                                       {sublink.href ? (
                                         <a
@@ -165,7 +165,7 @@ const actions = [{ text: ctaButton.text, href: ctaButton.href }];
                                       {sublink.links &&
                                         sublink.links.length > 0 && (
                                           <div class="grid xl:grid-cols-2 grid-cols-1 gap-x-6 gap-y-1">
-                                            {sublink.links.map((nestedLink) => (
+                                            {sublink.links.map((nestedLink: any) => (
                                               <a
                                                 href={nestedLink.href}
                                                 class="group/item flex items-start gap-3 p-3 rounded-lg hover:bg-neutral transition-all"
@@ -288,7 +288,7 @@ const actions = [{ text: ctaButton.text, href: ctaButton.href }];
                               </a>
                             )}
                             <div class="space-y-1">
-                              {link.links.map((sublink) => (
+                              {link.links.map((sublink: any) => (
                                 <a
                                   href={sublink.href}
                                   class="group/item flex items-start gap-3 p-3 rounded-lg hover:bg-neutral transition-all"
@@ -394,7 +394,7 @@ const actions = [{ text: ctaButton.text, href: ctaButton.href }];
                       Overview
                     </a>
                   )}
-                  {link.links.map((sublink) => (
+                  {link.links.map((sublink: any) => (
                     <div>
                       {sublink.links && sublink.links.length > 0 ? (
                         <>
@@ -415,7 +415,7 @@ const actions = [{ text: ctaButton.text, href: ctaButton.href }];
                             </svg>
                           </button>
                           <div class="mobile-dropdown-content mt-2 ml-2 space-y-1 transition-all duration-300 ease-in-out overflow-hidden max-h-0">
-                            {sublink.links.map((nestedLink) => (
+                            {sublink.links.map((nestedLink: any) => (
                               <a
                                 href={nestedLink.href}
                                 class="flex items-center gap-2 px-3 py-2 text-xs text-gray-500 hover:bg-gray-50 hover:text-primary rounded-md"
@@ -459,6 +459,7 @@ const actions = [{ text: ctaButton.text, href: ctaButton.href }];
 </header>
 
 <script>
+  // @ts-nocheck
   function initMobileMenu() {
     const toggleButton = document.querySelector(".ml-1\\.5");
     const mobileMenu = document.getElementById("mobile-menu");

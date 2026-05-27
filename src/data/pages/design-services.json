@@ -1,6 +1,6 @@
 {
   "title": "Design Services",
-  "description": "Professional design services to elevate your brand identity.",
+  "description": "Professional design services to Stand out identity.",
   "category": "foundational",
   "order": 4,
   "icon": "tabler:palette",
@@ -180,8 +180,8 @@
     }
   ],
   "metadata": {
-    "title": "Graphic Design Services {city} | Design Agency",
-    "description": "Professional graphic design services in {city}. From logos and branding to flyers and marketing materials. Transform your vision into exceptional design.",
+    "title": "Creative Design Services | Branding That Stands Out",
+    "description": "Elevate your brand with custom design solutions tailored to your business goals and needs.",
     "keywords": "graphic design {city}, logo design {city}, brand design services, flyer design {city}, marketing materials design, professional graphic designer {city}, branding services {city}"
   }
 }

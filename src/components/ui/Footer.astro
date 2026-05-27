@@ -1,7 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
 import { footerConfig } from "~/config/navigation";
-import { SITE_NAME } from "~/lib/config";
 import { siteConfig } from "~/config/site";
 
 // Transform footerConfig.columns into the template-expected format
@@ -73,17 +72,14 @@ const currentYear = new Date().getFullYear();
       <div class="lg:col-span-2">
         <a href="/" class="inline-block mb-6 group">
           <img
-            src="/logo/dealer-logo.png"
-            alt={SITE_NAME}
-            width="200"
+            src={siteConfig.logo.whiteSrc}
+            alt={siteConfig.logo.alt}
             height="64"
-            class="h-16 w-auto brightness-0 invert transition-transform group-hover:scale-105"
+            class="h-16 w-auto transition-transform group-hover:scale-105"
           />
         </a>
         <p class="text-white text-base leading-relaxed max-w-xl">
-          Your trusted partner for comprehensive digital marketing
-          solutions, from custom website design and SEO to indoor billboard
-          advertising and targeted campaigns that deliver real results.
+          {siteConfig.business.description}
         </p>
       </div>
 
@@ -243,7 +239,7 @@ const currentYear = new Date().getFullYear();
 
         <div class="text-white">
           <span>
-            © {currentYear} {SITE_NAME}. All rights reserved.
+            {siteConfig.business.name} · {currentYear} · All rights reserved.
           </span>
         </div>
       </div>

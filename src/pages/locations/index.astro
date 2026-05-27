@@ -1,7 +1,7 @@
 ---
 import PageLayout from "~/layouts/PageLayout.astro";
 import Hero from "~/components/sections/Hero.astro";
-import { getPageTitle } from "~/lib/config";
+import { localizeMetadata } from "~/config/site";
 
 import arvadaData from "~/data/locations/arvada.json";
 import auroraData from "~/data/locations/aurora.json";
@@ -21,18 +21,15 @@ const locations = Object.entries(dataMap).map(([slug, data]) => ({
   ...data,
 }));
 
-// Sort locations alphabetically
 const sortedLocations = locations.sort((a, b) =>
   a.title.localeCompare(b.title)
 );
 
-const metadata = {
-  title: getPageTitle("Our Service Locations"),
+const metadata = localizeMetadata({
+  title: "Service Locations | {business}",
   description:
-    "We provide digital marketing and advertising services across the Denver metro area. Find your location.",
-  keywords:
-    "Denver service locations, marketing services Denver metro, Aurora marketing, Lakewood marketing, Arvada marketing, Centennial marketing, Denver area marketing agency",
-};
+    "We provide digital marketing and advertising services across the {city} metro area. Find your location.",
+});
 ---
 
 <PageLayout metadata={metadata}>

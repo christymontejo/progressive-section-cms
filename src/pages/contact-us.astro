@@ -5,30 +5,21 @@ import FeaturesSection from "~/components/sections/FeaturesSection.astro";
 import FormSection from "~/components/sections/FormSection.astro";
 import MapSection from "~/components/sections/MapSection.astro";
 import CTALight from "~/components/sections/CTALight.astro";
-import { getPageTitle } from "~/lib/config";
 
 import contactDataRaw from "~/data/pages/contact-us.json";
 import { localizeData } from "~/config/site";
+import { buildPageMeta } from "~/lib/pageMeta";
 const contactData = localizeData(contactDataRaw);
 const { sections } = contactData;
 
-// Sort sections by order
 const sortedSections = sections.sort(
   (a: any, b: any) => (a.order || 0) - (b.order || 0)
 );
 
-const metadata = {
-  title:
-    contactData.metadata?.title ||
-    getPageTitle(contactData.title),
-  description:
-    contactData.metadata?.description ||
-    contactData.description,
-  keywords: contactData.metadata?.keywords,
-};
+const { metadata, extraSchemas } = buildPageMeta(contactData);
 ---
 
-<PageLayout metadata={metadata}>
+<PageLayout metadata={metadata} extraSchemas={extraSchemas}>
   {
     sortedSections.map((section: any) => {
       // Hero Section

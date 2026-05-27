@@ -63,7 +63,8 @@ content:
         label: "Logo"
         type: object
         fields:
-          - { name: src, label: Logo, type: image }
+          - { name: src, label: "Logo (full color)", type: image }
+          - { name: whiteSrc, label: "Logo (white version for dark backgrounds)", type: image }
           - { name: alt, label: Logo Alt Text, type: string }
       - name: social
         label: "Social Media"

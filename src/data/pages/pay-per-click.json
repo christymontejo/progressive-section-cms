@@ -11,7 +11,7 @@
     {
       "section": "Hero",
       "eyebrow": "Lead Generation",
-      "title": "Pay-Per-Click (PPC)",
+      "title": "Pay-Per-Click ",
       "description": "Driving Targeted Traffic to Your Website",
       "image": "/images/ppc.avif",
       "order": 1,
@@ -20,16 +20,16 @@
     },
     {
       "section": "ContentWithImage",
-      "title": "Pay-Per-Click (PPC)",
+      "title": "Pay-Per-Click ",
       "background": "primary-dark",
-      "description": "Google Pay-Per-Click (PPC) Advertising is key to remaining top-of-mind and at the top of search channels. With PPC, you're not just casting a wide net; you're strategically targeting individuals who are actively seeking products or services like yours. This focused approach maximizes the chances of engaging with high-intent users, leading to more efficient spending and higher exposure for your advertising budget.",
+      "description": "Google Pay-Per-Click Advertising is key to remaining top-of-mind and at the top of search channels. With PPC, you're not just casting a wide net; you're strategically targeting individuals who are actively seeking products or services like yours. This focused approach maximizes the chances of engaging with high-intent users, leading to more efficient spending and higher exposure for your advertising budget.",
       "image": "/images/ppc-content.avif",
       "order": 2
     },
     {
       "section": "CTALight",
       "title": "Optimize Your Marketing Strategy with PPC Integration",
-      "description": "Incorporating Pay-Per-Click (PPC) advertising into a marketing strategy offers your business immediate visibility and potential conversions, thanks to its ability to generate traffic and prospective leads. By leveraging keywords, audience interest, and more, you can be certain your business is appearing as a top choice for prospective leads as they research your niche on Google. Combine PPC with <strong><a href='/solutions/foundational/google-business-profile' style='text-decoration: none; color: inherit;'>Google Business Profile</a></strong> optimization and <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website design</a></strong> for maximum results.",
+      "description": "Incorporating Pay-Per-Click advertising into a marketing strategy offers your business immediate visibility and potential conversions, thanks to its ability to generate traffic and prospective leads. By leveraging keywords, audience interest, and more, you can be certain your business is appearing as a top choice for prospective leads as they research your niche on Google. Combine PPC with <strong><a href='/solutions/foundational/google-business-profile' style='text-decoration: none; color: inherit;'>Google Business Profile</a></strong> optimization and <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website design</a></strong> for maximum results.",
       "order": 3,
       "ctaText": "LEARN MORE",
       "ctaLink": "/contact-us"
@@ -154,8 +154,8 @@
     }
   ],
   "metadata": {
-    "title": "Pay-Per-Click Advertising Services | PPC Management",
-    "description": "Professional pay-per-click advertising services to drive targeted traffic and maximize exposure. Expert PPC campaign management and optimization. Get started today.",
+    "title": "Pay Per Click Advertising | Drive Traffic & Sales",
+    "description": "Drive more conversions with expert PPC services. Google Ads, retargeting and optimization on every click to boost exposure and eliminate wasted ad spend.",
     "keywords": "pay per click {city}, PPC advertising {city}, Google Ads {city}, PPC management {city}, best PPC agency {city}, top PPC services {city}, paid search advertising, PPC campaign management, {city} PPC services"
   }
 }

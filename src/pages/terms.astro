@@ -1,12 +1,13 @@
 ---
 import PageLayout from "~/layouts/PageLayout.astro";
-import { getPageTitle, SITE_NAME } from "~/lib/config";
+import { siteConfig, localizeMetadata } from "~/config/site";
 
-const metadata = {
-  title: getPageTitle("Terms of Service"),
-  description: "Terms of Service for " + SITE_NAME,
+const metadata = localizeMetadata({
+  title: "Terms of Service",
+  description:
+    "Review the {business} Terms of Service covering acceptable use of our website, intellectual property, third-party services, and your responsibilities.",
   noindex: true,
-};
+});
 ---
 
 <PageLayout metadata={metadata}>
@@ -39,7 +40,7 @@ const metadata = {
 
         <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">2. Services</h2>
         <p class="text-gray-600 mb-6">
-          {SITE_NAME} provides digital marketing services including but not limited
+          {siteConfig.business.name} provides digital marketing services including but not limited
           to website design, social media management, pay-per-click advertising,
           SEO services, and indoor billboard advertising. The specific services provided
           will be outlined in individual service agreements.
@@ -95,7 +96,7 @@ const metadata = {
           7. Limitation of Liability
         </h2>
         <p class="text-gray-600 mb-6">
-          {SITE_NAME} will not be liable for any indirect, incidental, special, consequential,
+          {siteConfig.business.name} will not be liable for any indirect, incidental, special, consequential,
           or punitive damages resulting from your use of our services. Our total
           liability shall not exceed the amount paid for the specific service in
           question.
@@ -124,7 +125,7 @@ const metadata = {
         </h2>
         <p class="text-gray-600 mb-6">
           These terms shall be governed by and construed in accordance with the
-          laws of the State of Texas, without regard to its conflict of law
+          laws of the State of {siteConfig.location.stateFull}, without regard to its conflict of law
           provisions.
         </p>
 

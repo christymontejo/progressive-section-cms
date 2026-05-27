@@ -242,13 +242,8 @@
     }
   ],
   "metadata": {
-    "title": "Marketing Agency Lakewood CO | Digital Marketing",
-    "description": "Trusted marketing agency in Lakewood, CO. Digital marketing, social media management, website design, SEO, and PPC services for Lakewood businesses. Free consultation.",
-    "keywords": "marketing agency Lakewood CO, digital marketing Lakewood, Lakewood marketing services, social media management Lakewood, website design Lakewood, SEO Lakewood, PPC advertising Lakewood Colorado, local marketing Lakewood",
-    "canonical": "https://dealer-template-2.vercel.app/locations/lakewood",
-    "robots": {
-      "index": true,
-      "follow": true
-    }
+    "title": "{location} {state} Digital Signage & Marketing | {business}",
+    "description": "We connect businesses in {location}, {state} through digital signage, PPC, social media, SEO, and website design to keep brands visible and top of mind.",
+    "keywords": "marketing agency Lakewood CO, digital marketing Lakewood, Lakewood marketing services, social media management Lakewood, website design Lakewood, SEO Lakewood, PPC advertising Lakewood Colorado, local marketing Lakewood"
   }
 }

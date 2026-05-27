@@ -70,12 +70,12 @@
         },
         {
           "title": "Social Media Management",
-          "description": "Amplify your brand online with <strong><a href='/solutions/foundational/social-media-management' class='text-primary-dark hover:text-primary transition-colors underline decoration-primary/50'>Social Media management</a></strong>. Our SMM team will elevate your brand presence through strategic management and captivating content.",
+          "description": "Amplify your brand online with <strong><a href='/solutions/foundational/social-media-management' class='text-primary-dark hover:text-primary transition-colors underline decoration-primary/50'>Social Media management</a></strong>. Our SMM team will Stand out presence through strategic management and captivating content.",
           "icon": "tabler:share-3",
           "link": "/solutions/foundational/social-media-management"
         },
         {
-          "title": "Pay-Per-Click (PPC)",
+          "title": "Pay-Per-Click ",
           "description": "Drive leads and dominate search engine results pages with highly targeted <strong><a href='/solutions/lead-gen/pay-per-click' class='text-primary-dark hover:text-primary transition-colors underline decoration-primary/50'>Pay-Per-Click campaigns</a></strong>. Make yourself known on the world's most used search engine.",
           "icon": "tabler:hand-click",
           "link": "/solutions/lead-gen/pay-per-click"
@@ -94,7 +94,7 @@
         },
         {
           "title": "Connected TV | OTT Ads",
-          "description": "Cutting-edge <strong><a href='/solutions/branding-awareness/connected-tv' class='text-primary-dark hover:text-primary transition-colors underline decoration-primary/50'>CTV | OTT ads</a></strong> put your brand front and center to a streaming audience with non-skippable placements on platforms like Apple TV, ESPN, and Roku.",
+          "description": "<strong><a href='/solutions/branding-awareness/connected-tv' class='text-primary-dark hover:text-primary transition-colors underline decoration-primary/50'>CTV | OTT ads</a></strong> put your brand front and center to a streaming audience with non-skippable placements on platforms like Apple TV, ESPN, and Roku.",
           "icon": "tabler:device-tv",
           "link": "/solutions/branding-awareness/connected-tv"
         },
@@ -114,8 +114,8 @@
     }
   ],
   "metadata": {
-    "title": "Digital Marketing Solutions {city} | Full-Service Marketing Agency",
-    "description": "Explore our full suite of digital marketing services including indoor billboards, website design, social media, PPC, and more. Grow your {city} business with proven multichannel strategies.",
+    "title": "Digital Marketing Solutions | Full-Service Marketing Agency",
+    "description": "Explore our suite of digital marketing, including indoor billboards, website design, social media, and PPC, to grow your business with proven results.",
     "keywords": "marketing solutions {city}, digital marketing services {city}, full service marketing {city}, marketing services overview, {city} advertising solutions, comprehensive marketing {city}"
   }
 }

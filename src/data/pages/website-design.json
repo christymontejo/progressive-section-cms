@@ -11,7 +11,7 @@
     {
       "section": "Hero",
       "eyebrow": "Foundational",
-      "title": "Best Website Design Services to Elevate Your Brand Online",
+      "title": "Best Website Design Services to Stand out Online",
       "description": "Custom website design & development to achieve your unique goals and maximize results.",
       "image": "/images/website-design.avif",
       "order": 1,
@@ -47,7 +47,7 @@
           "icon": "tabler:world"
         },
         {
-          "title": "Search Engine Optimization (SEO)",
+          "title": "Search Engine Optimization ",
           "description": "Implementing SEO best practices ensures that the website ranks well in search engine results, driving organic traffic and increasing visibility. Want to boost your local presence? Optimize your <strong><a href='/solutions/foundational/google-business-profile' style='text-decoration: none; color: inherit;'>Google Business Profile</a></strong>.",
           "icon": "tabler:search"
         },
@@ -159,8 +159,8 @@
     }
   ],
   "metadata": {
-    "title": "Website Design {city} | Custom Web Development",
-    "description": "Professional website design and development services in {city}. We build custom, mobile-friendly websites that drive results. Get a free consultation today.",
+    "title": "SEO-Friendly Website Design for Local Businesses",
+    "description": "We design modern, SEO-friendly websites that help businesses build credibility, improve visibility, and convert visitors into customers.",
     "keywords": "website design {city}, web design {city} {state}, custom website design, web development {city}, best website design {city}, top web design {city}, professional web design, responsive website design, mobile-friendly websites {city}, {city} web designers"
   }
 }

@@ -166,7 +166,7 @@
     },
     {
       "section": "FinalCTA",
-      "title": "Ready to Elevate Your Brand?",
+      "title": "Ready to Stand out?",
       "description": "Let's create a marketing strategy that gets results. Fill out the form below or give us a call to get started.",
       "ctaText": "Get Started Today",
       "ctaLink": "/contact-us",
@@ -174,16 +174,8 @@
     }
   ],
   "metadata": {
-    "title": "Denver Marketing Agency | Digital & Indoor Ads",
-    "description": "Denver marketing agency: digital marketing, indoor billboards, web design, social media & PPC. Serving Denver metro area.",
-    "keywords": "Denver marketing agency, digital marketing Denver, indoor billboard advertising, marketing services Denver CO, social media management Denver, website design Denver, PPC advertising Denver, local marketing Denver, Denver advertising agency, marketing company Denver",
-    "openGraph": {
-      "type": "website",
-      "images": [
-        {
-          "url": "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img/https://johnh1303.sg-host.com/wp-content/uploads/2025/10/download-5-1.avif"
-        }
-      ]
-    }
+    "title": "{city} Digital Signage & Marketing | {business}",
+    "description": "We connect businesses in {city} through digital signage, PPC, social media, SEO, and website design to keep brands visible and top of mind.",
+    "keywords": "Denver marketing agency, digital marketing Denver, indoor billboard advertising, marketing services Denver CO, social media management Denver, website design Denver, PPC advertising Denver, local marketing Denver, Denver advertising agency, marketing company Denver"
   }
 }

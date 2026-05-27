@@ -1,12 +1,12 @@
 {
   "title": "About Us",
-  "description": "Unleash the Power of Digital Marketing!",
+  "description": "Digital Marketing!",
   "sections": [
     {
       "section": "Hero",
       "eyebrow": "Learn About Our Story",
       "title": "About Us",
-      "description": "Unleash the Power of Digital Marketing!",
+      "description": "Digital Marketing!",
       "image": "/images/about-us-partner.avif",
       "order": 1,
       "ctaText": "Get In Touch",
@@ -66,8 +66,8 @@
     }
   ],
   "metadata": {
-    "title": "About Us | {business} {city} Marketing Agency",
-    "description": "{city} marketing agency specializing in indoor billboards, web design & multichannel campaigns to grow local businesses.",
+    "title": "About {business} | Local Business Branding",
+    "description": "Discover how we help businesses stay top of mind where customers eat, work, live, and play through signage and digital marketing.",
     "keywords": "{city} marketing agency about, marketing company {city}, digital marketing team {city}, {city} advertising agency team, marketing agency story"
   }
 }
