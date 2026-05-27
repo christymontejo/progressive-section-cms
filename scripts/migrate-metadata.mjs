@@ -40,17 +40,17 @@ const PAGE_META = {
   "billboard-locations": {
     title: "Indoor Billboard Locations in {city} | {business}",
     description:
-      "See where your ads could appear across our indoor digital billboard network in {city}, including high-traffic restaurants, bars, gyms, and venues.",
+      "See where your ads could appear across our indoor digital billboard network in {city}, including high-traffic restaurants, bars, gyms, & venues.",
   },
   "pay-per-click": {
     title: "Pay Per Click Advertising | Drive Traffic & Sales",
     description:
-      "Drive more conversions with expert PPC services. Google Ads, retargeting and optimization on every click to boost exposure and eliminate wasted ad spend.",
+      "Drive more conversions with expert PPC services. Google Ads, retargeting & optimization on every click to boost exposure and eliminate wasted ad spend.",
   },
   "social-media-advertising": {
     title: "Social Media Advertising | Targeted Ads That Convert",
     description:
-      "Reach your audience on Facebook, Instagram and more with data-driven social media advertising. Drive traffic, leads and revenue with strategic campaigns.",
+      "Reach your audience on Facebook, Instagram & more with data-driven social media advertising. Drive traffic, leads & revenue with strategic campaigns.",
   },
   "streaming-audio": {
     title: "Digital Audio Advertising | Targeted Streaming Ads",
@@ -90,7 +90,7 @@ const PAGE_META = {
   "solutions": {
     title: "Digital Marketing Solutions | Full-Service Marketing Agency",
     description:
-      "Explore our suite of digital marketing, including indoor billboards, website design, social media, and PPC, to grow your business with proven results.",
+      "Explore our suite of digital marketing, including indoor billboards, website design, social media, & PPC, to grow your business with proven results.",
   },
 };
 
