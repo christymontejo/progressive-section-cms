@@ -13,7 +13,7 @@ A production-ready Astro website scaffolding following AstroWind best practices,
 - ✅ **TypeScript** - Full type safety
 - ✅ **AI-friendly** - Easy content updates via config files
 
-## 📁 Project Structure
+## 📁 Project Structures
 
 ```
 /
