@@ -35,7 +35,7 @@
           "icon": "tabler:map-pin",
           "label": "Location",
           "value": "{city}, {state}",
-          "link": ""
+          "link": "https://www.google.com/maps/search/?api=1&query={city}%2C+{state}"
         }
       ],
       "formFields": [

@@ -106,39 +106,71 @@
           "brands": [
             {
               "name": "A&E",
-              "logo": "/images/a&e.avif"
+              "logo": "/images/brands/AE-2.webp"
             },
             {
               "name": "AMC",
-              "logo": "/images/amc.avif"
+              "logo": "/images/brands/AMC-2.webp"
             },
             {
               "name": "CNN",
-              "logo": "/images/cnn.avif"
+              "logo": "/images/brands/CNN-2.webp"
             },
             {
               "name": "Comedy Central",
-              "logo": "/images/comedy.avif"
+              "logo": "/images/brands/Comedy-Central-2.webp"
             },
             {
               "name": "Discovery",
-              "logo": "/images/discovery.avif"
+              "logo": "/images/brands/Discovery-2.webp"
             },
             {
               "name": "Disney Channel",
-              "logo": "/images/disney.avif"
+              "logo": "/images/brands/Disney-Channel-2.webp"
             },
             {
               "name": "ESPN",
-              "logo": "/images/espn.avif"
+              "logo": "/images/brands/ESPN-2.webp"
             },
             {
               "name": "Food Network",
-              "logo": "/images/food-network.avif"
+              "logo": "/images/brands/Food-Network-2.webp"
             },
             {
               "name": "Fox News",
-              "logo": "/images/fox.avif"
+              "logo": "/images/brands/Fox-News-2.webp"
+            },
+            {
+              "name": "HGTV",
+              "logo": "/images/brands/HGTV-2.webp"
+            },
+            {
+              "name": "History",
+              "logo": "/images/brands/History-2.webp"
+            },
+            {
+              "name": "Lifetime",
+              "logo": "/images/brands/Lifetime-2.webp"
+            },
+            {
+              "name": "MSNBC",
+              "logo": "/images/brands/MSNBC-2.webp"
+            },
+            {
+              "name": "TLC",
+              "logo": "/images/brands/TLC-1.webp"
+            },
+            {
+              "name": "TNT",
+              "logo": "/images/brands/TNT-2.webp"
+            },
+            {
+              "name": "USA",
+              "logo": "/images/brands/USA-2.webp"
+            },
+            {
+              "name": "Vice",
+              "logo": "/images/brands/Vice-2.webp"
             }
           ]
         },
@@ -148,27 +180,31 @@
           "brands": [
             {
               "name": "Android TV",
-              "logo": "/images/android-tv.avif"
+              "logo": "/images/brands/androidtv-2.webp"
             },
             {
               "name": "Chromecast",
-              "logo": "/images/chromecast.avif"
+              "logo": "/images/brands/chromecast-2.webp"
             },
             {
               "name": "Roku",
-              "logo": "/images/roku.avif"
+              "logo": "/images/brands/Roku-2.webp"
+            },
+            {
+              "name": "Fire TV",
+              "logo": "/images/brands/firetv-2.webp"
             },
             {
               "name": "XBOX",
-              "logo": "/images/xbox.avif"
+              "logo": "/images/brands/xbox-2.webp"
             },
             {
               "name": "Apple TV",
-              "logo": "/images/apple-tv.avif"
+              "logo": "/images/brands/appletv-2.webp"
             },
             {
               "name": "Playstation",
-              "logo": "/images/playstation.avif"
+              "logo": "/images/brands/playstation-2.webp"
             }
           ]
         },
@@ -178,15 +214,15 @@
           "brands": [
             {
               "name": "Pluto TV",
-              "logo": "/images/pluto-tv.avif"
+              "logo": "/images/brands/pluto-2.webp"
             },
             {
               "name": "Sling TV",
-              "logo": "/images/sling.png"
+              "logo": "/images/brands/sling-television-2.webp"
             },
             {
               "name": "Fubo TV",
-              "logo": "/images/fubu.png"
+              "logo": "/images/brands/fubu-2.webp"
             }
           ]
         }

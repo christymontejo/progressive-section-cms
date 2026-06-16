@@ -74,11 +74,11 @@ const {
               {ctaText && ctaLink && (
                 <a
                   href={ctaLink}
-                  class="cta-button inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-primary-dark text-white text-sm sm:text-base font-bold rounded-full hover:bg-primary-darker"
+                  class="cta-button inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-primary-dark text-white text-sm sm:text-base font-bold rounded-full hover:bg-primary-darker leading-tight text-center"
                 >
-                  {ctaText}
+                  <span>{ctaText}</span>
                   <svg
-                    class="w-4 h-4 sm:w-5 sm:h-5"
+                    class="w-4 h-4 sm:w-5 sm:h-5 shrink-0"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

@@ -33,7 +33,10 @@ const hydratedLinks = footerConfig.columns.map((col: any) => {
       links: [
         { text: siteConfig.contact.phoneFormatted, href: `tel:${siteConfig.contact.phone}` },
         { text: siteConfig.contact.email, href: `mailto:${siteConfig.contact.email}` },
-        { text: siteConfig.location.fullAddress, href: "#" },
+        {
+          text: siteConfig.location.fullAddress,
+          href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.location.fullAddress)}`,
+        },
       ],
     };
   }

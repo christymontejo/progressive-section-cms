@@ -454,6 +454,22 @@ const actions = [{ text: ctaButton.text, href: ctaButton.href }];
           </div>
         ))
       }
+
+      <!-- Mobile CTA -->
+      {
+        actions.length > 0 && (
+          <div class="pt-4 mt-2 border-t border-gray-200 space-y-3">
+            {actions.map((action) => (
+              <a
+                href={action.href}
+                class="block w-full px-6 py-3 text-center text-base font-semibold rounded-full bg-primary-dark text-white hover:bg-primary-darker transition-colors"
+              >
+                {action.text}
+              </a>
+            ))}
+          </div>
+        )
+      }
     </div>
   </div>
 </header>

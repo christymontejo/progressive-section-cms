@@ -26,23 +26,29 @@ const { metadata, extraSchemas } = buildPageMeta(homeData);
 const solutions = getSolutionsData();
 const indoorBillboards = getIndoorBillboardsData();
 
+// Pull the Hero image from a page's sections so each carousel slide shows
+// that respective page's hero (falls back to thumbnail/image if missing).
+const getHeroImage = (data: any) => {
+  const hero = data.sections?.find((s: any) => s.section === "Hero");
+  return (
+    hero?.image ||
+    data.thumbnail ||
+    data.image ||
+    "https://via.placeholder.com/400x300"
+  );
+};
+
 // Combine and map to gallery images
 const galleryImages = [
   ...solutions.map((solution) => ({
-    src:
-      solution.data.thumbnail ||
-      solution.data.image ||
-      "https://via.placeholder.com/400x300",
+    src: getHeroImage(solution.data),
     alt: solution.data.title,
     label: solution.data.title,
     description: solution.data.description,
     link: `/solutions/${solution.slug}`,
   })),
   ...indoorBillboards.map((billboard) => ({
-    src:
-      billboard.data.thumbnail ||
-      billboard.data.image ||
-      "https://via.placeholder.com/400x300",
+    src: getHeroImage(billboard.data),
     alt: billboard.data.title,
     label: billboard.data.title,
     description: billboard.data.description,
