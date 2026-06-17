@@ -121,19 +121,32 @@ const sliderId = `slider-${Math.random().toString(36).substr(2, 9)}`;
     document.querySelectorAll(".slider-track").forEach((track) => {
       const trackEl = track as HTMLElement;
       const sliderId = trackEl.id;
-      const itemsPerView = parseInt(trackEl.dataset.items || "4");
+      const baseItemsPerView = parseInt(trackEl.dataset.items || "4");
       const autoplay = trackEl.dataset.autoplay === "true";
       const speed = parseInt(trackEl.dataset.speed || "30") * 1000;
 
       const items = track.querySelectorAll(".slider-item");
       const totalItems = items.length;
-      const totalSlides = Math.ceil(totalItems / itemsPerView);
       let currentSlide = 0;
       let autoplayInterval: number | null = null;
 
-      // Create dots
       const dotsContainer = document.getElementById(`${sliderId}-dots`);
-      if (dotsContainer && totalSlides > 1) {
+
+      // Items per view must match the CSS breakpoints in the <style> block,
+      // otherwise the slide math drifts from what the user actually sees.
+      function getItemsPerView() {
+        if (window.matchMedia("(max-width: 480px)").matches) return 1;
+        if (window.matchMedia("(max-width: 768px)").matches) return 2;
+        return baseItemsPerView;
+      }
+
+      let itemsPerView = getItemsPerView();
+      let totalSlides = Math.ceil(totalItems / itemsPerView);
+
+      function buildDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = "";
+        if (totalSlides <= 1) return;
         for (let i = 0; i < totalSlides; i++) {
           const dot = document.createElement("button");
           dot.className = `w-2 h-2 rounded-full transition-all ${i === 0 ? "bg-primary w-6" : "bg-gray-300"}`;
@@ -157,23 +170,25 @@ const sliderId = `slider-${Math.random().toString(36).substr(2, 9)}`;
       function goToSlide(index: number) {
         currentSlide = index;
         const offset = -(currentSlide * 100);
-        (track as HTMLElement).style.transform = `translateX(${offset}%)`;
+        trackEl.style.transform = `translateX(${offset}%)`;
         updateDots();
         resetAutoplay();
       }
 
       function nextSlide() {
+        if (totalSlides <= 1) return;
         currentSlide = (currentSlide + 1) % totalSlides;
         goToSlide(currentSlide);
       }
 
       function prevSlide() {
+        if (totalSlides <= 1) return;
         currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
         goToSlide(currentSlide);
       }
 
       function resetAutoplay() {
-        if (autoplay) {
+        if (autoplay && totalSlides > 1) {
           if (autoplayInterval) clearInterval(autoplayInterval);
           autoplayInterval = window.setInterval(nextSlide, speed);
         }
@@ -182,10 +197,34 @@ const sliderId = `slider-${Math.random().toString(36).substr(2, 9)}`;
       // Navigation buttons
       const prevBtn = document.querySelector(
         `.slider-prev[data-slider="${sliderId}"]`
-      );
+      ) as HTMLElement | null;
       const nextBtn = document.querySelector(
         `.slider-next[data-slider="${sliderId}"]`
-      );
+      ) as HTMLElement | null;
+
+      // Hide the chevron arrows when there is nothing to slide (e.g. the
+      // Subscriptions carousel with 3 brands shows them all in one desktop slide).
+      function updateArrows() {
+        const hidden = totalSlides <= 1;
+        if (prevBtn) prevBtn.style.display = hidden ? "none" : "";
+        if (nextBtn) nextBtn.style.display = hidden ? "none" : "";
+      }
+
+      // Recompute everything when the viewport crosses a breakpoint so the
+      // number of slides stays in sync with the visible items per view.
+      function recalc() {
+        const next = getItemsPerView();
+        if (next === itemsPerView) return;
+        itemsPerView = next;
+        totalSlides = Math.ceil(totalItems / itemsPerView);
+        currentSlide = Math.min(currentSlide, totalSlides - 1);
+        buildDots();
+        updateArrows();
+        goToSlide(currentSlide);
+      }
+
+      buildDots();
+      updateArrows();
 
       prevBtn?.addEventListener("click", prevSlide);
       nextBtn?.addEventListener("click", nextSlide);
@@ -201,6 +240,8 @@ const sliderId = `slider-${Math.random().toString(36).substr(2, 9)}`;
       });
 
       track.addEventListener("mouseleave", resetAutoplay);
+
+      window.addEventListener("resize", recalc);
     });
   }
 
