@@ -2,7 +2,7 @@
 
 A production-ready Astro website scaffolding following AstroWind best practices, optimized for AI content management.
 
-## 🚀 Features
+## 🚀 Feature
 
 - ✅ **Content Collections** - Type-safe MDX content management
 - ✅ **Dynamic Navigation** - Auto-generated from content
