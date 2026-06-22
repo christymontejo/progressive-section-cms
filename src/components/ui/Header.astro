@@ -56,7 +56,7 @@ const actions = [{ text: ctaButton.text, href: ctaButton.href }];
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div
-      class="flex justify-between items-center h-20 transition-all duration-300"
+      class="flex justify-between items-center h-24 transition-all duration-300"
       id="header-content"
     >
       <!-- Logo -->
@@ -66,10 +66,10 @@ const actions = [{ text: ctaButton.text, href: ctaButton.href }];
             id="header-logo"
             src={siteConfig.logo.src}
             alt={siteConfig.logo.alt}
-            height="40"
+            height="56"
             loading="eager"
             decoding="async"
-            class="h-10 w-auto transition-all duration-300"
+            class="h-14 w-auto transition-all duration-300"
           />
         </a>
       </div>
@@ -653,17 +653,17 @@ const actions = [{ text: ctaButton.text, href: ctaButton.href }];
     function updateHeader(currentScroll) {
       if (currentScroll > 50) {
         // Scrolled down - shrink
-        headerContent.classList.remove("h-20");
-        headerContent.classList.add("h-16");
-        logo.classList.remove("h-10");
-        logo.classList.add("h-8");
+        headerContent.classList.remove("h-24");
+        headerContent.classList.add("h-20");
+        logo.classList.remove("h-14");
+        logo.classList.add("h-11");
         header.classList.add("shadow-sm");
       } else {
         // At top - expand
-        headerContent.classList.remove("h-16");
-        headerContent.classList.add("h-20");
-        logo.classList.remove("h-8");
-        logo.classList.add("h-10");
+        headerContent.classList.remove("h-20");
+        headerContent.classList.add("h-24");
+        logo.classList.remove("h-11");
+        logo.classList.add("h-14");
         header.classList.remove("shadow-sm");
       }
       ticking = false;
