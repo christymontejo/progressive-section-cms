@@ -40,7 +40,7 @@ const { title, description, image, ctaText, ctaLink, features } = Astro.props;
       <!-- Right Column: Content -->
       <div class="boost-visibility__content">
         <h2 class="boost-visibility__title">{title}</h2>
-        <p class="boost-visibility__description">{description}</p>
+        <p class="boost-visibility__description" set:html={description}></p>
 
         <!-- Features Grid -->
         <div class="boost-visibility__features">

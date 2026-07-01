@@ -114,13 +114,13 @@
           "title": "Website Design",
           "description": "Custom websites that convert visitors into customers.",
           "href": "/solutions/foundational/website-design",
-          "thumbnail": "https://3l4xnbxrrw.ucarecd.net/d139b768-c61f-49c7-a728-5241de36e6b2/-/preview/1000x666/"
+          "thumbnail": "/images/website-design.avif"
         },
         {
           "title": "Screen Advertising",
           "description": "High-impact advertising in premium indoor locations.",
           "href": "/indoor-billboards/screen-advertising",
-          "thumbnail": "https://ucarecdn.com/72f5ff44-0a2e-441d-9c05-52c797204f94/-/preview/1000x561/"
+          "thumbnail": "/images/indoor-billboard.avif"
         }
       ]
     }

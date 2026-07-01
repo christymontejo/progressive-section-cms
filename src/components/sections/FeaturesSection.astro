@@ -64,18 +64,19 @@ const descriptionColorClasses = {
     <div class="max-w-3xl mx-auto text-center mb-16">
       {
         eyebrow && (
-          <div class="flex items-center justify-center gap-3 mb-4">
+          <div class="flex justify-center mb-4">
             <div
-              class={`h-px w-12 ${background === "primary" ? "bg-white/30" : "bg-primary-light"}`}
-            />
-            <span
-              class={`section-eyebrow ${background === "primary" ? "text-white" : "text-primary-light"}`}
+              class={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${background === "primary" ? "bg-white/10 border border-white/20" : "bg-primary/5 border border-primary-light/30"}`}
             >
-              {eyebrow}
-            </span>
-            <div
-              class={`h-px w-12 ${background === "primary" ? "bg-white/30" : "bg-primary-light"}`}
-            />
+              <span
+                class={`w-2 h-2 rounded-full ${background === "primary" ? "bg-white" : "bg-primary-light"}`}
+              />
+              <span
+                class={`section-eyebrow ${background === "primary" ? "text-white" : "text-primary"}`}
+              >
+                {eyebrow}
+              </span>
+            </div>
           </div>
         )
       }

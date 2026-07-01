@@ -1,9 +1,6 @@
 ---
 import PageLayout from "~/layouts/PageLayout.astro";
-import Hero from "~/components/sections/Hero.astro";
-import FeaturesSection from "~/components/sections/FeaturesSection.astro";
-import FeaturesWithImage from "~/components/sections/FeaturesWithImage.astro";
-import CTALight from "~/components/sections/CTALight.astro";
+import SectionRenderer from "~/components/sections/SectionRenderer.astro";
 
 import solutionsDataRaw from "~/data/pages/solutions.json";
 import { localizeData } from "~/config/site";
@@ -11,84 +8,9 @@ import { buildPageMeta } from "~/lib/pageMeta";
 const solutionsData = localizeData(solutionsDataRaw);
 const { sections } = solutionsData;
 
-const sortedSections = sections.sort(
-  (a: any, b: any) => (a.order || 0) - (b.order || 0)
-);
-
 const { metadata, extraSchemas } = buildPageMeta(solutionsData);
 ---
 
 <PageLayout metadata={metadata} extraSchemas={extraSchemas}>
-  {
-    sortedSections.map((section: any) => {
-      // Hero Section
-      if (section.section === "Hero") {
-        return (
-          <Hero
-            tagline={section.eyebrow}
-            title={section.title}
-            subtitle={section.description}
-            image={section.image}
-            actions={
-              section.ctaText && section.ctaLink
-                ? [
-                    {
-                      text: section.ctaText,
-                      href: section.ctaLink,
-                      variant: "primary",
-                    },
-                  ]
-                : []
-            }
-          />
-        );
-      }
-
-      // FeaturesSection
-      if (section.section === "FeaturesSection" && section.features) {
-        return (
-          <FeaturesSection
-            eyebrow={section.eyebrow}
-            title={section.title}
-            description={section.description}
-            features={section.features}
-            ctaText={section.ctaText}
-            ctaLink={section.ctaLink}
-          />
-        );
-      }
-
-      // FeaturesWithImage Section
-      if (section.section === "FeaturesWithImage" && section.features) {
-        return (
-          <FeaturesWithImage
-            eyebrow={section.eyebrow}
-            title={section.title}
-            description={section.description}
-            cards={section.features}
-            ctaText={section.ctaText}
-            ctaLink={section.ctaLink}
-            isCarousel={section.isCarousel}
-            itemsPerSlide={section.itemsPerSlide}
-            carouselAutoplay={section.carouselAutoplay}
-            carouselAutoplayDelay={section.carouselAutoplayDelay}
-          />
-        );
-      }
-
-      // CTALight Section
-      if (section.section === "CTALight") {
-        return (
-          <CTALight
-            title={section.title}
-            description={section.description}
-            ctaText={section.ctaText || "Get in Touch"}
-            ctaLink={section.ctaLink || "/contact-us"}
-          />
-        );
-      }
-
-      return null;
-    })
-  }
+  <SectionRenderer sections={sections} />
 </PageLayout>

@@ -45,12 +45,14 @@ const descriptionColorClasses = {
         <div class="space-y-6">
           {
             eyebrow && (
-              <div class="flex items-center gap-3">
-                <div
-                  class={`h-px w-12 ${background === "primary" || background === "primary-dark" ? "bg-white/30" : "bg-primary-light"}`}
+              <div
+                class={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${background === "primary" || background === "primary-dark" ? "bg-white/10 border border-white/20" : "bg-primary/5 border border-primary-light/30"}`}
+              >
+                <span
+                  class={`w-2 h-2 rounded-full ${background === "primary" || background === "primary-dark" ? "bg-white" : "bg-primary-light"}`}
                 />
                 <span
-                  class={`section-eyebrow ${background === "primary" || background === "primary-dark" ? "text-white" : "text-primary-light"}`}
+                  class={`section-eyebrow ${background === "primary" || background === "primary-dark" ? "text-white" : "text-primary"}`}
                 >
                   {eyebrow}
                 </span>

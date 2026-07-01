@@ -10,7 +10,13 @@ type AnyPage = {
   description?: string;
   keywords?: string;
   metadata?: { title?: string; description?: string; keywords?: string };
-  sections?: Array<{ section?: string; faqs?: any[]; [k: string]: any }>;
+  sections?: Array<{
+    section?: string;
+    discriminant?: string;
+    faqs?: any[];
+    value?: { faqs?: any[]; [k: string]: any };
+    [k: string]: any;
+  }>;
 };
 
 export interface PageMetaOptions {
@@ -32,12 +38,18 @@ export function buildPageMeta(pageData: AnyPage, opts: PageMetaOptions = {}) {
 
   const extraSchemas: any[] = [];
 
-  // FAQ section auto-detect
+  // FAQ section auto-detect (supports both the flat legacy shape and the new
+  // discriminant/value shape).
   const faqSection = pageData.sections?.find(
-    (s) => s?.section === "FAQs" || s?.section === "FAQ"
+    (s) =>
+      s?.section === "FAQs" ||
+      s?.section === "FAQ" ||
+      s?.discriminant === "faq" ||
+      s?.discriminant === "faqs"
   );
-  if (faqSection?.faqs?.length) {
-    const f = faqSchema(faqSection.faqs);
+  const faqList = faqSection?.faqs || faqSection?.value?.faqs;
+  if (faqList?.length) {
+    const f = faqSchema(faqList);
     if (f) extraSchemas.push(f);
   }
 

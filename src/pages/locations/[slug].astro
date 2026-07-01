@@ -1,12 +1,6 @@
 ---
 import PageLayout from "~/layouts/PageLayout.astro";
-import Hero from "~/components/sections/Hero.astro";
-import FAQs from "~/components/sections/FAQs.astro";
-import ContentWithImage from "~/components/sections/ContentWithImage.astro";
-import FeaturesSection from "~/components/sections/FeaturesSection.astro";
-import FeaturesWithImage from "~/components/sections/FeaturesWithImage.astro";
-import Benefits from "~/components/sections/Benefits.astro";
-import Map from "~/components/sections/MapSection.astro";
+import SectionRenderer from "~/components/sections/SectionRenderer.astro";
 
 import arvadaData from "~/data/locations/arvada.json";
 import auroraData from "~/data/locations/aurora.json";
@@ -33,7 +27,8 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 const entry = dataMap[slug!];
-const locName = entry.location || "";
+// New JSON uses `city`; older data used `location`.
+const locName = entry.city || entry.location || "";
 
 // Recursively substitute {location} token in all string values
 function swapLocation(v: any): any {
@@ -48,17 +43,6 @@ function swapLocation(v: any): any {
 }
 const pageData = swapLocation(entry);
 
-const sections = (pageData.sections || []).sort(
-  (a: any, b: any) => (a.order || 0) - (b.order || 0)
-);
-
-// Filter self from Map locations
-const filterSelf = (locs: any[]) =>
-  (locs || []).filter((loc: any) => {
-    const n = typeof loc === "string" ? loc : loc?.name;
-    return n && n.toLowerCase() !== locName.toLowerCase();
-  });
-
 const { metadata, extraSchemas } = buildPageMeta(pageData, {
   city: { city: locName, url: `/locations/${slug}` },
   extras: { location: locName },
@@ -66,102 +50,5 @@ const { metadata, extraSchemas } = buildPageMeta(pageData, {
 ---
 
 <PageLayout metadata={metadata} extraSchemas={extraSchemas}>
-  {
-    sections.map((section: any) => {
-      if (section.section === "Hero") {
-        return (
-          <Hero
-            eyebrow={section.eyebrow}
-            title={section.title}
-            description={section.description}
-            image={section.image}
-            ctaText={section.ctaText}
-            ctaLink={section.ctaLink}
-          />
-        );
-      }
-
-      if (section.section === "Benefits") {
-        return (
-          <Benefits
-            title={section.title}
-            description={section.description}
-            benefits={section.benefits}
-          />
-        );
-      }
-
-      if (section.section === "FAQs" && section.faqs) {
-        return (
-          <FAQs
-            title={section.title}
-            description={section.description}
-            faqs={section.faqs}
-          />
-        );
-      }
-
-      if (section.section === "ContentWithImage") {
-        return (
-          <ContentWithImage
-            title={section.title}
-            eyebrow={section.eyebrow}
-            description={section.description}
-            ctaText={section.ctaText}
-            ctaLink={section.ctaLink}
-            image={section.image}
-            imagePosition={section.imagePosition}
-            background={section.background}
-          />
-        );
-      }
-
-      if (
-        section.section === "FeaturesWithImage" ||
-        section.section === "FeaturesSection"
-      ) {
-        if (!section.features) return null;
-
-        if (section.section === "FeaturesWithImage") {
-          return (
-            <FeaturesWithImage
-              eyebrow={section.eyebrow}
-              title={section.title}
-              description={section.description}
-              cards={section.features}
-              ctaText={section.ctaText}
-              ctaLink={section.ctaLink}
-            />
-          );
-        }
-
-        return (
-          <FeaturesSection
-            eyebrow={section.eyebrow}
-            title={section.title}
-            description={section.description}
-            features={section.features}
-            ctaText={section.ctaText}
-            ctaLink={section.ctaLink}
-          />
-        );
-      }
-
-      if (section.section === "Map" || section.section === "MapSection") {
-        return (
-          <Map
-            title={section.title}
-            eyebrow={section.eyebrow}
-            description={section.description}
-            mapUrl={section.mapUrl}
-            locations={filterSelf(section.locations)}
-            viewMode={section.viewMode}
-            background={section.background}
-          />
-        );
-      }
-
-      return null;
-    })
-  }
+  <SectionRenderer sections={pageData.sections} filterLocation={locName} />
 </PageLayout>

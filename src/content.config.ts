@@ -295,110 +295,32 @@ const indoorBillboards = defineCollection({
   }),
 });
 
+// A section entry in the new discriminant/value format. The `value` payload
+// varies per discriminant, so it's kept permissive (passthrough) — the shared
+// SectionRenderer normalizes fields before handing them to each component.
+const sectionEntry = () =>
+  z.object({
+    discriminant: z.string(),
+    value: z.record(z.string(), z.any()).optional(),
+    order: z.number().optional(),
+  });
+
+// A single legal clause (used by privacy / terms pages).
+const legalSection = () =>
+  z.object({
+    title: z.string(),
+    content: z.string(),
+  });
+
 // Pages collection (for homepage and other pages)
 const pages = defineCollection({
   type: "data",
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    sections: z.array(
-      z.object({
-        section: z.string(),
-        eyebrow: z.string().optional(),
-        title: z.string().optional(),
-        description: z.string().optional(),
-        ctaText: z.string().optional(),
-        ctaLink: z.string().optional(),
-        secondaryCtaText: z.string().optional(),
-        secondaryCtaLink: z.string().optional(),
-        image: z.string().optional(),
-        background: z.string().optional(),
-        imagePosition: z.string().optional(),
-        order: z.number().optional(),
-        cards: z
-          .array(
-            z.object({
-              title: z.string(),
-              description: z.string(),
-              icon: z.string().optional(),
-              link: z.string().optional(),
-            })
-          )
-          .optional(),
-        features: z
-          .array(
-            z.object({
-              title: z.string(),
-              description: z.string(),
-              icon: z.string().optional(),
-              image: z.string().optional(),
-            })
-          )
-          .optional(),
-        isCarousel: z.boolean().optional(),
-        itemsPerSlide: z.number().optional(),
-        carouselAutoplay: z.boolean().optional(),
-        carouselAutoplayDelay: z.number().optional(),
-        stats: z
-          .array(
-            z.object({
-              label: z.string(),
-              value: z.string(),
-            })
-          )
-          .optional(),
-        keyPoints: z.array(z.string()).optional(),
-        faqs: z
-          .array(
-            z.object({
-              question: z.string(),
-              answer: z.string(),
-            })
-          )
-          .optional(),
-        locations: z
-          .array(
-            z.union([
-              z.string(),
-              z.object({
-                name: z.string(),
-                url: z.string().optional(),
-              }),
-            ])
-          )
-          .optional(),
-        mapUrl: z.string().optional(),
-        viewMode: z.enum(["half", "full"]).optional(),
-        formFields: z
-          .array(
-            z.object({
-              id: z.string(),
-              name: z.string(),
-              label: z.string(),
-              type: z.enum([
-                "text",
-                "email",
-                "tel",
-                "number",
-                "textarea",
-                "select",
-                "checkbox",
-                "radio",
-              ]),
-              placeholder: z.string().optional(),
-              required: z.boolean().optional(),
-              options: z.array(z.string()).optional(),
-              rows: z.number().optional(),
-              pattern: z.string().optional(),
-              helpText: z.string().optional(),
-              width: z.enum(["full", "half"]).optional(),
-            })
-          )
-          .optional(),
-        submitText: z.string().optional(),
-        submitAction: z.string().optional(),
-      })
-    ).optional(),
+    keywords: z.string().optional(),
+    sections: z.array(sectionEntry()).optional(),
+    legalSections: z.array(legalSection()).optional(),
     metadata: metadataDefinition(),
   }),
 });
@@ -409,62 +331,13 @@ const locations = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    location: z.string(),
+    // New JSON uses `city`; older data used `location`. Accept either.
+    city: z.string().optional(),
+    location: z.string().optional(),
+    keywords: z.string().optional(),
     ctaText: z.string().optional(),
     ctaLink: z.string().optional(),
-    sections: z.array(
-      z.object({
-        section: z.string(),
-        eyebrow: z.string().optional(),
-        title: z.string().optional(),
-        description: z.string().optional(),
-        ctaText: z.string().optional(),
-        ctaLink: z.string().optional(),
-        image: z.string().optional(),
-        background: z.string().optional(),
-        imagePosition: z.string().optional(),
-        order: z.number().optional(),
-        benefits: z
-          .array(
-            z.object({
-              title: z.string(),
-              description: z.string(),
-            })
-          )
-          .optional(),
-        features: z
-          .array(
-            z.object({
-              title: z.string(),
-              description: z.string(),
-              icon: z.string().optional(),
-              image: z.string().optional(),
-            })
-          )
-          .optional(),
-        faqs: z
-          .array(
-            z.object({
-              question: z.string(),
-              answer: z.string(),
-            })
-          )
-          .optional(),
-        locations: z
-          .array(
-            z.union([
-              z.string(),
-              z.object({
-                name: z.string(),
-                url: z.string().optional(),
-              }),
-            ])
-          )
-          .optional(),
-        mapUrl: z.string().optional(),
-        viewMode: z.enum(["half", "full"]).optional(),
-      })
-    ),
+    sections: z.array(sectionEntry()).optional(),
     metadata: metadataDefinition(),
   }),
 });

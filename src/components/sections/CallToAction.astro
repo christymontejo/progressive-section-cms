@@ -34,7 +34,7 @@ const subtitleColorClasses = {
 ---
 
 <section class="relative py-12 md:py-16 fade-in-section">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Card Container -->
     <div
       class={`${background === "light" ? "bg-gradient-to-br from-neutral via-primary-light/20 to-white shadow-xl" : "bg-primary-dark shadow-2xl"} rounded-2xl p-6 md:p-10 relative overflow-hidden`}
@@ -78,10 +78,9 @@ const subtitleColorClasses = {
         {
           subtitle && (
             <p
-              class={`text-base md:text-lg leading-relaxed max-w-2xl mx-auto ${subtitleColorClasses[background]}`}
-            >
-              {subtitle}
-            </p>
+              class={`cta-subtitle text-base md:text-lg leading-relaxed max-w-3xl mx-auto ${subtitleColorClasses[background]}`}
+              set:html={subtitle}
+            />
           )
         }
 
