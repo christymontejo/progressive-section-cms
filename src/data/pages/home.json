@@ -15,49 +15,49 @@
             "title": "Website Design",
             "description": "Professional design services to Stand out identity.",
             "image": "/images/website-design.avif",
-            "href": "/website-design"
+            "href": "/solutions/foundational/website-design"
           },
           {
             "title": "Google Business Profile",
             "description": "Optimize your local presence and get found by customers searching for your services.",
             "image": "/images/google-business-profile.avif",
-            "href": "/google-business-profile"
+            "href": "/solutions/foundational/google-business-profile"
           },
           {
             "title": "Social Media Management",
             "description": "Build and engage your audience with strategic social media content.",
             "image": "/images/social-media-management-hero.avif",
-            "href": "/social-media-management"
+            "href": "/solutions/foundational/social-media-management"
           },
           {
             "title": "Indoor Billboard Advertising",
             "description": "High-impact screen advertising in premium indoor locations.",
             "image": "/images/indoor-billboard.avif",
-            "href": "/screen-advertising"
+            "href": "/indoor-billboards/screen-advertising"
           },
           {
             "title": "PPC Advertising",
             "description": "Strategic pay-per-click campaigns that maximize your exposure.",
             "image": "/images/ppc.avif",
-            "href": "/pay-per-click"
+            "href": "/solutions/lead-gen/pay-per-click"
           },
           {
             "title": "Connected TV Advertising",
             "description": "Reach your audience on streaming platforms and smart TVs.",
             "image": "/images/connected-tv.avif",
-            "href": "/connected-tv"
+            "href": "/solutions/branding-awareness/connected-tv"
           },
           {
             "title": "Geofencing",
             "description": "Target customers based on their physical location with precision.",
             "image": "/images/geofencing.avif",
-            "href": "/display-geofencing"
+            "href": "/solutions/branding-awareness/display-geofencing"
           },
           {
             "title": "Design Services",
             "description": "Professional graphic design and branding services.",
             "image": "/images/design-services.avif",
-            "href": "/design-services"
+            "href": "/solutions/foundational/design-services"
           }
         ]
       }
