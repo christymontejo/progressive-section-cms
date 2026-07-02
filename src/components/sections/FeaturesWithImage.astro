@@ -6,6 +6,8 @@ interface Card {
   description?: string;
   icon?: string;
   image?: string;
+  /** How the card image fits its box: "cover" (default, cropped) or "contain" (whole image). */
+  imageFit?: "cover" | "contain";
 }
 
 interface Props {
@@ -113,17 +115,17 @@ const carouselId = `carousel-${Math.random().toString(36).substring(2, 9)}`;
         <div class="relative" style="position: relative;">
           {/* Navigation Buttons */}
           <button
-            class="!absolute left-0 md:-left-16 w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-10 bg-primary-dark text-white hover:bg-primary-darker hover:scale-110"
+            class="!absolute -left-2 md:-left-16 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-10 bg-primary-dark/90 md:bg-primary-dark text-white hover:bg-primary-darker hover:scale-110"
             style="position: absolute !important; top: 50%; transform: translateY(-50%);"
             data-carousel-prev
             aria-label="Previous"
           >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           <button
-            class="!absolute right-0 md:-right-16 w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-10 bg-primary-dark text-white hover:bg-primary-darker hover:scale-110"
+            class="!absolute -right-2 md:-right-16 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all z-10 bg-primary-dark/90 md:bg-primary-dark text-white hover:bg-primary-darker hover:scale-110"
             style="position: absolute !important; top: 50%; transform: translateY(-50%);"
             data-carousel-next
             aria-label="Next"
@@ -136,14 +138,14 @@ const carouselId = `carousel-${Math.random().toString(36).substring(2, 9)}`;
           <div class="overflow-hidden" id={carouselId}>
             <div class="flex transition-transform duration-500 ease-in-out" data-carousel-track>
               {cards.map((card, index) => (
-                <div class="flex-shrink-0 px-4" style={`width: ${100 / itemsPerSlide}%`}>
+                <div class="flex-shrink-0 px-2 sm:px-4" data-carousel-item style={`width: ${100 / itemsPerSlide}%`}>
                   <div class="group h-full">
                     {card.image && (
-                      <div class="relative rounded-2xl overflow-hidden mb-6">
+                      <div class={`relative rounded-2xl overflow-hidden mb-6 ${card.imageFit === "contain" ? "bg-neutral" : ""}`}>
                         <img
                           src={card.image}
                           alt={card.title || "Feature image"}
-                          class="w-full aspect-[4/3] object-cover"
+                          class={`w-full aspect-[4/3] ${card.imageFit === "contain" ? "object-contain" : "object-cover"}`}
                           loading="lazy"
                         />
                       </div>
@@ -183,9 +185,10 @@ const carouselId = `carousel-${Math.random().toString(36).substring(2, 9)}`;
             </div>
           </div>
 
-          {/* Dots */}
-          <div class="flex justify-center gap-2 mt-8">
-            {Array.from({ length: Math.ceil(cards.length / itemsPerSlide) }).map((_, i) => (
+          {/* Dots — one per card is the max; JS hides extras based on the
+              responsive items-per-slide count. */}
+          <div class="flex justify-center gap-2 mt-8" data-carousel-dots>
+            {Array.from({ length: cards.length }).map((_, i) => (
               <button
                 class={`w-3 h-3 rounded-full transition-all ${
                   i === 0
@@ -289,13 +292,29 @@ const carouselId = `carousel-${Math.random().toString(36).substring(2, 9)}`;
       if (!carousel) return;
 
       const track = carousel.querySelector("[data-carousel-track]");
+      const items = carousel.querySelectorAll("[data-carousel-item]");
       const prevBtn = carousel.closest("section").querySelector("[data-carousel-prev]");
       const nextBtn = carousel.closest("section").querySelector("[data-carousel-next]");
       const dots = carousel.closest("section").querySelectorAll("[data-carousel-dot]");
 
       let currentIndex = 0;
-      const totalSlides = Math.ceil(totalCards / itemsPerSlide);
+      let perSlide = itemsPerSlide;
+      let totalSlides = Math.ceil(totalCards / perSlide);
       let autoplayInterval;
+
+      // Responsive items-per-slide: 1 on mobile (<640px), full count on wider
+      // screens. Recomputes card widths, slide count, and visible dots.
+      function computeLayout() {
+        perSlide = window.innerWidth < 640 ? 1 : itemsPerSlide;
+        totalSlides = Math.ceil(totalCards / perSlide);
+        items.forEach((item) => {
+          item.style.width = (100 / perSlide) + "%";
+        });
+        dots.forEach((dot, i) => {
+          dot.style.display = i < totalSlides ? "" : "none";
+        });
+        if (currentIndex > totalSlides - 1) currentIndex = totalSlides - 1;
+      }
 
       function updateCarousel() {
         const offset = -(currentIndex * 100);
@@ -336,7 +355,18 @@ const carouselId = `carousel-${Math.random().toString(36).substring(2, 9)}`;
         dot.addEventListener("click", () => goToSlide(index));
       });
 
+      computeLayout();
       updateCarousel();
+
+      let resizeTimer;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          computeLayout();
+          updateCarousel();
+        }, 150);
+      });
+
       if (autoplay) {
         autoplayInterval = setInterval(nextSlide, autoplayDelay);
         carousel.addEventListener("mouseenter", () => clearInterval(autoplayInterval));
