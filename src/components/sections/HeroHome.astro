@@ -251,7 +251,8 @@ const {
 
   .gallery-track {
     display: flex;
-    width: fit-content;
+    width: max-content;
+    will-change: transform;
     animation: scroll 60s linear infinite;
   }
 
@@ -261,6 +262,7 @@ const {
 
   .gallery-slide {
     display: flex;
+    flex-shrink: 0;
     gap: 1rem;
     padding-right: 1rem;
   }
