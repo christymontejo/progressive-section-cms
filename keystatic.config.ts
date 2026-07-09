@@ -1,4 +1,5 @@
 import { config, fields, collection, singleton } from "@keystatic/core";
+import { CMS_REPO } from "./src/lib/cms";
 
 // -----------------------------------------------------------------------
 // Image field helpers.
@@ -542,8 +543,18 @@ const pageSchema = () => ({
   metadata: metadataField(),
 });
 
+// keystatic.config.ts is loaded directly by Node (outside the Vite/Astro
+// SSR pipeline that powers page/middleware code), so process.env.NODE_ENV
+// is the correct read here - unlike application code, which must use
+// import.meta.env for anything other than NODE_ENV (see src/middleware.ts,
+// src/pages/admin/login.astro, src/pages/api/admin-login.ts).
+const storage =
+  process.env.NODE_ENV === "production"
+    ? ({ kind: "github", repo: CMS_REPO } as const)
+    : ({ kind: "local" } as const);
+
 export default config({
-  storage: { kind: "local" },
+  storage,
 
   singletons: {
     site: singleton({

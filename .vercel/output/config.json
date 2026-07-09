@@ -20,6 +20,26 @@
 			"dest": "_render"
 		},
 		{
+			"src": "^/admin/access-denied/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/admin/login/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/admin/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/api/admin-login/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/api/admin-logout/?$",
+			"dest": "_render"
+		},
+		{
 			"src": "^/api/keystatic(?:/(.*?))?/?$",
 			"dest": "_render"
 		},

@@ -1,6 +1,7 @@
 import { makeGenericAPIRouteHandler } from '@keystatic/core/api/generic';
 import { parseString } from 'set-cookie-parser';
 import { config as config$1, collection, singleton, fields } from '@keystatic/core';
+import { c as CMS_REPO } from './cms_C3IUMbgc.mjs';
 
 function makeHandler(_config) {
   return async function keystaticAPIRoute(context) {
@@ -9,10 +10,10 @@ function makeHandler(_config) {
     const handler = makeGenericAPIRouteHandler({
       ..._config,
       clientId: (_ref = (_config$clientId = _config.clientId) !== null && _config$clientId !== void 0 ? _config$clientId : envVarsForCf === null || envVarsForCf === void 0 ? void 0 : envVarsForCf.KEYSTATIC_GITHUB_CLIENT_ID) !== null && _ref !== void 0 ? _ref : tryOrUndefined(() => {
-        return "Iv23lih6qDkqDOIAu6D1";
+        return "Iv23lioPg6ov8WR6eTy9";
       }),
       clientSecret: (_ref2 = (_config$clientSecret = _config.clientSecret) !== null && _config$clientSecret !== void 0 ? _config$clientSecret : envVarsForCf === null || envVarsForCf === void 0 ? void 0 : envVarsForCf.KEYSTATIC_GITHUB_CLIENT_SECRET) !== null && _ref2 !== void 0 ? _ref2 : tryOrUndefined(() => {
-        return "c0a6e0349cfd315d21fa40dac5bdda9304e25124";
+        return "3d30cb11e9e0fb448e5357ae3541bdc72d5941e8";
       }),
       secret: (_ref3 = (_config$secret = _config.secret) !== null && _config$secret !== void 0 ? _config$secret : envVarsForCf === null || envVarsForCf === void 0 ? void 0 : envVarsForCf.KEYSTATIC_SECRET) !== null && _ref3 !== void 0 ? _ref3 : tryOrUndefined(() => {
         return "274fff6b3b798b98228094ce8c30d9f8277f31f5e74589413d276d0be4f4f83c";
@@ -525,8 +526,9 @@ const pageSchema = () => ({
   legalSections: legalSectionsField(),
   metadata: metadataField()
 });
+const storage = process.env.NODE_ENV === "production" ? { kind: "github", repo: CMS_REPO } : { kind: "local" };
 const config = config$1({
-  storage: { kind: "local" },
+  storage,
   singletons: {
     site: singleton({
       label: "Site Settings",
