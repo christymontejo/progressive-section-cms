@@ -1,0 +1,49 @@
+# Acme Marketing - Digital Marketing & Indoor Billboard Advertising
+
+> Digital marketing agency specializing in indoor billboard advertising and full-service marketing for Colorado businesses.
+
+## About Us
+
+Acme Marketing is a full-service digital marketing agency based in Denver, Colorado. We help local businesses grow through indoor billboard advertising and full-service digital marketing.
+
+## Services
+
+### Indoor Billboard Advertising
+- Screen Advertising: Hyper-local digital screens in high-traffic venues — [/indoor-billboards/screen-advertising](https://progressive-section-template.vercel.app/indoor-billboards/screen-advertising)
+- Venue Network Locations: See where ads appear — [/indoor-billboards/locations](https://progressive-section-template.vercel.app/indoor-billboards/locations)
+- Become a Venue Partner: Host a billboard in your business — [/indoor-billboards/become-a-venue-partner](https://progressive-section-template.vercel.app/indoor-billboards/become-a-venue-partner)
+
+### Foundational Marketing Services
+- Website Design & Development: SEO-friendly, mobile-ready sites — [/solutions/foundational/website-design](https://progressive-section-template.vercel.app/solutions/foundational/website-design)
+- Google Business Profile Management: Local search optimization — [/solutions/foundational/google-business-profile](https://progressive-section-template.vercel.app/solutions/foundational/google-business-profile)
+- Social Media Management: Strategic content and engagement — [/solutions/foundational/social-media-management](https://progressive-section-template.vercel.app/solutions/foundational/social-media-management)
+- Design Services: Professional graphic design — [/solutions/foundational/design-services](https://progressive-section-template.vercel.app/solutions/foundational/design-services)
+
+### Lead Generation Services
+- Pay-Per-Click Advertising: Google Ads that drive conversions — [/solutions/lead-gen/pay-per-click](https://progressive-section-template.vercel.app/solutions/lead-gen/pay-per-click)
+- Social Media Advertising: Targeted ads on Facebook, Instagram, LinkedIn — [/solutions/lead-gen/social-media-advertising](https://progressive-section-template.vercel.app/solutions/lead-gen/social-media-advertising)
+
+### Branding & Awareness Services
+- Connected TV & OTT Ads: Non-skippable streaming TV ads — [/solutions/branding-awareness/connected-tv](https://progressive-section-template.vercel.app/solutions/branding-awareness/connected-tv)
+- Display Advertising & Geofencing: Location-targeted digital ads — [/solutions/branding-awareness/display-geofencing](https://progressive-section-template.vercel.app/solutions/branding-awareness/display-geofencing)
+- Streaming Audio Ads: Podcast and music streaming advertising — [/solutions/branding-awareness/streaming-audio](https://progressive-section-template.vercel.app/solutions/branding-awareness/streaming-audio)
+
+## Service Areas
+
+We serve businesses throughout Colorado, including:
+
+
+## Key Pages
+
+- [Home](https://progressive-section-template.vercel.app/) — overview
+- [About Us](https://progressive-section-template.vercel.app/about-us) — team and approach
+- [All Solutions](https://progressive-section-template.vercel.app/solutions) — full service catalog
+- [Contact](https://progressive-section-template.vercel.app/contact-us) — request a consultation
+
+## Contact Information
+
+- Website: https://progressive-section-template.vercel.app
+- Email: hello@acme-marketing.example
+- Phone: 903-420-1090
+- Location: Denver, CO
+- Service Type: B2B Marketing Services

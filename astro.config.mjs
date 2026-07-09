@@ -8,6 +8,9 @@ import configIntegration from "./vendor/integration/index";
 import icon from "astro-icon";
 import { readFileSync } from "fs";
 import { resolve } from "path";
+import react from "@astrojs/react";
+import keystatic from "@keystatic/astro";
+import vercel from "@astrojs/vercel";
 
 const siteJsonAbsolute = resolve("./src/content/settings/site.json");
 const siteData = JSON.parse(readFileSync(siteJsonAbsolute, "utf-8"));
@@ -40,6 +43,7 @@ const SITE_URL =
 // https://astro.build/config
 export default defineConfig({
   site: SITE_URL,
+  adapter: vercel(),
   integrations: [
     mdx(),
     icon(),
@@ -47,6 +51,8 @@ export default defineConfig({
       filter: (page) => !page.includes("/privacy") && !page.includes("/terms"),
     }),
     configIntegration(),
+    react(),
+    keystatic(),
   ],
   fonts: [
     {
