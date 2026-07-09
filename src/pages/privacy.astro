@@ -4,7 +4,7 @@ import SectionRenderer from "~/components/sections/SectionRenderer.astro";
 import { localizeData } from "~/config/site";
 import { buildPageMeta } from "~/lib/pageMeta";
 
-import privacyDataRaw from "~/data/pages/privacy.json";
+import privacyDataRaw from "~/data/pages/legal/privacy.json";
 
 const privacyData = localizeData(privacyDataRaw);
 const { sections, legalSections = [] } = privacyData;

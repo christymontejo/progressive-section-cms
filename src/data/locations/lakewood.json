@@ -12,7 +12,7 @@
         "subtitle": "Helping Lakewood Businesses Get Noticed, On Screens and Online",
         "buttonText": "Contact our advertising experts",
         "buttonHref": "/contact-us",
-        "image": "/images/lakewood.avif",
+        "image": "/images/lakewood/lakewood.avif",
         "imageAlt": "Lakewood Colorado cityscape and local businesses"
       }
     },
@@ -21,7 +21,7 @@
       "value": {
         "title": "Your Local Marketing Partner in Lakewood",
         "description": "We're a full-service digital marketing agency dedicated to helping Lakewood businesses succeed online. Whether you need a new website, social media management, or advertising campaigns, we provide personalized strategies that deliver real results.",
-        "image": "/images/lakewood.avif",
+        "image": "/images/lakewood/lakewood.avif",
         "imageAlt": "Lakewood business district and marketing opportunities",
         "imagePosition": "right",
         "buttonText": "Get Started",
@@ -69,25 +69,25 @@
             "icon": "message",
             "title": "Step 1: Discovery Call",
             "description": "We start with a free consultation to understand your business.",
-            "image": "/images/discovery-call.avif"
+            "image": "/images/lakewood/discovery-call.avif"
           },
           {
             "icon": "palette",
             "title": "Step 2: Custom Strategy",
             "description": "We create a tailored marketing plan for your business.",
-            "image": "/images/custom-strategy.avif"
+            "image": "/images/lakewood/custom-strategy.avif"
           },
           {
             "icon": "rocket",
             "title": "Step 3: Execution & Launch",
             "description": "Our team handles all the work, from design to launch.",
-            "image": "/images/campaign-launch.avif"
+            "image": "/images/lakewood/campaign-launch.avif"
           },
           {
             "icon": "trending",
             "title": "Step 4: Ongoing Optimization",
             "description": "We monitor performance and continuously improve results.",
-            "image": "/images/tracking.avif"
+            "image": "/images/lakewood/tracking.avif"
           }
         ]
       }
@@ -100,7 +100,7 @@
         "description": "Whether you're a startup or an established business, we have the marketing solutions to help you reach more customers.",
         "buttonText": "Schedule a Free Consultation",
         "buttonHref": "/contact-us",
-        "image": "/images/lakewood.avif",
+        "image": "/images/lakewood/lakewood.avif",
         "imageAlt": "Lakewood Colorado cityscape and local businesses"
       }
     },
@@ -163,7 +163,7 @@
         "description": "Contact us today for a free consultation about Lakewood advertising opportunities.",
         "buttonText": "Get Free Quote",
         "buttonHref": "/contact-us",
-        "image": "/images/lakewood.avif",
+        "image": "/images/lakewood/lakewood.avif",
         "imageAlt": "Lakewood Colorado cityscape and local businesses"
       }
     }
