@@ -111,16 +111,14 @@
       ],
       "featured": [
         {
-          "title": "Website Design",
           "description": "Custom websites that convert visitors into customers.",
           "href": "/solutions/foundational/website-design",
-          "thumbnail": "/images/website-design.avif"
+          "solutionsLink": "foundational/website-design"
         },
         {
-          "title": "Screen Advertising",
           "description": "High-impact advertising in premium indoor locations.",
           "href": "/indoor-billboards/screen-advertising",
-          "thumbnail": "/images/indoor-billboard.avif"
+          "indoorBillboardLink": "screen-advertising"
         }
       ]
     }

@@ -24,6 +24,7 @@ import FAQs from "~/components/sections/FAQs.astro";
 import MapSection from "~/components/sections/MapSection.astro";
 import FormSection from "~/components/sections/FormSection.astro";
 import NetworksSection from "~/components/sections/NetworksSection.astro";
+import { resolveCardHref, resolveCardImage, resolveCardTitle } from "~/lib/relatedLinks";
 
 interface RawSection {
   discriminant?: string;
@@ -139,11 +140,11 @@ const mapLocations = (locs: any[] = []) =>
             secondaryCtaLink={v.secondaryCtaLink}
             image={v.image}
             galleryImages={(v.cards || []).map((c: any) => ({
-              src: c.image,
-              alt: c.title,
-              label: c.title,
+              src: resolveCardImage(c),
+              alt: resolveCardTitle(c),
+              label: resolveCardTitle(c),
               description: c.description,
-              link: c.href,
+              link: resolveCardHref(c),
             }))}
           />
         );

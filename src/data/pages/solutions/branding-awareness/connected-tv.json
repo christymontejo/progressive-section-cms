@@ -1,37 +1,38 @@
 {
-  "title": "Connected TV (OTT Ads)",
+  "title": "Connected TV Testing title change (OTT Ads)",
   "description": "Reach audiences on streaming platforms with targeted TV advertising.",
   "sections": [
     {
       "discriminant": "hero",
       "value": {
-        "badge": "Branding & Awareness",
         "title": "Connected TV | OTT",
         "subtitle": "Capture the attention of a streaming audience with dynamic video ads.",
+        "badge": "Branding & Awareness",
+        "image": "/images/branding-awareness/connected-tv/sections/0/value/image.png",
         "buttonText": "Get Started",
-        "buttonHref": "/contact-us",
-        "image": "/images/branding-awareness/connected-tv/connected-tv.avif"
+        "buttonHref": "/contact-us"
       }
     },
     {
       "discriminant": "content",
       "value": {
-        "variant": "two-column",
         "title": "Connected TV +Over-The-Top Advertising",
         "description": "Connected TV (CTV) and Over-The-Top video (OTT) advertising allows you to make an impact with stunning video ads. Target TV streaming audiences on popular channels like ESPN, CNN, and Fox. These non-skippable ads are designed to leave a lasting impression and keep you top-of-mind.",
-        "image": "/images/branding-awareness/connected-tv/connected-tv-content.avif",
+        "variant": "two-column",
+        "background": "primary-dark",
+        "image": "/images/branding-awareness/connected-tv/sections/1/value/image.avif",
         "imagePosition": "right",
-        "background": "primary-dark"
+        "features": []
       }
     },
     {
       "discriminant": "cta",
       "value": {
-        "variant": "card",
         "title": "Make an Impact With Connected TV and Over-The-Top Advertising",
         "description": "CTV/OTT advertising stands out in the marketing landscape by delivering compelling brand experiences to audiences captivated by streaming services. CTV/OTT ads are non-skippable ensuring that every CTV/OTT campaign achieves maximum visibility and meaningful results. Add CTV/OTT to existing efforts such as <strong><a href='/solutions/lead-gen/social-media-advertising' style='text-decoration: none; color: inherit;'>Social Media Advertising</a></strong>, <strong><a href='/solutions/foundational/google-business-profile' style='text-decoration: none; color: inherit;'>Google Business Profile</a></strong>, or <strong><a href='/solutions/lead-gen/pay-per-click' style='text-decoration: none; color: inherit;'>Pay-Per-Click</a></strong> efforts for a well-rounded multichannel strategy.",
         "buttonText": "Launch Your Campaign",
-        "buttonHref": "/contact-us"
+        "buttonHref": "/contact-us",
+        "variant": "card"
       }
     },
     {
@@ -39,28 +40,28 @@
       "value": {
         "title": "Why Connected TV Advertising Works",
         "description": "Combine the impact of TV with the precision of digital advertising.",
-        "columns": 3,
         "variant": "default",
+        "columns": 3,
         "features": [
           {
-            "icon": "star",
             "title": "Premium Placement",
-            "description": "Your ads appear on popular streaming platforms like Hulu, Roku, Fire TV, and more, right alongside premium content from major networks and studios."
+            "description": "Your ads appear on popular streaming platforms like Hulu, Roku, Fire TV, and more, right alongside premium content from major networks and studios.",
+            "icon": "star"
           },
           {
-            "icon": "target",
             "title": "Precise Targeting",
-            "description": "Target by demographics, interests, location, viewing habits, and more. Reach exactly who you want, when you want, with zero waste."
+            "description": "Target by demographics, interests, location, viewing habits, and more. Reach exactly who you want, when you want, with zero waste.",
+            "icon": "target"
           },
           {
-            "icon": "circledot",
             "title": "Non-Skippable Impact",
-            "description": "Unlike YouTube ads, CTV ads can't be skipped. Your message gets seen, every time, on the biggest screen in the home."
+            "description": "Unlike YouTube ads, CTV ads can't be skipped. Your message gets seen, every time, on the biggest screen in the home.",
+            "icon": "circledot"
           },
           {
-            "icon": "trending",
             "title": "Measurable Results",
-            "description": "Track impressions, completion rates, website visits, and conversions. Know exactly what's working and optimize in real-time."
+            "description": "Track impressions, completion rates, website visits, and conversions. Know exactly what's working and optimize in real-time.",
+            "icon": "trending"
           }
         ]
       }
@@ -73,28 +74,32 @@
         "variant": "cards",
         "cards": [
           {
-            "icon": "sparkles",
             "title": "Strategy & Targeting",
             "description": "We identify your ideal audience and create a targeting strategy to reach them across streaming platforms.",
-            "image": "/images/branding-awareness/connected-tv/strategy.avif"
+            "icon": "sparkles",
+            "image": "/images/branding-awareness/connected-tv/sections/4/value/cards/0/image.avif",
+            "imageFit": "cover"
           },
           {
-            "icon": "tv",
             "title": "Creative Development",
             "description": "We produce high-quality video ads optimized for streaming platforms, or adapt your existing TV commercials.",
-            "image": "/images/branding-awareness/connected-tv/creative-development.avif"
+            "icon": "tv",
+            "image": "/images/branding-awareness/connected-tv/sections/4/value/cards/1/image.avif",
+            "imageFit": "cover"
           },
           {
-            "icon": "rocket",
             "title": "Campaign Launch",
             "description": "Your ads go live across premium streaming networks, reaching your target audience during their favorite shows.",
-            "image": "/images/branding-awareness/connected-tv/campaign-launch.avif"
+            "icon": "rocket",
+            "image": "/images/branding-awareness/connected-tv/sections/4/value/cards/2/image.avif",
+            "imageFit": "cover"
           },
           {
-            "icon": "settings",
             "title": "Tracking & Optimization",
             "description": "We monitor performance, track results, and continuously optimize to maximize your exposure and campaign effectiveness.",
-            "image": "/images/branding-awareness/connected-tv/tracking.avif"
+            "icon": "settings",
+            "image": "/images/branding-awareness/connected-tv/sections/4/value/cards/3/image.avif",
+            "imageFit": "cover"
           }
         ]
       }
@@ -111,39 +116,39 @@
             "brands": [
               {
                 "name": "A&E",
-                "logo": "/images/branding-awareness/connected-tv/a&e.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/0/brands/0/logo.avif"
               },
               {
                 "name": "AMC",
-                "logo": "/images/branding-awareness/connected-tv/amc.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/0/brands/1/logo.avif"
               },
               {
                 "name": "CNN",
-                "logo": "/images/branding-awareness/connected-tv/cnn.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/0/brands/2/logo.avif"
               },
               {
                 "name": "Comedy Central",
-                "logo": "/images/branding-awareness/connected-tv/comedy.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/0/brands/3/logo.avif"
               },
               {
                 "name": "Discovery",
-                "logo": "/images/branding-awareness/connected-tv/discovery.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/0/brands/4/logo.avif"
               },
               {
                 "name": "Disney Channel",
-                "logo": "/images/branding-awareness/connected-tv/disney.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/0/brands/5/logo.avif"
               },
               {
                 "name": "ESPN",
-                "logo": "/images/branding-awareness/connected-tv/espn.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/0/brands/6/logo.avif"
               },
               {
                 "name": "Food Network",
-                "logo": "/images/branding-awareness/connected-tv/food-network.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/0/brands/7/logo.avif"
               },
               {
                 "name": "Fox News",
-                "logo": "/images/branding-awareness/connected-tv/fox.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/0/brands/8/logo.avif"
               }
             ]
           },
@@ -153,27 +158,27 @@
             "brands": [
               {
                 "name": "Android TV",
-                "logo": "/images/branding-awareness/connected-tv/android-tv.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/1/brands/0/logo.avif"
               },
               {
                 "name": "Chromecast",
-                "logo": "/images/branding-awareness/connected-tv/chromecast.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/1/brands/1/logo.avif"
               },
               {
                 "name": "Roku",
-                "logo": "/images/branding-awareness/connected-tv/roku.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/1/brands/2/logo.avif"
               },
               {
                 "name": "XBOX",
-                "logo": "/images/branding-awareness/connected-tv/xbox.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/1/brands/3/logo.avif"
               },
               {
                 "name": "Apple TV",
-                "logo": "/images/branding-awareness/connected-tv/apple-tv.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/1/brands/4/logo.avif"
               },
               {
                 "name": "Playstation",
-                "logo": "/images/branding-awareness/connected-tv/playstation.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/1/brands/5/logo.avif"
               }
             ]
           },
@@ -183,15 +188,15 @@
             "brands": [
               {
                 "name": "Pluto TV",
-                "logo": "/images/branding-awareness/connected-tv/pluto-tv.avif"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/2/brands/0/logo.avif"
               },
               {
                 "name": "Sling TV",
-                "logo": "/images/branding-awareness/connected-tv/sling.png"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/2/brands/1/logo.png"
               },
               {
                 "name": "Fubo TV",
-                "logo": "/images/branding-awareness/connected-tv/fubu.png"
+                "logo": "/images/branding-awareness/connected-tv/sections/5/value/networks/2/brands/2/logo.png"
               }
             ]
           }
@@ -222,11 +227,12 @@
     {
       "discriminant": "locations",
       "value": {
-        "badge": "Service Areas",
         "title": "We Put Local Brands on the Map",
         "description": "Our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>network</a></strong> spans across {city}'s most popular neighborhoods and venues",
-        "variant": "full",
+        "badge": "Service Areas",
+        "background": "white",
         "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98134.93708439223!2d-105.08920979746093!3d39.80246682145779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b8fbe3ee8e629%3A0x594e6dd82de45c1!2sDenver%20Metropolitan%20Area!5e0!3m2!1sen!2sus!4v1",
+        "variant": "full",
         "locations": [
           {
             "name": "Aurora",
@@ -248,9 +254,14 @@
       }
     }
   ],
+  "legalSections": [],
   "metadata": {
     "title": "Connected TV Advertising | Reach Streaming Audiences",
     "description": "Elevate your brand with high-quality ads delivered to the right audience on top streaming platforms.",
-    "keywords": "connected TV advertising {city}, CTV ads {city}, OTT advertising {city}, streaming TV ads, Roku advertising, Hulu ads {city}, streaming platform advertising"
+    "keywords": "connected TV advertising {city}, CTV ads {city}, OTT advertising {city}, streaming TV ads, Roku advertising, Hulu ads {city}, streaming platform advertising",
+    "noindex": false,
+    "openGraph": {
+      "images": []
+    }
   }
 }

@@ -68,11 +68,35 @@ const heroFields = () => ({
   buttonHref: fields.text({ label: "Button Link" }),
 });
 
+// Shared "Smart Hybrid" fields for any promo card linking to a real page:
+// link, image, AND title are all synchronized - pulled live from the
+// linked Solutions/Indoor Billboards entry via fields.relationship (see
+// src/lib/relatedLinks.ts for the render-side resolution: link ->
+// /solutions/{slug} or /indoor-billboards/{slug}; image -> that entry's
+// own hero-section image; title -> that entry's own top-level title).
+// Only `description` stays independent, curated marketing copy - the one
+// thing this round's instructions want decoupled from the target.
+// fields.relationship only targets a single fixed collection, and these
+// cards link into either "solutions" or "indoorBillboards", so both are
+// offered as optional fields. `href` remains as a manual fallback for
+// anything outside those two collections.
+const relatedLinkFields = () => ({
+  solutionsLink: fields.relationship({
+    label: "Links to Solution (optional)",
+    collection: "solutions",
+    validation: { isRequired: false },
+  }),
+  indoorBillboardLink: fields.relationship({
+    label: "Links to Indoor Billboards Page (optional)",
+    collection: "indoorBillboards",
+    validation: { isRequired: false },
+  }),
+});
+
 const heroHomeCardFields = () => ({
-  title: fields.text({ label: "Title" }),
   description: fields.text({ label: "Description", multiline: true }),
-  image: contentImage("Image"),
-  href: fields.text({ label: "Link" }),
+  href: fields.text({ label: "Link (fallback if no relationship below is set)" }),
+  ...relatedLinkFields(),
 });
 
 const heroHomeFields = () => ({
@@ -83,7 +107,12 @@ const heroHomeFields = () => ({
   variant: fields.text({ label: "Variant" }),
   cards: fields.array(fields.object(heroHomeCardFields()), {
     label: "Cards",
-    itemLabel: (props) => props.fields.title.value || "Card",
+    // Title is no longer stored on the card itself (synced from the
+    // linked page instead), so label by whichever relationship is set.
+    itemLabel: (props) =>
+      props.fields.solutionsLink.value ||
+      props.fields.indoorBillboardLink.value ||
+      "Card",
   }),
 });
 
@@ -456,10 +485,9 @@ const navSubItemFields = () => ({
 });
 
 const navFeaturedItemFields = () => ({
-  title: fields.text({ label: "Title" }),
   description: fields.text({ label: "Description", multiline: true }),
-  href: fields.text({ label: "Link" }),
-  thumbnail: contentImage("Thumbnail"),
+  href: fields.text({ label: "Link (fallback if no relationship below is set)" }),
+  ...relatedLinkFields(),
 });
 
 const navSectionFields = () => ({
@@ -492,7 +520,12 @@ const navItemFields = () => ({
   }),
   featured: fields.array(fields.object(navFeaturedItemFields()), {
     label: "Megamenu Featured",
-    itemLabel: (props) => props.fields.title.value || "Featured",
+    // Title is no longer stored on the card itself (synced from the
+    // linked page instead), so label by whichever relationship is set.
+    itemLabel: (props) =>
+      props.fields.solutionsLink.value ||
+      props.fields.indoorBillboardLink.value ||
+      "Featured",
   }),
 });
 

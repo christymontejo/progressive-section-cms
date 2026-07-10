@@ -6,6 +6,7 @@
 
 import navbarJson from '../content/settings/navbar.json';
 import footerJson from '../content/settings/footer.json';
+import { resolveCardHref, resolveCardImage, resolveCardTitle } from '~/lib/relatedLinks';
 
 // --- Types ---
 
@@ -71,10 +72,10 @@ function parseNavItems(raw: any[]): DynamicNavItem[] {
           items: s.items as NavItem[],
         })),
         featured: (item.featured || []).map((f: any) => ({
-          title: f.title,
+          title: resolveCardTitle(f) ?? '',
           description: f.description ?? '',
-          href: f.href,
-          thumbnail: f.thumbnail,
+          href: resolveCardHref(f),
+          thumbnail: resolveCardImage(f),
         })),
       }
     }

@@ -12,52 +12,44 @@
         "variant": "cards",
         "cards": [
           {
-            "title": "Website Designs",
             "description": "Professional design services to Stand out identity.",
-            "image": "/images/home/sections/0/value/cards/0/image.avif",
-            "href": "/solutions/foundational/website-design"
+            "href": "/solutions/foundational/website-design",
+            "solutionsLink": "foundational/website-design"
           },
           {
-            "title": "Google Business Profile",
             "description": "Optimize your local presence and get found by customers searching for your services.",
-            "image": "/images/home/sections/0/value/cards/1/image.avif",
-            "href": "/solutions/foundational/google-business-profile"
+            "href": "/solutions/foundational/google-business-profile",
+            "solutionsLink": "foundational/google-business-profile"
           },
           {
-            "title": "Social Media Management",
             "description": "Build and engage your audience with strategic social media content.",
-            "image": "/images/home/sections/0/value/cards/2/image.avif",
-            "href": "/solutions/foundational/social-media-management"
+            "href": "/solutions/foundational/social-media-management",
+            "solutionsLink": "foundational/social-media-management"
           },
           {
-            "title": "Indoor Billboard Advertising",
             "description": "High-impact screen advertising in premium indoor locations.",
-            "image": "/images/home/sections/0/value/cards/3/image.avif",
-            "href": "/indoor-billboards/screen-advertising"
+            "href": "/indoor-billboards/screen-advertising",
+            "indoorBillboardLink": "screen-advertising"
           },
           {
-            "title": "PPC Advertising",
             "description": "Strategic pay-per-click campaigns that maximize your exposure.",
-            "image": "/images/home/sections/0/value/cards/4/image.png",
-            "href": "/solutions/lead-gen/pay-per-click"
+            "href": "/solutions/lead-gen/pay-per-click",
+            "solutionsLink": "lead-gen/pay-per-click"
           },
           {
-            "title": "Connected TV Advertising",
             "description": "Reach your audience on streaming platforms and smart TVs.",
-            "image": "/images/home/sections/0/value/cards/5/image.avif",
-            "href": "/solutions/branding-awareness/connected-tv"
+            "href": "/solutions/branding-awareness/connected-tv",
+            "solutionsLink": "branding-awareness/connected-tv"
           },
           {
-            "title": "Geofencing",
             "description": "Target customers based on their physical location with precision.",
-            "image": "/images/home/sections/0/value/cards/6/image.avif",
-            "href": "/solutions/branding-awareness/display-geofencing"
+            "href": "/solutions/branding-awareness/display-geofencing",
+            "solutionsLink": "branding-awareness/display-geofencing"
           },
           {
-            "title": "Design Services",
             "description": "Professional graphic design and branding services.",
-            "image": "/images/home/sections/0/value/cards/7/image.avif",
-            "href": "/solutions/foundational/design-services"
+            "href": "/solutions/foundational/design-services",
+            "solutionsLink": "foundational/design-services"
           }
         ]
       }
