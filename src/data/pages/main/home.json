@@ -6,57 +6,57 @@
     {
       "discriminant": "heroHome",
       "value": {
-        "badge": "Premium Marketing Solutions",
         "title": "Local Advertising and Digital Marketing Pros in {city}",
         "subtitle": "Helping Businesses Get Noticed, On Screens and Online",
+        "badge": "Premium Marketing Solutions",
         "variant": "cards",
         "cards": [
           {
             "title": "Website Design",
             "description": "Professional design services to Stand out identity.",
-            "image": "/images/home/website-design.avif",
+            "image": "/images/home/sections/0/value/cards/0/image.avif",
             "href": "/solutions/foundational/website-design"
           },
           {
             "title": "Google Business Profile",
             "description": "Optimize your local presence and get found by customers searching for your services.",
-            "image": "/images/home/google-business-profile.avif",
+            "image": "/images/home/sections/0/value/cards/1/image.avif",
             "href": "/solutions/foundational/google-business-profile"
           },
           {
             "title": "Social Media Management",
             "description": "Build and engage your audience with strategic social media content.",
-            "image": "/images/home/social-media-management-hero.avif",
+            "image": "/images/home/sections/0/value/cards/2/image.avif",
             "href": "/solutions/foundational/social-media-management"
           },
           {
             "title": "Indoor Billboard Advertising",
             "description": "High-impact screen advertising in premium indoor locations.",
-            "image": "/images/home/indoor-billboard.avif",
+            "image": "/images/home/sections/0/value/cards/3/image.avif",
             "href": "/indoor-billboards/screen-advertising"
           },
           {
             "title": "PPC Advertising",
             "description": "Strategic pay-per-click campaigns that maximize your exposure.",
-            "image": "/images/home/ppc.avif",
+            "image": "/images/home/sections/0/value/cards/4/image.png",
             "href": "/solutions/lead-gen/pay-per-click"
           },
           {
             "title": "Connected TV Advertising",
             "description": "Reach your audience on streaming platforms and smart TVs.",
-            "image": "/images/home/connected-tv.avif",
+            "image": "/images/home/sections/0/value/cards/5/image.avif",
             "href": "/solutions/branding-awareness/connected-tv"
           },
           {
             "title": "Geofencing",
             "description": "Target customers based on their physical location with precision.",
-            "image": "/images/home/geofencing.avif",
+            "image": "/images/home/sections/0/value/cards/6/image.avif",
             "href": "/solutions/branding-awareness/display-geofencing"
           },
           {
             "title": "Design Services",
             "description": "Professional graphic design and branding services.",
-            "image": "/images/home/design-services.avif",
+            "image": "/images/home/sections/0/value/cards/7/image.avif",
             "href": "/solutions/foundational/design-services"
           }
         ]
@@ -71,27 +71,27 @@
         "buttonHref": "/solutions",
         "features": [
           {
-            "icon": "tv",
             "title": "Indoor Billboard Advertising",
             "description": "High-impact advertising in premium indoor locations across {city}",
+            "icon": "tv",
             "href": "/indoor-billboards/screen-advertising"
           },
           {
-            "icon": "share",
             "title": "Social Media Marketing",
             "description": "Build and engage your audience with strategic social media content",
+            "icon": "share",
             "href": "/solutions/foundational/social-media-management"
           },
           {
-            "icon": "palette",
             "title": "Custom Website Design",
             "description": "Professional websites that convert visitors into customers",
+            "icon": "palette",
             "href": "/solutions/foundational/website-design"
           },
           {
-            "icon": "target",
             "title": "Targeted Lead Generation",
             "description": "Strategic campaigns that generate quality leads and maximize exposure",
+            "icon": "target",
             "href": "/solutions/lead-gen/pay-per-click"
           }
         ]
@@ -100,11 +100,12 @@
     {
       "discriminant": "content",
       "value": {
-        "variant": "image-card",
-        "badge": "Local Advertising That Reaches Your Audience",
         "title": "{city}'s Premier Venue Partner Network",
+        "badge": "Local Advertising That Reaches Your Audience",
         "description": "Our <strong>digital marketing pros</strong> have built exclusive partnerships with {city}'s most popular venues and businesses. Our <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>screen network</a></strong> reaches customers when they're relaxed, engaged, and ready to take action, whether they're working out, dining, shopping, or waiting for service.",
-        "image": "/images/home/venue-partner-optimized.avif",
+        "variant": "image-card",
+        "background": "white",
+        "image": "/images/home/sections/2/value/image.avif",
         "imagePosition": "right",
         "buttonText": "View Venue Partners",
         "buttonHref": "/indoor-billboards/become-a-venue-partner",
@@ -131,10 +132,11 @@
     {
       "discriminant": "content",
       "value": {
-        "variant": "simple",
         "title": "Full-Service Digital Marketing from {city} Pros",
         "description": "Beyond <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>screen ads</a></strong>, our <strong>{city} marketing pros</strong> provide full-scale digital marketing to help your business show up, stand out, and grow. Whether you're just getting started or need help scaling your outreach, we've got the tools and the team to support you.",
-        "image": "/images/home/boost-visibility.avif",
+        "variant": "simple",
+        "background": "white",
+        "image": "/images/home/sections/3/value/image.avif",
         "imagePosition": "right",
         "buttonText": "View All Marketing Solutions",
         "buttonHref": "/solutions",
@@ -161,34 +163,34 @@
     {
       "discriminant": "content",
       "value": {
-        "variant": "two-column",
-        "badge": "Your Trusted {city} Marketing Partners",
         "title": "Why {city} Businesses Choose Our Marketing Pros",
+        "badge": "Your Trusted {city} Marketing Partners",
         "description": "We're not just another agency. We're <strong>{city} marketing pros</strong> and locals who understand the market, know the neighborhoods, and have the relationships that get results. Our clients choose us because we deliver measurable outcomes, transparent reporting, and personalized service that treats your business like our own. From <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>web design</a></strong> to <strong><a href='/solutions/lead-gen/pay-per-click' style='text-decoration: none; color: inherit;'>PPC campaigns</a></strong>, we've got you covered.",
-        "image": "/images/home/marketing-partners.avif",
+        "variant": "two-column",
+        "background": "white",
+        "image": "/images/home/sections/4/value/image.avif",
         "imagePosition": "right",
         "buttonText": "Get Started Today",
         "buttonHref": "/contact-us",
-        "background": "white",
         "features": []
       }
     },
     {
       "discriminant": "cta",
       "value": {
-        "variant": "bold",
-        "image": "/images/home/home.avif",
         "title": "Partner with {city}'s Local Advertising & Digital Marketing Pros",
         "description": "Whether you're looking for <strong><a href='/indoor-billboards/screen-advertising' style='text-decoration: none; color: inherit;'>screen ads</a></strong>, a new <strong><a href='/solutions/foundational/website-design' style='text-decoration: none; color: inherit;'>website</a></strong>, or a complete <strong>digital marketing</strong> strategy in <strong>{city}</strong>, we're here to help. Contact us today for a free consultation and let's discuss how we can grow your business.",
+        "image": "/images/home/sections/5/value/image.avif",
         "buttonText": "Schedule Free Consultation",
-        "buttonHref": "/contact-us"
+        "buttonHref": "/contact-us",
+        "variant": "bold"
       }
     },
     {
       "discriminant": "faq",
       "value": {
-        "badge": "FAQs",
         "title": "FAQS",
+        "badge": "FAQs",
         "variant": "accordion",
         "faqs": [
           {
@@ -209,11 +211,12 @@
     {
       "discriminant": "locations",
       "value": {
-        "badge": "Service Areas",
         "title": "We Put Local Brands on the Map",
         "description": "Our <strong><a href='/indoor-billboards/locations' style='text-decoration: none; color: inherit;'>network</a></strong> spans across {city}'s most popular neighborhoods and venues",
-        "variant": "full",
+        "badge": "Service Areas",
+        "background": "primary",
         "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d98134.93708439223!2d-105.08920979746093!3d39.80246682145779!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876b8fbe3ee8e629%3A0x594e6dd82de45c1!2sDenver%20Metropolitan%20Area!5e0!3m2!1sen!2sus!4v1",
+        "variant": "full",
         "locations": [
           {
             "name": "Aurora",
@@ -231,15 +234,16 @@
             "name": "Centennial",
             "href": "/locations/centennial"
           }
-        ],
-        "background": "primary"
+        ]
       }
     }
   ],
+  "legalSections": [],
   "metadata": {
     "title": "{city} Digital Signage & Marketing | {business}",
     "description": "We connect businesses in {city} through digital signage, PPC, social media, SEO, and website design to keep brands visible and top of mind.",
     "keywords": "{city} marketing agency, digital marketing {city}, indoor billboard advertising, marketing services {city} {state}, best marketing agency {city}, top {city} marketing agency, social media management {city}, website design {city}, PPC advertising {city}, local marketing {city}, {city} advertising agency",
+    "noindex": false,
     "openGraph": {
       "type": "website",
       "images": [
