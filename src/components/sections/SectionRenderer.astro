@@ -113,6 +113,7 @@ const mapLocations = (locs: any[] = []) =>
             title={v.title}
             subtitle={v.subtitle || v.description}
             image={v.image}
+            imageAlt={v.imageAlt}
             actions={
               (v.buttonText || v.ctaText) && (v.buttonHref || v.ctaLink)
                 ? [
@@ -156,6 +157,7 @@ const mapLocations = (locs: any[] = []) =>
             eyebrow={v.badge || v.eyebrow}
             description={v.description}
             image={v.image}
+            imageAlt={v.imageAlt}
             ctaText={v.buttonText || v.ctaText}
             ctaLink={v.buttonHref || v.ctaLink}
             keyPoints={v.keyPoints || (v.features || []).map((f: any) => f.text || f.title)}
@@ -183,6 +185,7 @@ const mapLocations = (locs: any[] = []) =>
               title={v.title}
               description={v.description}
               image={v.image}
+              imageAlt={v.imageAlt}
               ctaText={v.buttonText || v.ctaText}
               ctaLink={v.buttonHref || v.ctaLink}
               features={cards}
@@ -203,6 +206,7 @@ const mapLocations = (locs: any[] = []) =>
               eyebrow={v.badge || v.eyebrow}
               description={v.description}
               image={v.image}
+              imageAlt={v.imageAlt}
               ctaText={v.buttonText || v.ctaText}
               ctaLink={v.buttonHref || v.ctaLink}
               keyPoints={keyPoints}
@@ -218,6 +222,7 @@ const mapLocations = (locs: any[] = []) =>
             ctaText={v.buttonText || v.ctaText}
             ctaLink={v.buttonHref || v.ctaLink}
             image={v.image}
+            imageAlt={v.imageAlt}
             imagePosition={v.imagePosition}
             background={bg(v.background)}
           />
@@ -343,6 +348,8 @@ const mapLocations = (locs: any[] = []) =>
           <CallToAction
             title={v.title}
             subtitle={v.subtitle || v.description}
+            image={v.image}
+            imageAlt={v.imageAlt}
             actions={
               (v.buttonText || v.ctaText) && (v.buttonHref || v.ctaLink)
                 ? [

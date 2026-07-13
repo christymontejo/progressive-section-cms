@@ -13,13 +13,14 @@ interface Props {
   title: string;
   description: string;
   image: string;
+  imageAlt?: string;
   ctaText: string;
   ctaLink: string;
   features: Feature[];
   background?: string;
 }
 
-const { title, description, image, ctaText, ctaLink, features } = Astro.props;
+const { title, description, image, imageAlt, ctaText, ctaLink, features } = Astro.props;
 ---
 
 <section class="boost-visibility fade-in-section">
@@ -29,7 +30,7 @@ const { title, description, image, ctaText, ctaLink, features } = Astro.props;
       <div class="boost-visibility__image-wrapper">
         <img
           src={image}
-          alt={title}
+          alt={imageAlt || title}
           width="600"
           height="400"
           class="boost-visibility__image"

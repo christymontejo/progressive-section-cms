@@ -6,6 +6,7 @@ interface Props {
   title: string;
   description: string;
   image: string;
+  imageAlt?: string;
   ctaText?: string;
   ctaLink?: string;
   eyebrow?: string;
@@ -17,6 +18,7 @@ const {
   title,
   description,
   image,
+  imageAlt,
   ctaText,
   ctaLink,
   eyebrow,
@@ -86,7 +88,7 @@ const descriptionColorClasses = {
             />
             <img
               src={image}
-              alt={title}
+              alt={imageAlt || title}
               width="800"
               height="600"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"

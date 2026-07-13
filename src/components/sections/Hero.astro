@@ -16,6 +16,7 @@ interface Props {
   secondaryCtaText?: string;
   secondaryCtaLink?: string;
   image?: string;
+  imageAlt?: string;
   background?: string;
   actions?: Action[];
 }
@@ -31,6 +32,7 @@ const {
   secondaryCtaText,
   secondaryCtaLink,
   image,
+  imageAlt,
   actions = [],
 } = Astro.props;
 
@@ -168,7 +170,7 @@ const displayDescription = description || subtitle;
             <div class="relative rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.3)] transform transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
               <img
                 src={image}
-                alt={title || "Hero image"}
+                alt={imageAlt || title || "Hero image"}
                 class="w-full h-auto max-h-[500px] object-cover"
                 loading="eager"
               />

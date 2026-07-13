@@ -10,9 +10,11 @@ interface Props {
   subtitle?: string;
   actions?: Action[];
   background?: "light" | "dark" | "primary";
+  image?: string;
+  imageAlt?: string;
 }
 
-const { title, subtitle, actions = [], background = "primary" } = Astro.props;
+const { title, subtitle, actions = [], background = "primary", image, imageAlt } = Astro.props;
 
 const bgClasses = {
   light: "bg-gradient-to-br from-neutral via-primary-light/20 to-white",
@@ -41,9 +43,23 @@ const subtitleColorClasses = {
     >
       <!-- Top Accent Bar -->
       <div
-        class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-light via-primary to-primary-dark"
+        class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-light via-primary to-primary-dark z-10"
       >
       </div>
+
+      <!-- Image Banner -->
+      {
+        image && (
+          <div class="-mx-6 -mt-6 md:-mx-10 md:-mt-10 mb-6 rounded-t-2xl overflow-hidden">
+            <img
+              src={image}
+              alt={imageAlt || title}
+              class="w-full h-40 md:h-56 object-cover"
+              loading="lazy"
+            />
+          </div>
+        )
+      }
 
       <!-- Icon -->
       <div class="flex justify-center mb-4">
