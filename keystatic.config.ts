@@ -1,5 +1,6 @@
 import { config, fields, collection, singleton } from "@keystatic/core";
 import { CMS_REPO } from "./src/lib/cms";
+import { colorField } from "./src/lib/keystaticColorField";
 
 // -----------------------------------------------------------------------
 // Image field helpers.
@@ -72,18 +73,29 @@ const heroFields = () => ({
 // link, image, AND title are all synchronized - pulled live from the
 // linked Solutions/Indoor Billboards entry via fields.relationship (see
 // src/lib/relatedLinks.ts for the render-side resolution: link ->
-// /solutions/{slug} or /indoor-billboards/{slug}; image -> that entry's
-// own hero-section image; title -> that entry's own top-level title).
-// Only `description` stays independent, curated marketing copy - the one
-// thing this round's instructions want decoupled from the target.
-// fields.relationship only targets a single fixed collection, and these
-// cards link into either "solutions" or "indoorBillboards", so both are
-// offered as optional fields. `href` remains as a manual fallback for
-// anything outside those two collections.
+// /solutions/{category}/{slug} or /indoor-billboards/{slug}; image -> that
+// entry's own hero-section image; title -> that entry's own top-level
+// title). Only `description` stays independent, curated marketing copy -
+// the one thing this round's instructions want decoupled from the target.
+// fields.relationship only targets a single fixed collection, and
+// "Solutions" is now 3 real collections (Foundational/Lead Gen/Branding -
+// required so the sidebar can group them separately), so there are 3
+// separate optional solutions relationship fields instead of 1. `href`
+// remains as a manual fallback for anything outside these collections.
 const relatedLinkFields = () => ({
-  solutionsLink: fields.relationship({
-    label: "Links to Solution (optional)",
-    collection: "solutions",
+  solutionsFoundationalLink: fields.relationship({
+    label: "Links to Solution - Foundational (optional)",
+    collection: "solutionsFoundational",
+    validation: { isRequired: false },
+  }),
+  solutionsLeadGenLink: fields.relationship({
+    label: "Links to Solution - Lead Gen (optional)",
+    collection: "solutionsLeadGen",
+    validation: { isRequired: false },
+  }),
+  solutionsBrandingLink: fields.relationship({
+    label: "Links to Solution - Branding (optional)",
+    collection: "solutionsBranding",
     validation: { isRequired: false },
   }),
   indoorBillboardLink: fields.relationship({
@@ -110,7 +122,9 @@ const heroHomeFields = () => ({
     // Title is no longer stored on the card itself (synced from the
     // linked page instead), so label by whichever relationship is set.
     itemLabel: (props) =>
-      props.fields.solutionsLink.value ||
+      props.fields.solutionsFoundationalLink.value ||
+      props.fields.solutionsLeadGenLink.value ||
+      props.fields.solutionsBrandingLink.value ||
       props.fields.indoorBillboardLink.value ||
       "Card",
   }),
@@ -441,31 +455,69 @@ const legalSectionsField = () =>
   );
 
 // -----------------------------------------------------------------------
-// metadata - present on every page/location entry. noindex and openGraph
-// are rare (1/22 and 2/22 entries respectively) but functionally required
-// where present (confirmed via buildPageMeta/PageLayout consuming them),
-// per requirement 6.
+// metadata - present on every page/location entry. title/description/
+// keywords/noindex/openGraph are real, observed fields (noindex and
+// openGraph are rare - 1/22 and 2/22 entries respectively - but
+// functionally required where present, confirmed via buildPageMeta/
+// PageLayout consuming them). robots/schema/sitemap below are new fields
+// with no data or renderer yet, added as an isolated SEO block per this
+// round's instructions - they default to empty/off until a future
+// robots-meta/JSON-LD/sitemap-toggle feature is wired up to read them.
 const metadataField = () =>
   fields.object(
     {
-      title: fields.text({ label: "Title" }),
-      description: fields.text({ label: "Description", multiline: true }),
+      title: fields.text({ label: "Meta Title" }),
+      description: fields.text({ label: "Meta Description (supports {{city}} interpolation)", multiline: true }),
       keywords: fields.text({ label: "Keywords" }),
       noindex: fields.checkbox({ label: "No Index" }),
+      robots: fields.object(
+        {
+          index: fields.checkbox({ label: "Index", defaultValue: true }),
+          follow: fields.checkbox({ label: "Follow", defaultValue: true }),
+        },
+        { label: "Robots Directives" }
+      ),
+      schema: fields.text({
+        label: "Schema.org JSON-LD (optional)",
+        description: "Raw JSON-LD to inject for this page, if it needs structured data beyond the site default.",
+        multiline: true,
+      }),
+      sitemap: fields.checkbox({ label: "Include in Sitemap", defaultValue: true }),
       openGraph: fields.object({
         type: fields.text({ label: "Type" }),
+        // The one real OG image in this project's content (home.json) is a
+        // remote URL on a third-party CDN (shortpixel.ai proxying a WP
+        // site) - not an asset this repo owns. fields.image() can only
+        // manage a locally-stored file under a fixed directory, it can't
+        // represent an arbitrary external URL as a value. This conditional
+        // supports both without breaking that existing reference: "Local
+        // Image" gets the full fields.image() thumbnail/"Choose file" UI
+        // for assets that do live under public/images, "External URL"
+        // stays plain text for assets (like the real one) that don't.
         images: fields.array(
-          fields.object({
-            // Remote absolute URL (external asset), not a locally-managed
-            // file - fields.image()'s directory/publicPath model doesn't
-            // apply here, so this stays free text per requirement 4.
-            url: fields.text({ label: "Image URL" }),
-          }),
-          { label: "Images", itemLabel: () => "Image" }
+          fields.conditional(
+            fields.select({
+              label: "Image Source",
+              options: [
+                { label: "Local Image", value: "local" },
+                { label: "External URL", value: "external" },
+              ],
+              defaultValue: "external",
+            }),
+            {
+              local: fields.object({ image: contentImage("Image") }),
+              external: fields.object({ url: fields.text({ label: "Image URL" }) }),
+            }
+          ),
+          {
+            label: "Images",
+            itemLabel: (props) =>
+              props.discriminant === "local" ? "Local Image" : "External URL",
+          }
         ),
       }),
     },
-    { label: "Metadata" }
+    { label: "SEO & Metadata" }
   );
 
 // -----------------------------------------------------------------------
@@ -523,7 +575,9 @@ const navItemFields = () => ({
     // Title is no longer stored on the card itself (synced from the
     // linked page instead), so label by whichever relationship is set.
     itemLabel: (props) =>
-      props.fields.solutionsLink.value ||
+      props.fields.solutionsFoundationalLink.value ||
+      props.fields.solutionsLeadGenLink.value ||
+      props.fields.solutionsBrandingLink.value ||
       props.fields.indoorBillboardLink.value ||
       "Featured",
   }),
@@ -576,15 +630,48 @@ const pageSchema = () => ({
   metadata: metadataField(),
 });
 
-// keystatic.config.ts is loaded directly by Node (outside the Vite/Astro
-// SSR pipeline that powers page/middleware code), so process.env.NODE_ENV
-// is the correct read here - unlike application code, which must use
-// import.meta.env for anything other than NODE_ENV (see src/middleware.ts,
-// src/pages/admin/login.astro, src/pages/api/admin-login.ts).
-const storage =
-  process.env.NODE_ENV === "production"
-    ? ({ kind: "github", repo: CMS_REPO } as const)
-    : ({ kind: "local" } as const);
+// keystatic.config.ts is evaluated in 3 different contexts, each with a
+// different set of globals available, so this can't just reach for one
+// env-var mechanism:
+//   1. Raw Node/tsx (e.g. `keystatic` CLI tooling, or the ad-hoc
+//      `tsx keystatic.config.ts` scripts used to verify this file): a real
+//      Node `process` exists; `import.meta.env` does not.
+//   2. Astro/Vite SSR bundle (the actual astro dev/build server): both
+//      exist, but import.meta.env.PROD is Vite's own reliable "was this
+//      `astro build` or `astro dev`" flag, computed from the command that
+//      was actually invoked - not from ambient process.env.NODE_ENV.
+//   3. The browser bundle for the Keystatic Admin UI itself: Vite bundles
+//      this file for the client too, and browsers have no `process` global
+//      at all. Unlike process.env.NODE_ENV (which every bundler
+//      special-cases and statically inlines), an arbitrary process.env.X
+//      read - e.g. the process.env.VERCEL check this used to be - survives
+//      into the client bundle as a live property access on a `process`
+//      that doesn't exist, throwing `ReferenceError: process is not
+//      defined` at module-evaluation time and crashing the whole Admin
+//      app to a blank white screen before React even mounts (no error
+//      boundary can catch a module-scope crash).
+//
+// `typeof import.meta.env !== "undefined"` is safe to check in ALL 3
+// contexts (import.meta itself is always-defined ES module syntax, so
+// reading a property off it never throws; Vite guarantees a real
+// import.meta.env object in both its server and client output). When true
+// (contexts 2 and 3), we use it and never touch `process` - so nothing
+// evaluates the process.env.NODE_ENV branch in the browser at all
+// (ternaries only evaluate the taken branch). When false (context 1, no
+// Vite involved), process is always real in plain Node, so the fallback
+// is safe there too. This also fixes the earlier NODE_ENV bug (a stray
+// `NODE_ENV=production` left in a Windows terminal from an earlier
+// `astro build` silently flipping a later local `astro dev` to GitHub
+// storage) for contexts 2/3, since import.meta.env.PROD reflects the
+// actual astro command invoked, not a leaked shell env var.
+const isProd =
+  typeof import.meta.env !== "undefined"
+    ? import.meta.env.PROD
+    : process.env.NODE_ENV === "production";
+
+const storage = isProd
+  ? ({ kind: "github", repo: CMS_REPO } as const)
+  : ({ kind: "local" } as const);
 
 export default config({
   storage,
@@ -613,11 +700,19 @@ export default config({
           phone: fields.text({ label: "Phone" }),
           phoneFormatted: fields.text({ label: "Phone (Formatted)" }),
         }),
-        colors: fields.object({
-          primary: fields.text({ label: "Primary" }),
-          secondary: fields.text({ label: "Secondary" }),
-          tertiary: fields.text({ label: "Tertiary" }),
-          quaternary: fields.text({ label: "Quaternary" }),
+        map: fields.object({
+          latitude: fields.number({ label: "Latitude", defaultValue: 0 }),
+          longitude: fields.number({ label: "Longitude", defaultValue: 0 }),
+          mapUrl: fields.text({ label: "Map URL" }),
+          embedMapUrl: fields.text({ label: "Embed Map URL" }),
+          locations: fields.array(fields.text({ label: "Location" }), {
+            label: "Locations",
+            itemLabel: (props) => props.value || "Location",
+          }),
+          openDays: fields.array(fields.text({ label: "Day" }), {
+            label: "Open Days",
+            itemLabel: (props) => props.value || "Day",
+          }),
         }),
         logo: fields.object({
           src: logoImage("Logo"),
@@ -643,6 +738,27 @@ export default config({
         analytics: fields.object({
           googleAnalyticsId: fields.text({ label: "Google Analytics ID" }),
         }),
+      },
+    }),
+
+    colorScheme: singleton({
+      label: "Color Scheme",
+      path: "src/content/settings/color-scheme",
+      format: "json",
+      schema: {
+        // Isolated from Site Settings per this round's instructions, for
+        // visible brand-color management. No native color-picker field
+        // exists in @keystatic/core (checked: fields export list has no
+        // "color" kind), so this uses the custom colorField() from
+        // src/lib/keystaticColorField.ts - a real <input type="color">
+        // swatch synced with a hex text input and live preview square,
+        // with the ^#[0-9A-Fa-f]{6}$ requirement enforced as an inline
+        // validation message rather than a hard throw (see that file's
+        // header comment for why).
+        primary: colorField({ label: "Primary" }),
+        secondary: colorField({ label: "Secondary" }),
+        tertiary: colorField({ label: "Tertiary" }),
+        quaternary: colorField({ label: "Quaternary" }),
       },
     }),
 
@@ -697,25 +813,41 @@ export default config({
 
   collections: {
     mainPages: collection({
-      label: "Main Pages",
+      label: "Pages",
       path: "src/data/pages/main/*",
       format: "json",
       slugField: "title",
       schema: pageSchema(),
     }),
-    solutions: collection({
-      label: "Solutions",
-      // Recursive glob: real files live in 3 subfolders
-      // (foundational/, lead-gen/, branding-awareness/) - confirmed the
-      // reader discovers all 9 nested entries with slugs like
-      // "foundational/design-services".
-      path: "src/data/pages/solutions/**",
+    // "Solutions" is split into 3 real collections (one per real subfolder)
+    // instead of 1 collection over a recursive glob, so the sidebar shows
+    // 3 distinct high-level groups instead of one long flat "Solutions"
+    // list. This is why relatedLinkFields() above has 3 separate solutions
+    // relationship fields instead of 1 - fields.relationship can only ever
+    // target a single collection.
+    solutionsFoundational: collection({
+      label: "Solutions: Foundational",
+      path: "src/data/pages/solutions/foundational/*",
+      format: "json",
+      slugField: "title",
+      schema: pageSchema(),
+    }),
+    solutionsLeadGen: collection({
+      label: "Solutions: Lead Gen",
+      path: "src/data/pages/solutions/lead-gen/*",
+      format: "json",
+      slugField: "title",
+      schema: pageSchema(),
+    }),
+    solutionsBranding: collection({
+      label: "Solutions: Branding",
+      path: "src/data/pages/solutions/branding-awareness/*",
       format: "json",
       slugField: "title",
       schema: pageSchema(),
     }),
     indoorBillboards: collection({
-      label: "Indoor Billboards",
+      label: "Indoor Billboard Pages",
       path: "src/data/pages/indoor-billboards/*",
       format: "json",
       slugField: "title",
@@ -746,12 +878,20 @@ export default config({
 
   ui: {
     navigation: {
-      "Global Elements": ["site", "navbar", "footer", "popup"],
+      "Global Elements": ["site", "colorScheme", "navbar", "footer", "popup"],
       // "Collections" exactly matches Keystatic's own default fallback
       // grouping label (confirmed in @keystatic/core's compiled bundle),
       // so this reproduces the native "COLLECTIONS" sidebar header while
       // still letting Global Elements sit above it.
-      Collections: ["mainPages", "solutions", "indoorBillboards", "legal", "locations"],
+      Collections: [
+        "mainPages",
+        "locations",
+        "indoorBillboards",
+        "solutionsFoundational",
+        "solutionsLeadGen",
+        "solutionsBranding",
+        "legal",
+      ],
     },
   },
 });

@@ -4,6 +4,7 @@
 // ===========================================
 
 import siteData from "../content/settings/site.json";
+import colorSchemeData from "../content/settings/color-scheme.json";
 
 const defaults = {
   business: {
@@ -30,6 +31,14 @@ const defaults = {
     secondary: "#00bba9",
     tertiary: "#00bba9",
     quaternary: "#ffffff",
+  },
+  map: {
+    latitude: 0,
+    longitude: 0,
+    mapUrl: "",
+    embedMapUrl: "",
+    locations: [] as string[],
+    openDays: [] as string[],
   },
   logo: {
     src: "/logo/progressive-section.svg",
@@ -107,10 +116,19 @@ export const siteConfig = {
   },
 
   colors: {
-    primary: siteData.colors?.primary || defaults.colors.primary,
-    secondary: siteData.colors?.secondary || defaults.colors.secondary,
-    tertiary: siteData.colors?.tertiary || defaults.colors.tertiary,
-    quaternary: siteData.colors?.quaternary || defaults.colors.quaternary,
+    primary: colorSchemeData.primary || defaults.colors.primary,
+    secondary: colorSchemeData.secondary || defaults.colors.secondary,
+    tertiary: colorSchemeData.tertiary || defaults.colors.tertiary,
+    quaternary: colorSchemeData.quaternary || defaults.colors.quaternary,
+  },
+
+  map: {
+    latitude: siteData.map?.latitude ?? defaults.map.latitude,
+    longitude: siteData.map?.longitude ?? defaults.map.longitude,
+    mapUrl: siteData.map?.mapUrl || defaults.map.mapUrl,
+    embedMapUrl: siteData.map?.embedMapUrl || defaults.map.embedMapUrl,
+    locations: siteData.map?.locations || defaults.map.locations,
+    openDays: siteData.map?.openDays || defaults.map.openDays,
   },
 
   logo: {

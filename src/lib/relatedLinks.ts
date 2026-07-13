@@ -15,31 +15,41 @@
 //
 // The front-end reads plain JSON directly (no astro:content collections in
 // this project - see src/content.config.ts, which is dead code), so the
-// lookup below is a plain slug -> entry map built with import.meta.glob
+// lookups below are plain slug -> entry maps built with import.meta.glob
 // rather than astro:content's reference()/getEntry().
-const solutionsModules = import.meta.glob("/src/data/pages/solutions/**/*.json", {
-  eager: true,
-  import: "default",
-}) as Record<string, any>;
-const indoorBillboardsModules = import.meta.glob("/src/data/pages/indoor-billboards/*.json", {
-  eager: true,
-  import: "default",
-}) as Record<string, any>;
-
-function bySlug(modules: Record<string, any>, baseDir: string): Record<string, any> {
+//
+// "Solutions" is 3 separate real Keystatic collections
+// (solutionsFoundational/solutionsLeadGen/solutionsBranding), one per real
+// subfolder, so a relationship value is only ever unique within its own
+// subfolder (fields.relationship can't span multiple collections) - hence
+// 3 separate slug maps/category prefixes below instead of 1 combined map.
+function bySlug(baseDir: string): Record<string, any> {
+  const modules = import.meta.glob("/src/data/pages/**/*.json", {
+    eager: true,
+    import: "default",
+  }) as Record<string, any>;
   const map: Record<string, any> = {};
   for (const [filePath, data] of Object.entries(modules)) {
-    const slug = filePath
-      .replace(baseDir, "")
-      .replace(/^\//, "")
-      .replace(/\.json$/, "");
+    if (!filePath.startsWith(baseDir + "/")) continue;
+    const slug = filePath.replace(baseDir + "/", "").replace(/\.json$/, "");
     map[slug] = data;
   }
   return map;
 }
 
-const solutionsBySlug = bySlug(solutionsModules, "/src/data/pages/solutions");
-const indoorBillboardsBySlug = bySlug(indoorBillboardsModules, "/src/data/pages/indoor-billboards");
+const SOLUTIONS_CATEGORIES = {
+  solutionsFoundationalLink: "foundational",
+  solutionsLeadGenLink: "lead-gen",
+  solutionsBrandingLink: "branding-awareness",
+} as const;
+
+const solutionsBySlugByCategory: Record<string, Record<string, any>> = Object.fromEntries(
+  Object.values(SOLUTIONS_CATEGORIES).map((category) => [
+    category,
+    bySlug(`/src/data/pages/solutions/${category}`),
+  ])
+);
+const indoorBillboardsBySlug = bySlug("/src/data/pages/indoor-billboards");
 
 function heroImageOf(entry: any): string | undefined {
   const hero = (entry?.sections || []).find((s: any) => s.discriminant === "hero");
@@ -49,18 +59,30 @@ function heroImageOf(entry: any): string | undefined {
 export interface RelatableCard {
   title?: string;
   href?: string;
-  solutionsLink?: string | null;
+  solutionsFoundationalLink?: string | null;
+  solutionsLeadGenLink?: string | null;
+  solutionsBrandingLink?: string | null;
   indoorBillboardLink?: string | null;
 }
 
+function solutionsLinkOf(card: RelatableCard): { category: string; slug: string } | undefined {
+  for (const key of Object.keys(SOLUTIONS_CATEGORIES) as (keyof typeof SOLUTIONS_CATEGORIES)[]) {
+    const slug = card[key];
+    if (slug) return { category: SOLUTIONS_CATEGORIES[key], slug };
+  }
+  return undefined;
+}
+
 function linkedEntry(card: RelatableCard): any {
-  if (card.solutionsLink) return solutionsBySlug[card.solutionsLink];
+  const solutionsLink = solutionsLinkOf(card);
+  if (solutionsLink) return solutionsBySlugByCategory[solutionsLink.category][solutionsLink.slug];
   if (card.indoorBillboardLink) return indoorBillboardsBySlug[card.indoorBillboardLink];
   return undefined;
 }
 
 export function resolveCardHref(card: RelatableCard): string {
-  if (card.solutionsLink) return `/solutions/${card.solutionsLink}`;
+  const solutionsLink = solutionsLinkOf(card);
+  if (solutionsLink) return `/solutions/${solutionsLink.category}/${solutionsLink.slug}`;
   if (card.indoorBillboardLink) return `/indoor-billboards/${card.indoorBillboardLink}`;
   return card.href ?? "#";
 }

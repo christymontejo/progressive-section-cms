@@ -14,17 +14,17 @@
           {
             "description": "Professional design services to Stand out identity.",
             "href": "/solutions/foundational/website-design",
-            "solutionsLink": "foundational/website-design"
+            "solutionsFoundationalLink": "website-design"
           },
           {
             "description": "Optimize your local presence and get found by customers searching for your services.",
             "href": "/solutions/foundational/google-business-profile",
-            "solutionsLink": "foundational/google-business-profile"
+            "solutionsFoundationalLink": "google-business-profile"
           },
           {
             "description": "Build and engage your audience with strategic social media content.",
             "href": "/solutions/foundational/social-media-management",
-            "solutionsLink": "foundational/social-media-management"
+            "solutionsFoundationalLink": "social-media-management"
           },
           {
             "description": "High-impact screen advertising in premium indoor locations.",
@@ -34,22 +34,22 @@
           {
             "description": "Strategic pay-per-click campaigns that maximize your exposure.",
             "href": "/solutions/lead-gen/pay-per-click",
-            "solutionsLink": "lead-gen/pay-per-click"
+            "solutionsLeadGenLink": "pay-per-click"
           },
           {
             "description": "Reach your audience on streaming platforms and smart TVs.",
             "href": "/solutions/branding-awareness/connected-tv",
-            "solutionsLink": "branding-awareness/connected-tv"
+            "solutionsBrandingLink": "connected-tv"
           },
           {
             "description": "Target customers based on their physical location with precision.",
             "href": "/solutions/branding-awareness/display-geofencing",
-            "solutionsLink": "branding-awareness/display-geofencing"
+            "solutionsBrandingLink": "display-geofencing"
           },
           {
             "description": "Professional graphic design and branding services.",
             "href": "/solutions/foundational/design-services",
-            "solutionsLink": "foundational/design-services"
+            "solutionsFoundationalLink": "design-services"
           }
         ]
       }
@@ -240,7 +240,10 @@
       "type": "website",
       "images": [
         {
-          "url": "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img/https://johnh1303.sg-host.com/wp-content/uploads/2025/10/download-5-1.avif"
+          "discriminant": "external",
+          "value": {
+            "url": "https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img/https://johnh1303.sg-host.com/wp-content/uploads/2025/10/download-5-1.avif"
+          }
         }
       ]
     }
