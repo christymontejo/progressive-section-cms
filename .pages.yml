@@ -5,6 +5,7 @@
 # content audit keystatic.config.ts was built from, so both CMSs read and
 # write byte-compatible JSON.
 #
+#
 # One structural note: Pages CMS's native `block` field flattens the
 # selected block's own fields directly onto the item (e.g.
 # { discriminant: hero, title: ... }), but every real sections[] entry in
