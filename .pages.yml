@@ -1,0 +1,1164 @@
+# Pages CMS configuration (https://pagescms.org).
+# Runs alongside keystatic.config.ts against the exact same content files -
+# this does not replace Keystatic, it's a second admin UI for the same
+# source of truth. Field names/types here are drawn directly from the same
+# content audit keystatic.config.ts was built from, so both CMSs read and
+# write byte-compatible JSON.
+#
+# One structural note: Pages CMS's native `block` field flattens the
+# selected block's own fields directly onto the item (e.g.
+# { discriminant: hero, title: ... }), but every real sections[] entry in
+# this repo is { discriminant, value: { ... } } - one level deeper. Every
+# block below wraps its fields in a single nested `value` object field to
+# match that exactly, so saving through Pages CMS never reshapes existing
+# content.
+#
+# Known gaps vs. the Keystatic config (Pages CMS has no equivalent):
+# - No native color-picker field type - color-scheme fields are plain
+#   strings with a hex regex pattern, no live swatch.
+# - No documented sidebar-grouping mechanism - content entries below are
+#   just ordered sensibly (globals first, then pages), not nested under
+#   group headers the way Keystatic's ui.navigation does.
+
+media:
+  - name: images
+    label: Images
+    input: public/images
+    output: /images
+  - name: logo
+    label: Logo
+    input: public/logo
+    output: /logo
+
+components:
+  # ---- SEO/metadata block, reused by every page-like collection ----
+  metadata:
+    type: object
+    label: SEO & Metadata
+    fields:
+      - name: title
+        type: string
+        label: Meta Title
+      - name: description
+        type: text
+        label: "Meta Description (supports {{city}} interpolation)"
+      - name: keywords
+        type: string
+        label: Keywords
+      - name: noindex
+        type: boolean
+        label: No Index
+      - name: robots
+        type: object
+        label: Robots Directives
+        fields:
+          - name: index
+            type: boolean
+            label: Index
+          - name: follow
+            type: boolean
+            label: Follow
+      - name: schema
+        type: code
+        label: "Schema.org JSON-LD (optional)"
+      - name: sitemap
+        type: boolean
+        label: Include in Sitemap
+      - name: openGraph
+        type: object
+        label: Open Graph
+        fields:
+          - name: type
+            type: string
+            label: Type
+          - name: images
+            type: block
+            label: Images
+            list: true
+            blockKey: discriminant
+            blocks:
+              - name: local
+                label: Local Image
+                fields:
+                  - name: value
+                    type: object
+                    fields:
+                      - name: image
+                        type: image
+                        label: Image
+                        options:
+                          media: images
+              - name: external
+                label: External URL
+                fields:
+                  - name: value
+                    type: object
+                    fields:
+                      - name: url
+                        type: string
+                        label: Image URL
+
+  # ---- Smart Hybrid relationship fields shared by home hero cards and
+  # navbar megamenu featured cards ----
+  relatedLinkFields:
+    type: object
+    fields:
+      - name: description
+        type: text
+        label: Description
+      - name: href
+        type: string
+        label: "Link (fallback if no relationship below is set)"
+      - name: solutionsFoundationalLink
+        type: reference
+        label: "Links to Solution - Foundational (optional)"
+        required: false
+        options:
+          collection: solutionsFoundational
+          value: "{path}"
+          label: "{title}"
+      - name: solutionsLeadGenLink
+        type: reference
+        label: "Links to Solution - Lead Gen (optional)"
+        required: false
+        options:
+          collection: solutionsLeadGen
+          value: "{path}"
+          label: "{title}"
+      - name: solutionsBrandingLink
+        type: reference
+        label: "Links to Solution - Branding (optional)"
+        required: false
+        options:
+          collection: solutionsBranding
+          value: "{path}"
+          label: "{title}"
+      - name: indoorBillboardLink
+        type: reference
+        label: "Links to Indoor Billboards Page (optional)"
+        required: false
+        options:
+          collection: indoorBillboards
+          value: "{path}"
+          label: "{title}"
+
+  # ---- The 11 real section types (sections[] discriminant/value) ----
+  sections:
+    type: block
+    label: Sections
+    list: true
+    blockKey: discriminant
+    blocks:
+      - name: hero
+        label: Hero
+        fields:
+          - name: value
+            type: object
+            fields:
+              - name: title
+                type: string
+                label: Title
+              - name: subtitle
+                type: text
+                label: Subtitle
+              - name: badge
+                type: string
+                label: Badge
+              - name: image
+                type: image
+                label: Image
+                options:
+                  media: images
+              - name: imageAlt
+                type: string
+                label: Image Alt Text
+              - name: buttonText
+                type: string
+                label: Button Text
+              - name: buttonHref
+                type: string
+                label: Button Link
+
+      - name: heroHome
+        label: Home Hero
+        fields:
+          - name: value
+            type: object
+            fields:
+              - name: title
+                type: string
+                label: Title
+              - name: subtitle
+                type: text
+                label: Subtitle
+              - name: badge
+                type: string
+                label: Badge
+              - name: variant
+                type: string
+                label: Variant
+              - name: cards
+                type: object
+                label: Cards
+                list: true
+                fields:
+                  - component: relatedLinkFields
+
+      - name: content
+        label: Content Block
+        fields:
+          - name: value
+            type: object
+            fields:
+              - name: title
+                type: string
+                label: Title
+              - name: badge
+                type: string
+                label: Badge
+              - name: description
+                type: text
+                label: Description
+              - name: variant
+                type: select
+                label: Variant
+                options:
+                  values:
+                    - name: two-column
+                      label: Two Column
+                    - name: image-card
+                      label: Image Card
+                    - name: simple
+                      label: Simple
+              - name: background
+                type: select
+                label: Background
+                options:
+                  values:
+                    - name: primary-dark
+                      label: Primary Dark
+                    - name: primary
+                      label: Primary
+                    - name: gray
+                      label: Gray
+                    - name: white
+                      label: White
+              - name: image
+                type: image
+                label: Image
+                options:
+                  media: images
+              - name: imageAlt
+                type: string
+                label: Image Alt Text
+              - name: imagePosition
+                type: select
+                label: Image Position
+                options:
+                  values:
+                    - name: left
+                      label: Left
+                    - name: right
+                      label: Right
+              - name: buttonText
+                type: string
+                label: Button Text
+              - name: buttonHref
+                type: string
+                label: Button Link
+              - name: features
+                type: object
+                label: Features
+                list: true
+                fields:
+                  - name: icon
+                    type: string
+                    label: Icon
+                  - name: text
+                    type: text
+                    label: Text
+
+      - name: features
+        label: Features
+        fields:
+          - name: value
+            type: object
+            fields:
+              - name: title
+                type: string
+                label: Title
+              - name: description
+                type: text
+                label: Description
+              - name: badge
+                type: string
+                label: Badge
+              - name: variant
+                type: string
+                label: Variant
+              - name: columns
+                type: number
+                label: Columns
+              - name: features
+                type: object
+                label: Features
+                list: true
+                fields:
+                  - name: title
+                    type: string
+                    label: Title
+                  - name: description
+                    type: text
+                    label: Description
+                  - name: icon
+                    type: string
+                    label: Icon
+
+      - name: featuresWithButton
+        label: Features Block
+        fields:
+          - name: value
+            type: object
+            fields:
+              - name: title
+                type: string
+                label: Title
+              - name: description
+                type: text
+                label: Description
+              - name: buttonText
+                type: string
+                label: Button Text
+              - name: buttonHref
+                type: string
+                label: Button Link
+              - name: features
+                type: object
+                label: Features
+                list: true
+                fields:
+                  - name: title
+                    type: string
+                    label: Title
+                  - name: description
+                    type: text
+                    label: Description
+                  - name: icon
+                    type: string
+                    label: Icon
+                  - name: href
+                    type: string
+                    label: Link
+
+      - name: valueCards
+        label: Value Cards
+        fields:
+          - name: value
+            type: object
+            fields:
+              - name: title
+                type: string
+                label: Title
+              - name: description
+                type: text
+                label: Description
+              - name: badge
+                type: string
+                label: Badge
+              - name: variant
+                type: select
+                label: Variant
+                options:
+                  values:
+                    - name: cards
+                      label: Cards
+                    - name: overlay
+                      label: Overlay
+              - name: cards
+                type: object
+                label: Cards
+                list: true
+                fields:
+                  - name: title
+                    type: string
+                    label: Title
+                  - name: description
+                    type: text
+                    label: Description
+                  - name: icon
+                    type: string
+                    label: Icon
+                  - name: image
+                    type: image
+                    label: Image
+                    options:
+                      media: images
+                  - name: imageFit
+                    type: select
+                    label: Image Fit
+                    options:
+                      values:
+                        - name: cover
+                          label: Cover
+                        - name: contain
+                          label: Contain
+
+      - name: locations
+        label: Locations Map
+        fields:
+          - name: value
+            type: object
+            fields:
+              - name: title
+                type: string
+                label: Title
+              - name: description
+                type: text
+                label: Description
+              - name: badge
+                type: string
+                label: Badge
+              - name: background
+                type: select
+                label: Background
+                options:
+                  values:
+                    - name: primary-dark
+                      label: Primary Dark
+                    - name: primary
+                      label: Primary
+                    - name: gray
+                      label: Gray
+                    - name: white
+                      label: White
+              - name: mapUrl
+                type: string
+                label: Map URL
+              - name: variant
+                type: select
+                label: Variant
+                options:
+                  values:
+                    - name: full
+                      label: Full
+                    - name: overlay
+                      label: Overlay
+              - name: locations
+                type: object
+                label: Locations
+                list: true
+                fields:
+                  - name: name
+                    type: string
+                    label: Name
+                  - name: description
+                    type: text
+                    label: Description
+                  - name: href
+                    type: string
+                    label: Link
+
+      - name: faq
+        label: FAQ
+        fields:
+          - name: value
+            type: object
+            fields:
+              - name: title
+                type: string
+                label: Title
+              - name: description
+                type: text
+                label: Description
+              - name: badge
+                type: string
+                label: Badge
+              - name: variant
+                type: string
+                label: Variant
+              - name: faqs
+                type: object
+                label: FAQs
+                list: true
+                fields:
+                  - name: question
+                    type: string
+                    label: Question
+                  - name: answer
+                    type: text
+                    label: Answer
+
+      - name: cta
+        label: Call To Action
+        fields:
+          - name: value
+            type: object
+            fields:
+              - name: title
+                type: string
+                label: Title
+              - name: description
+                type: text
+                label: Description
+              - name: image
+                type: image
+                label: Image
+                options:
+                  media: images
+              - name: imageAlt
+                type: string
+                label: Image Alt Text
+              - name: buttonText
+                type: string
+                label: Button Text
+              - name: buttonHref
+                type: string
+                label: Button Link
+              - name: variant
+                type: select
+                label: Variant
+                options:
+                  values:
+                    - name: card
+                      label: Card
+                    - name: bold
+                      label: Bold
+                    - name: banner
+                      label: Banner
+
+      - name: contact
+        label: Contact Form
+        fields:
+          - name: value
+            type: object
+            fields:
+              - name: title
+                type: string
+                label: Title
+              - name: description
+                type: text
+                label: Description
+              - name: secondaryDescription
+                type: text
+                label: Secondary Description
+              - name: variant
+                type: string
+                label: Variant
+              - name: submitText
+                type: string
+                label: Submit Button Text
+              - name: submitAction
+                type: string
+                label: Submit Action
+              - name: contactInfo
+                type: object
+                label: Contact Info
+                fields:
+                  - name: email
+                    type: string
+                    label: Email
+                  - name: phone
+                    type: string
+                    label: Phone
+                  - name: phoneFormatted
+                    type: string
+                    label: "Phone (Formatted)"
+                  - name: location
+                    type: string
+                    label: Location
+              - name: formFields
+                type: object
+                label: Form Fields
+                list: true
+                fields:
+                  - name: id
+                    type: string
+                    label: ID
+                  - name: name
+                    type: string
+                    label: Name
+                  - name: label
+                    type: string
+                    label: Label
+                  - name: type
+                    type: select
+                    label: Field Type
+                    options:
+                      values:
+                        - name: text
+                          label: Text
+                        - name: email
+                          label: Email
+                        - name: tel
+                          label: Tel
+                        - name: textarea
+                          label: Textarea
+                  - name: placeholder
+                    type: string
+                    label: Placeholder
+                  - name: required
+                    type: boolean
+                    label: Required
+                  - name: rows
+                    type: number
+                    label: Rows
+                  - name: width
+                    type: string
+                    label: Width
+
+      - name: network
+        label: Network
+        fields:
+          - name: value
+            type: object
+            fields:
+              - name: title
+                type: string
+                label: Title
+              - name: description
+                type: text
+                label: Description
+              - name: networks
+                type: object
+                label: Networks
+                list: true
+                fields:
+                  - name: title
+                    type: string
+                    label: Title
+                  - name: itemsPerView
+                    type: number
+                    label: Items Per View
+                  - name: brands
+                    type: object
+                    label: Brands
+                    list: true
+                    fields:
+                      - name: name
+                        type: string
+                        label: Name
+                      - name: logo
+                        type: image
+                        label: Logo
+                        options:
+                          media: images
+
+  # ---- Legal clauses (privacy.json / terms.json only) ----
+  legalSections:
+    type: object
+    label: Legal Sections
+    list: true
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: content
+        type: text
+        label: Content
+
+content:
+  # ===================== Global Elements (singletons) =====================
+  - name: site
+    label: Site Settings
+    type: file
+    path: src/content/settings/site.json
+    fields:
+      - name: business
+        type: object
+        fields:
+          - name: name
+            type: string
+            label: Name
+          - name: fullName
+            type: string
+            label: Full Name
+          - name: tagline
+            type: string
+            label: Tagline
+          - name: description
+            type: text
+            label: Description
+      - name: location
+        type: object
+        fields:
+          - name: city
+            type: string
+            label: City
+          - name: state
+            type: string
+            label: State
+          - name: stateFull
+            type: string
+            label: "State (Full)"
+          - name: address
+            type: string
+            label: Address
+          - name: fullAddress
+            type: string
+            label: Full Address
+      - name: contact
+        type: object
+        fields:
+          - name: email
+            type: string
+            label: Email
+          - name: phone
+            type: string
+            label: Phone
+          - name: phoneFormatted
+            type: string
+            label: "Phone (Formatted)"
+      - name: map
+        type: object
+        fields:
+          - name: latitude
+            type: number
+            label: Latitude
+          - name: longitude
+            type: number
+            label: Longitude
+          - name: mapUrl
+            type: string
+            label: Map URL
+          - name: embedMapUrl
+            type: string
+            label: Embed Map URL
+          - name: locations
+            type: string
+            label: Locations
+            list: true
+          - name: openDays
+            type: string
+            label: Open Days
+            list: true
+      - name: logo
+        type: object
+        fields:
+          - name: src
+            type: image
+            label: Logo
+            options:
+              media: logo
+          - name: whiteSrc
+            type: image
+            label: "Logo (White)"
+            options:
+              media: logo
+          - name: alt
+            type: string
+            label: Alt Text
+      - name: social
+        type: object
+        fields:
+          - name: facebook
+            type: string
+            label: Facebook
+          - name: instagram
+            type: string
+            label: Instagram
+          - name: linkedin
+            type: string
+            label: LinkedIn
+          - name: youtube
+            type: string
+            label: YouTube
+          - name: twitter
+            type: string
+            label: Twitter
+      - name: seo
+        type: object
+        fields:
+          - name: siteName
+            type: string
+            label: Site Name
+          - name: defaultTitle
+            type: string
+            label: Default Title
+          - name: defaultDescription
+            type: text
+            label: Default Description
+          - name: keywords
+            type: string
+            label: Keywords
+          - name: siteUrl
+            type: string
+            label: Site URL
+          - name: ogImage
+            type: image
+            label: OG Image
+            options:
+              media: logo
+          - name: twitterHandle
+            type: string
+            label: Twitter Handle
+      - name: analytics
+        type: object
+        fields:
+          - name: googleAnalyticsId
+            type: string
+            label: Google Analytics ID
+
+  - name: colorScheme
+    label: Color Scheme
+    type: file
+    path: src/content/settings/color-scheme.json
+    fields:
+      - name: primary
+        type: string
+        label: Primary
+        pattern:
+          regex: "^#[0-9A-Fa-f]{6}$"
+          message: "Must be a 6-digit hex color, e.g. #1a2b5c"
+      - name: secondary
+        type: string
+        label: Secondary
+        pattern:
+          regex: "^#[0-9A-Fa-f]{6}$"
+          message: "Must be a 6-digit hex color, e.g. #1a2b5c"
+      - name: tertiary
+        type: string
+        label: Tertiary
+        pattern:
+          regex: "^#[0-9A-Fa-f]{6}$"
+          message: "Must be a 6-digit hex color, e.g. #1a2b5c"
+      - name: quaternary
+        type: string
+        label: Quaternary
+        pattern:
+          regex: "^#[0-9A-Fa-f]{6}$"
+          message: "Must be a 6-digit hex color, e.g. #1a2b5c"
+
+  - name: navbar
+    label: Navigation
+    type: file
+    path: src/content/settings/navbar.json
+    fields:
+      - name: navItems
+        type: object
+        label: Nav Items
+        list: true
+        fields:
+          - name: type
+            type: select
+            label: Type
+            options:
+              values:
+                - name: link
+                  label: Link
+                - name: dropdown
+                  label: Dropdown
+                - name: megamenu
+                  label: Megamenu
+          - name: title
+            type: string
+            label: Title
+          - name: href
+            type: string
+            label: Link
+          - name: items
+            type: object
+            label: Dropdown Items
+            list: true
+            fields:
+              - name: title
+                type: string
+                label: Title
+              - name: description
+                type: text
+                label: Description
+              - name: href
+                type: string
+                label: Link
+              - name: icon
+                type: string
+                label: Icon
+          - name: sections
+            type: object
+            label: Megamenu Sections
+            list: true
+            fields:
+              - name: label
+                type: string
+                label: Label
+              - name: items
+                type: object
+                label: Items
+                list: true
+                fields:
+                  - name: title
+                    type: string
+                    label: Title
+                  - name: description
+                    type: text
+                    label: Description
+                  - name: href
+                    type: string
+                    label: Link
+                  - name: icon
+                    type: string
+                    label: Icon
+          - name: featured
+            type: object
+            label: Megamenu Featured
+            list: true
+            fields:
+              - component: relatedLinkFields
+      - name: ctaButton
+        type: object
+        fields:
+          - name: text
+            type: string
+            label: Text
+          - name: href
+            type: string
+            label: Link
+
+  - name: footer
+    label: Footer
+    type: file
+    path: src/content/settings/footer.json
+    fields:
+      - name: description
+        type: text
+        label: Description
+      - name: columns
+        type: object
+        label: Columns
+        list: true
+        fields:
+          - name: type
+            type: select
+            label: Type
+            options:
+              values:
+                - name: accordion
+                  label: Accordion
+                - name: links
+                  label: Links
+                - name: contact
+                  label: Contact
+          - name: title
+            type: string
+            label: Title
+          - name: href
+            type: string
+            label: Link
+          - name: sections
+            type: object
+            label: Accordion Sections
+            list: true
+            fields:
+              - name: label
+                type: string
+                label: Label
+              - name: items
+                type: object
+                label: Items
+                list: true
+                fields:
+                  - name: label
+                    type: string
+                    label: Label
+                  - name: href
+                    type: string
+                    label: Link
+          - name: links
+            type: object
+            label: Links
+            list: true
+            fields:
+              - name: label
+                type: string
+                label: Label
+              - name: href
+                type: string
+                label: Link
+      - name: bottomLinks
+        type: object
+        label: Bottom Links
+        list: true
+        fields:
+          - name: label
+            type: string
+            label: Label
+          - name: href
+            type: string
+            label: Link
+
+  - name: popup
+    label: Popup
+    type: file
+    path: src/content/settings/popup.json
+    fields:
+      - name: enabled
+        type: boolean
+        label: Enabled
+      - name: title
+        type: string
+        label: Title
+      - name: description
+        type: text
+        label: Description
+      - name: buttonText
+        type: string
+        label: Button Text
+      - name: buttonHref
+        type: string
+        label: Button Link
+      - name: image
+        type: image
+        label: Image
+        options:
+          media: images
+      - name: delay
+        type: number
+        label: Delay (seconds)
+
+  # ===================== Collections =====================
+  - name: mainPages
+    label: Pages
+    type: collection
+    path: src/data/pages/main
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: description
+        type: text
+        label: Description
+      - name: keywords
+        type: string
+        label: Keywords
+      - name: sections
+        component: sections
+      - name: legalSections
+        component: legalSections
+      - name: metadata
+        component: metadata
+
+  - name: locations
+    label: Location Pages
+    type: collection
+    path: src/data/locations
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: city
+        type: string
+        label: City
+      - name: description
+        type: text
+        label: Description
+      - name: keywords
+        type: string
+        label: Keywords
+      - name: sections
+        component: sections
+      - name: metadata
+        component: metadata
+
+  - name: indoorBillboards
+    label: Indoor Billboard Pages
+    type: collection
+    path: src/data/pages/indoor-billboards
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: description
+        type: text
+        label: Description
+      - name: keywords
+        type: string
+        label: Keywords
+      - name: sections
+        component: sections
+      - name: legalSections
+        component: legalSections
+      - name: metadata
+        component: metadata
+
+  - name: solutionsFoundational
+    label: "Solutions: Foundational"
+    type: collection
+    path: src/data/pages/solutions/foundational
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: description
+        type: text
+        label: Description
+      - name: keywords
+        type: string
+        label: Keywords
+      - name: sections
+        component: sections
+      - name: legalSections
+        component: legalSections
+      - name: metadata
+        component: metadata
+
+  - name: solutionsLeadGen
+    label: "Solutions: Lead Gen"
+    type: collection
+    path: src/data/pages/solutions/lead-gen
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: description
+        type: text
+        label: Description
+      - name: keywords
+        type: string
+        label: Keywords
+      - name: sections
+        component: sections
+      - name: legalSections
+        component: legalSections
+      - name: metadata
+        component: metadata
+
+  - name: solutionsBranding
+    label: "Solutions: Branding"
+    type: collection
+    path: src/data/pages/solutions/branding-awareness
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: description
+        type: text
+        label: Description
+      - name: keywords
+        type: string
+        label: Keywords
+      - name: sections
+        component: sections
+      - name: legalSections
+        component: legalSections
+      - name: metadata
+        component: metadata
+
+  - name: legal
+    label: Legal
+    type: collection
+    path: src/data/pages/legal
+    fields:
+      - name: title
+        type: string
+        label: Title
+      - name: description
+        type: text
+        label: Description
+      - name: keywords
+        type: string
+        label: Keywords
+      - name: sections
+        component: sections
+      - name: legalSections
+        component: legalSections
+      - name: metadata
+        component: metadata
