@@ -1030,6 +1030,7 @@ content:
         label: Pages
         type: collection
         path: src/data/pages/main
+        filename: "{primary}.json"
         fields:
           - name: title
             type: string
@@ -1051,6 +1052,7 @@ content:
         label: Location Pages
         type: collection
         path: src/data/locations
+        filename: "{primary}.json"
         fields:
           - name: title
             type: string
@@ -1073,6 +1075,7 @@ content:
         label: Indoor Billboard Pages
         type: collection
         path: src/data/pages/indoor-billboards
+        filename: "{primary}.json"
         fields:
           - name: title
             type: string
@@ -1094,6 +1097,7 @@ content:
         label: "Solutions: Foundational"
         type: collection
         path: src/data/pages/solutions/foundational
+        filename: "{primary}.json"
         fields:
           - name: title
             type: string
@@ -1115,6 +1119,7 @@ content:
         label: "Solutions: Lead Gen"
         type: collection
         path: src/data/pages/solutions/lead-gen
+        filename: "{primary}.json"
         fields:
           - name: title
             type: string
@@ -1136,6 +1141,7 @@ content:
         label: "Solutions: Branding"
         type: collection
         path: src/data/pages/solutions/branding-awareness
+        filename: "{primary}.json"
         fields:
           - name: title
             type: string
@@ -1157,6 +1163,7 @@ content:
         label: Legal
         type: collection
         path: src/data/pages/legal
+        filename: "{primary}.json"
         fields:
           - name: title
             type: string
