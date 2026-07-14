@@ -16,9 +16,11 @@
 # Known gaps vs. the Keystatic config (Pages CMS has no equivalent):
 # - No native color-picker field type - color-scheme fields are plain
 #   strings with a hex regex pattern, no live swatch.
-# - No documented sidebar-grouping mechanism - content entries below are
-#   just ordered sensibly (globals first, then pages), not nested under
-#   group headers the way Keystatic's ui.navigation does.
+#
+# Sidebar organization: content entries below are nested under two
+# `type: group` headers (navigation-only, doesn't change file paths) -
+# "Global Settings" for the singleton files and "Collections" for the
+# collections, mirroring Keystatic's ui.navigation groupings.
 
 media:
   - name: images
@@ -657,232 +659,211 @@ components:
         label: Content
 
 content:
-  # ===================== Global Elements (singletons) =====================
-  - name: site
-    label: Site Settings
-    type: file
-    path: src/content/settings/site.json
-    fields:
-      - name: business
-        type: object
+  - name: globalSettings
+    label: Global Settings
+    type: group
+    items:
+      # ===================== Global Elements (singletons) =====================
+      - name: site
+        label: Site Settings
+        type: file
+        path: src/content/settings/site.json
         fields:
-          - name: name
-            type: string
-            label: Name
-          - name: fullName
-            type: string
-            label: Full Name
-          - name: tagline
-            type: string
-            label: Tagline
-          - name: description
-            type: text
-            label: Description
-      - name: location
-        type: object
-        fields:
-          - name: city
-            type: string
-            label: City
-          - name: state
-            type: string
-            label: State
-          - name: stateFull
-            type: string
-            label: "State (Full)"
-          - name: address
-            type: string
-            label: Address
-          - name: fullAddress
-            type: string
-            label: Full Address
-      - name: contact
-        type: object
-        fields:
-          - name: email
-            type: string
-            label: Email
-          - name: phone
-            type: string
-            label: Phone
-          - name: phoneFormatted
-            type: string
-            label: "Phone (Formatted)"
-      - name: map
-        type: object
-        fields:
-          - name: latitude
-            type: number
-            label: Latitude
-          - name: longitude
-            type: number
-            label: Longitude
-          - name: mapUrl
-            type: string
-            label: Map URL
-          - name: embedMapUrl
-            type: string
-            label: Embed Map URL
-          - name: locations
-            type: string
-            label: Locations
-            list: true
-          - name: openDays
-            type: string
-            label: Open Days
-            list: true
-      - name: logo
-        type: object
-        fields:
-          - name: src
-            type: image
-            label: Logo
-            options:
-              media: logo
-          - name: whiteSrc
-            type: image
-            label: "Logo (White)"
-            options:
-              media: logo
-          - name: alt
-            type: string
-            label: Alt Text
-      - name: social
-        type: object
-        fields:
-          - name: facebook
-            type: string
-            label: Facebook
-          - name: instagram
-            type: string
-            label: Instagram
-          - name: linkedin
-            type: string
-            label: LinkedIn
-          - name: youtube
-            type: string
-            label: YouTube
-          - name: twitter
-            type: string
-            label: Twitter
-      - name: seo
-        type: object
-        fields:
-          - name: siteName
-            type: string
-            label: Site Name
-          - name: defaultTitle
-            type: string
-            label: Default Title
-          - name: defaultDescription
-            type: text
-            label: Default Description
-          - name: keywords
-            type: string
-            label: Keywords
-          - name: siteUrl
-            type: string
-            label: Site URL
-          - name: ogImage
-            type: image
-            label: OG Image
-            options:
-              media: logo
-          - name: twitterHandle
-            type: string
-            label: Twitter Handle
-      - name: analytics
-        type: object
-        fields:
-          - name: googleAnalyticsId
-            type: string
-            label: Google Analytics ID
-
-  - name: colorScheme
-    label: Color Scheme
-    type: file
-    path: src/content/settings/color-scheme.json
-    fields:
-      - name: primary
-        type: string
-        label: Primary
-        pattern:
-          regex: "^#[0-9A-Fa-f]{6}$"
-          message: "Must be a 6-digit hex color, e.g. #1a2b5c"
-      - name: secondary
-        type: string
-        label: Secondary
-        pattern:
-          regex: "^#[0-9A-Fa-f]{6}$"
-          message: "Must be a 6-digit hex color, e.g. #1a2b5c"
-      - name: tertiary
-        type: string
-        label: Tertiary
-        pattern:
-          regex: "^#[0-9A-Fa-f]{6}$"
-          message: "Must be a 6-digit hex color, e.g. #1a2b5c"
-      - name: quaternary
-        type: string
-        label: Quaternary
-        pattern:
-          regex: "^#[0-9A-Fa-f]{6}$"
-          message: "Must be a 6-digit hex color, e.g. #1a2b5c"
-
-  - name: navbar
-    label: Navigation
-    type: file
-    path: src/content/settings/navbar.json
-    fields:
-      - name: navItems
-        type: object
-        label: Nav Items
-        list: true
-        fields:
-          - name: type
-            type: select
-            label: Type
-            options:
-              values:
-                - name: link
-                  label: Link
-                - name: dropdown
-                  label: Dropdown
-                - name: megamenu
-                  label: Megamenu
-          - name: title
-            type: string
-            label: Title
-          - name: href
-            type: string
-            label: Link
-          - name: items
+          - name: business
             type: object
-            label: Dropdown Items
-            list: true
             fields:
-              - name: title
+              - name: name
                 type: string
-                label: Title
+                label: Name
+              - name: fullName
+                type: string
+                label: Full Name
+              - name: tagline
+                type: string
+                label: Tagline
               - name: description
                 type: text
                 label: Description
+          - name: location
+            type: object
+            fields:
+              - name: city
+                type: string
+                label: City
+              - name: state
+                type: string
+                label: State
+              - name: stateFull
+                type: string
+                label: "State (Full)"
+              - name: address
+                type: string
+                label: Address
+              - name: fullAddress
+                type: string
+                label: Full Address
+          - name: contact
+            type: object
+            fields:
+              - name: email
+                type: string
+                label: Email
+              - name: phone
+                type: string
+                label: Phone
+              - name: phoneFormatted
+                type: string
+                label: "Phone (Formatted)"
+          - name: map
+            type: object
+            fields:
+              - name: latitude
+                type: number
+                label: Latitude
+              - name: longitude
+                type: number
+                label: Longitude
+              - name: mapUrl
+                type: string
+                label: Map URL
+              - name: embedMapUrl
+                type: string
+                label: Embed Map URL
+              - name: locations
+                type: string
+                label: Locations
+                list: true
+              - name: openDays
+                type: string
+                label: Open Days
+                list: true
+          - name: logo
+            type: object
+            fields:
+              - name: src
+                type: image
+                label: Logo
+                options:
+                  media: logo
+              - name: whiteSrc
+                type: image
+                label: "Logo (White)"
+                options:
+                  media: logo
+              - name: alt
+                type: string
+                label: Alt Text
+          - name: social
+            type: object
+            fields:
+              - name: facebook
+                type: string
+                label: Facebook
+              - name: instagram
+                type: string
+                label: Instagram
+              - name: linkedin
+                type: string
+                label: LinkedIn
+              - name: youtube
+                type: string
+                label: YouTube
+              - name: twitter
+                type: string
+                label: Twitter
+          - name: seo
+            type: object
+            fields:
+              - name: siteName
+                type: string
+                label: Site Name
+              - name: defaultTitle
+                type: string
+                label: Default Title
+              - name: defaultDescription
+                type: text
+                label: Default Description
+              - name: keywords
+                type: string
+                label: Keywords
+              - name: siteUrl
+                type: string
+                label: Site URL
+              - name: ogImage
+                type: image
+                label: OG Image
+                options:
+                  media: logo
+              - name: twitterHandle
+                type: string
+                label: Twitter Handle
+          - name: analytics
+            type: object
+            fields:
+              - name: googleAnalyticsId
+                type: string
+                label: Google Analytics ID
+
+      - name: colorScheme
+        label: Color Scheme
+        type: file
+        path: src/content/settings/color-scheme.json
+        fields:
+          - name: primary
+            type: string
+            label: Primary
+            pattern:
+              regex: "^#[0-9A-Fa-f]{6}$"
+              message: "Must be a 6-digit hex color, e.g. #1a2b5c"
+          - name: secondary
+            type: string
+            label: Secondary
+            pattern:
+              regex: "^#[0-9A-Fa-f]{6}$"
+              message: "Must be a 6-digit hex color, e.g. #1a2b5c"
+          - name: tertiary
+            type: string
+            label: Tertiary
+            pattern:
+              regex: "^#[0-9A-Fa-f]{6}$"
+              message: "Must be a 6-digit hex color, e.g. #1a2b5c"
+          - name: quaternary
+            type: string
+            label: Quaternary
+            pattern:
+              regex: "^#[0-9A-Fa-f]{6}$"
+              message: "Must be a 6-digit hex color, e.g. #1a2b5c"
+
+      - name: navbar
+        label: Navigation
+        type: file
+        path: src/content/settings/navbar.json
+        fields:
+          - name: navItems
+            type: object
+            label: Nav Items
+            list: true
+            fields:
+              - name: type
+                type: select
+                label: Type
+                options:
+                  values:
+                    - name: link
+                      label: Link
+                    - name: dropdown
+                      label: Dropdown
+                    - name: megamenu
+                      label: Megamenu
+              - name: title
+                type: string
+                label: Title
               - name: href
                 type: string
                 label: Link
-              - name: icon
-                type: string
-                label: Icon
-          - name: sections
-            type: object
-            label: Megamenu Sections
-            list: true
-            fields:
-              - name: label
-                type: string
-                label: Label
               - name: items
                 type: object
-                label: Items
+                label: Dropdown Items
                 list: true
                 fields:
                   - name: title
@@ -897,63 +878,99 @@ content:
                   - name: icon
                     type: string
                     label: Icon
-          - name: featured
-            type: object
-            label: Megamenu Featured
-            list: true
-            fields:
-              - component: relatedLinkFields
-      - name: ctaButton
-        type: object
-        fields:
-          - name: text
-            type: string
-            label: Text
-          - name: href
-            type: string
-            label: Link
-
-  - name: footer
-    label: Footer
-    type: file
-    path: src/content/settings/footer.json
-    fields:
-      - name: description
-        type: text
-        label: Description
-      - name: columns
-        type: object
-        label: Columns
-        list: true
-        fields:
-          - name: type
-            type: select
-            label: Type
-            options:
-              values:
-                - name: accordion
-                  label: Accordion
-                - name: links
-                  label: Links
-                - name: contact
-                  label: Contact
-          - name: title
-            type: string
-            label: Title
-          - name: href
-            type: string
-            label: Link
-          - name: sections
-            type: object
-            label: Accordion Sections
-            list: true
-            fields:
-              - name: label
-                type: string
-                label: Label
-              - name: items
+              - name: sections
                 type: object
-                label: Items
+                label: Megamenu Sections
+                list: true
+                fields:
+                  - name: label
+                    type: string
+                    label: Label
+                  - name: items
+                    type: object
+                    label: Items
+                    list: true
+                    fields:
+                      - name: title
+                        type: string
+                        label: Title
+                      - name: description
+                        type: text
+                        label: Description
+                      - name: href
+                        type: string
+                        label: Link
+                      - name: icon
+                        type: string
+                        label: Icon
+              - name: featured
+                type: object
+                label: Megamenu Featured
+                list: true
+                fields:
+                  - component: relatedLinkFields
+          - name: ctaButton
+            type: object
+            fields:
+              - name: text
+                type: string
+                label: Text
+              - name: href
+                type: string
+                label: Link
+
+      - name: footer
+        label: Footer
+        type: file
+        path: src/content/settings/footer.json
+        fields:
+          - name: description
+            type: text
+            label: Description
+          - name: columns
+            type: object
+            label: Columns
+            list: true
+            fields:
+              - name: type
+                type: select
+                label: Type
+                options:
+                  values:
+                    - name: accordion
+                      label: Accordion
+                    - name: links
+                      label: Links
+                    - name: contact
+                      label: Contact
+              - name: title
+                type: string
+                label: Title
+              - name: href
+                type: string
+                label: Link
+              - name: sections
+                type: object
+                label: Accordion Sections
+                list: true
+                fields:
+                  - name: label
+                    type: string
+                    label: Label
+                  - name: items
+                    type: object
+                    label: Items
+                    list: true
+                    fields:
+                      - name: label
+                        type: string
+                        label: Label
+                      - name: href
+                        type: string
+                        label: Link
+              - name: links
+                type: object
+                label: Links
                 list: true
                 fields:
                   - name: label
@@ -962,9 +979,9 @@ content:
                   - name: href
                     type: string
                     label: Link
-          - name: links
+          - name: bottomLinks
             type: object
-            label: Links
+            label: Bottom Links
             list: true
             fields:
               - name: label
@@ -973,192 +990,185 @@ content:
               - name: href
                 type: string
                 label: Link
-      - name: bottomLinks
-        type: object
-        label: Bottom Links
-        list: true
+
+      - name: popup
+        label: Popup
+        type: file
+        path: src/content/settings/popup.json
         fields:
-          - name: label
+          - name: enabled
+            type: boolean
+            label: Enabled
+          - name: title
             type: string
-            label: Label
-          - name: href
+            label: Title
+          - name: description
+            type: text
+            label: Description
+          - name: buttonText
             type: string
-            label: Link
+            label: Button Text
+          - name: buttonHref
+            type: string
+            label: Button Link
+          - name: image
+            type: image
+            label: Image
+            options:
+              media: images
+          - name: delay
+            type: number
+            label: Delay (seconds)
 
-  - name: popup
-    label: Popup
-    type: file
-    path: src/content/settings/popup.json
-    fields:
-      - name: enabled
-        type: boolean
-        label: Enabled
-      - name: title
-        type: string
-        label: Title
-      - name: description
-        type: text
-        label: Description
-      - name: buttonText
-        type: string
-        label: Button Text
-      - name: buttonHref
-        type: string
-        label: Button Link
-      - name: image
-        type: image
-        label: Image
-        options:
-          media: images
-      - name: delay
-        type: number
-        label: Delay (seconds)
+  - name: collections
+    label: Collections
+    type: group
+    items:
+      # ===================== Collections =====================
+      - name: mainPages
+        label: Pages
+        type: collection
+        path: src/data/pages/main
+        fields:
+          - name: title
+            type: string
+            label: Title
+          - name: description
+            type: text
+            label: Description
+          - name: keywords
+            type: string
+            label: Keywords
+          - name: sections
+            component: sections
+          - name: legalSections
+            component: legalSections
+          - name: metadata
+            component: metadata
 
-  # ===================== Collections =====================
-  - name: mainPages
-    label: Pages
-    type: collection
-    path: src/data/pages/main
-    fields:
-      - name: title
-        type: string
-        label: Title
-      - name: description
-        type: text
-        label: Description
-      - name: keywords
-        type: string
-        label: Keywords
-      - name: sections
-        component: sections
-      - name: legalSections
-        component: legalSections
-      - name: metadata
-        component: metadata
+      - name: locations
+        label: Location Pages
+        type: collection
+        path: src/data/locations
+        fields:
+          - name: title
+            type: string
+            label: Title
+          - name: city
+            type: string
+            label: City
+          - name: description
+            type: text
+            label: Description
+          - name: keywords
+            type: string
+            label: Keywords
+          - name: sections
+            component: sections
+          - name: metadata
+            component: metadata
 
-  - name: locations
-    label: Location Pages
-    type: collection
-    path: src/data/locations
-    fields:
-      - name: title
-        type: string
-        label: Title
-      - name: city
-        type: string
-        label: City
-      - name: description
-        type: text
-        label: Description
-      - name: keywords
-        type: string
-        label: Keywords
-      - name: sections
-        component: sections
-      - name: metadata
-        component: metadata
+      - name: indoorBillboards
+        label: Indoor Billboard Pages
+        type: collection
+        path: src/data/pages/indoor-billboards
+        fields:
+          - name: title
+            type: string
+            label: Title
+          - name: description
+            type: text
+            label: Description
+          - name: keywords
+            type: string
+            label: Keywords
+          - name: sections
+            component: sections
+          - name: legalSections
+            component: legalSections
+          - name: metadata
+            component: metadata
 
-  - name: indoorBillboards
-    label: Indoor Billboard Pages
-    type: collection
-    path: src/data/pages/indoor-billboards
-    fields:
-      - name: title
-        type: string
-        label: Title
-      - name: description
-        type: text
-        label: Description
-      - name: keywords
-        type: string
-        label: Keywords
-      - name: sections
-        component: sections
-      - name: legalSections
-        component: legalSections
-      - name: metadata
-        component: metadata
+      - name: solutionsFoundational
+        label: "Solutions: Foundational"
+        type: collection
+        path: src/data/pages/solutions/foundational
+        fields:
+          - name: title
+            type: string
+            label: Title
+          - name: description
+            type: text
+            label: Description
+          - name: keywords
+            type: string
+            label: Keywords
+          - name: sections
+            component: sections
+          - name: legalSections
+            component: legalSections
+          - name: metadata
+            component: metadata
 
-  - name: solutionsFoundational
-    label: "Solutions: Foundational"
-    type: collection
-    path: src/data/pages/solutions/foundational
-    fields:
-      - name: title
-        type: string
-        label: Title
-      - name: description
-        type: text
-        label: Description
-      - name: keywords
-        type: string
-        label: Keywords
-      - name: sections
-        component: sections
-      - name: legalSections
-        component: legalSections
-      - name: metadata
-        component: metadata
+      - name: solutionsLeadGen
+        label: "Solutions: Lead Gen"
+        type: collection
+        path: src/data/pages/solutions/lead-gen
+        fields:
+          - name: title
+            type: string
+            label: Title
+          - name: description
+            type: text
+            label: Description
+          - name: keywords
+            type: string
+            label: Keywords
+          - name: sections
+            component: sections
+          - name: legalSections
+            component: legalSections
+          - name: metadata
+            component: metadata
 
-  - name: solutionsLeadGen
-    label: "Solutions: Lead Gen"
-    type: collection
-    path: src/data/pages/solutions/lead-gen
-    fields:
-      - name: title
-        type: string
-        label: Title
-      - name: description
-        type: text
-        label: Description
-      - name: keywords
-        type: string
-        label: Keywords
-      - name: sections
-        component: sections
-      - name: legalSections
-        component: legalSections
-      - name: metadata
-        component: metadata
+      - name: solutionsBranding
+        label: "Solutions: Branding"
+        type: collection
+        path: src/data/pages/solutions/branding-awareness
+        fields:
+          - name: title
+            type: string
+            label: Title
+          - name: description
+            type: text
+            label: Description
+          - name: keywords
+            type: string
+            label: Keywords
+          - name: sections
+            component: sections
+          - name: legalSections
+            component: legalSections
+          - name: metadata
+            component: metadata
 
-  - name: solutionsBranding
-    label: "Solutions: Branding"
-    type: collection
-    path: src/data/pages/solutions/branding-awareness
-    fields:
-      - name: title
-        type: string
-        label: Title
-      - name: description
-        type: text
-        label: Description
-      - name: keywords
-        type: string
-        label: Keywords
-      - name: sections
-        component: sections
-      - name: legalSections
-        component: legalSections
-      - name: metadata
-        component: metadata
-
-  - name: legal
-    label: Legal
-    type: collection
-    path: src/data/pages/legal
-    fields:
-      - name: title
-        type: string
-        label: Title
-      - name: description
-        type: text
-        label: Description
-      - name: keywords
-        type: string
-        label: Keywords
-      - name: sections
-        component: sections
-      - name: legalSections
-        component: legalSections
-      - name: metadata
-        component: metadata
+      - name: legal
+        label: Legal
+        type: collection
+        path: src/data/pages/legal
+        fields:
+          - name: title
+            type: string
+            label: Title
+          - name: description
+            type: text
+            label: Description
+          - name: keywords
+            type: string
+            label: Keywords
+          - name: sections
+            component: sections
+          - name: legalSections
+            component: legalSections
+          - name: metadata
+            component: metadata
