@@ -64,6 +64,11 @@ components:
       - name: schema
         type: code
         label: "Schema.org JSON-LD (optional)"
+        # `options` is required here - Pages CMS's code-field editor reads
+        # field.options.lintFn unconditionally and crashes ("Cannot read
+        # properties of undefined (reading 'lintFn')") if `options` is absent.
+        options:
+          format: json
       - name: sitemap
         type: boolean
         label: Include in Sitemap
